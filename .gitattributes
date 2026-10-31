@@ -1,0 +1,6 @@
+# ReportLab PDFs can be ASCII-only: never apply text/newline conversion to assets.
+*.pdf binary
+*.png binary
+*.zip binary
+*.mp4 binary
+*.bundle binary

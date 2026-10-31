@@ -25,3 +25,24 @@ _build/
 .env
 .venv
 venv
+# Assignment artifacts: commit curated results/checkpoints, not transient runtimes.
+.venv/
+.runtime/
+build/
+dist/
+*.spec
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+runs/**/events.out.tfevents.*
+runs/**/monitor-*.csv
+runs/
+results/*-console.log
+results/*-matrix*.log
+results/build-windows.log
+results/export-submission.log
+results/*-status.json
+results/*.log
+results/baseline-check/
+**/.training.lock
+tmp/

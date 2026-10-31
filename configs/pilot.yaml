@@ -1,0 +1,10 @@
+timesteps: 32768
+n_envs: 4
+vector_backend: dummy
+output: runs/pilot
+eval_every: 16384
+validation_count: 3
+ppo:
+  n_steps: 128
+  batch_size: 256
+  n_epochs: 4

@@ -28,6 +28,8 @@ dependencies = ["numpy>=1.18.0", "gymnasium>=0.28.1", "pygame-ce>=2.4.0"]
 dynamic = ["version"]
 
 [project.optional-dependencies]
+exploration = ["stable-baselines3>=2.7,<3", "PyYAML>=6", "Pillow>=10", "tensorboard>=2.17", "matplotlib>=3.9", "imageio[ffmpeg]>=2.35"]
+submission = ["pytest>=8", "pytest-mock>=3.10", "pyinstaller>=6", "reportlab>=4", "pypdf>=5", "pypdfium2>=4", "ruff>=0.11"]
 testing = ["pytest>=7.0.1", "pytest-mock>=3.10.0", "matplotlib>=3.0"]
 wfc = ["networkx", "imageio>=2.31.1"]
 
@@ -41,7 +43,7 @@ Documentation = "https://minigrid.farama.org/"
 include-package-data = true
 
 [tool.setuptools.packages.find]
-include = ["minigrid*"]
+include = ["minigrid*", "exploration*"]
 
 # Linters and Test tools #######################################################
 

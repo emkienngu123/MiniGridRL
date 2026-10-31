@@ -1,0 +1,16 @@
+[
+  {
+    "checkpoint": "main-11.zip",
+    "variant": "main",
+    "seed": 11,
+    "selected_steps": 4250000,
+    "completed_steps": 5001216
+  },
+  {
+    "checkpoint": "main-22.zip",
+    "variant": "main",
+    "seed": 22,
+    "selected_steps": 4750000,
+    "completed_steps": 5001216
+  }
+]
