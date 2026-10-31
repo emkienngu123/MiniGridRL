@@ -279,7 +279,8 @@
           },
           "run_mean_std": null
         }
-      }
+      },
+      "inference_step_mean_ms": 0.4537893257483186
     },
     "frontier/hard": {
       "episodes": 10,
@@ -372,7 +373,8 @@
           },
           "run_mean_std": null
         }
-      }
+      },
+      "inference_step_mean_ms": 0.915873187545961
     },
     "frontier/medium": {
       "episodes": 10,
@@ -465,7 +467,8 @@
           },
           "run_mean_std": null
         }
-      }
+      },
+      "inference_step_mean_ms": 0.6673548927852501
     },
     "main/easy": {
       "episodes": 20,
@@ -569,7 +572,8 @@
           },
           "run_mean_std": 0.2393458275183575
         }
-      }
+      },
+      "inference_step_mean_ms": 1.501139254376759
     },
     "main/hard": {
       "episodes": 20,
@@ -673,7 +677,8 @@
           },
           "run_mean_std": 0.010033506317498856
         }
-      }
+      },
+      "inference_step_mean_ms": 1.5637693725258996
     },
     "main/medium": {
       "episodes": 20,
@@ -777,7 +782,8 @@
           },
           "run_mean_std": 0.09734505163155578
         }
-      }
+      },
+      "inference_step_mean_ms": 1.5192793104871734
     },
     "random/easy": {
       "episodes": 30,
@@ -892,7 +898,8 @@
           },
           "run_mean_std": 0.014377147676612809
         }
-      }
+      },
+      "inference_step_mean_ms": 0.1020677917773685
     },
     "random/hard": {
       "episodes": 30,
@@ -1007,7 +1014,8 @@
           },
           "run_mean_std": 0.004673340188652631
         }
-      }
+      },
+      "inference_step_mean_ms": 0.10655365475488307
     },
     "random/medium": {
       "episodes": 30,
@@ -1122,7 +1130,8 @@
           },
           "run_mean_std": 0.003020577372568426
         }
-      }
+      },
+      "inference_step_mean_ms": 0.10252242103319603
     }
   },
   "paired_comparisons": [
