@@ -115,15 +115,15 @@ def report_pdf(report, checkpoint, output, complete):
     def heading(text):
         story.append(Paragraph(text, styles["Heading1"]))
 
-    def table(rows, widths=None):
+    def table(rows, widths=None, padding=6):
         t = Table(rows, colWidths=widths, repeatRows=1, hAlign="LEFT")
         t.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#193756")),
             ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
             ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
             ("FONTSIZE", (0, 0), (-1, -1), 8),
-            ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
-            ("TOPPADDING", (0, 0), (-1, -1), 6),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), padding),
+            ("TOPPADDING", (0, 0), (-1, -1), padding),
             ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.HexColor("#eef3f8"), colors.white]),
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ]))
@@ -191,7 +191,7 @@ def report_pdf(report, checkpoint, output, complete):
         m = value["metrics"]
         rows.append([key, str(value["episodes"]), f"{100*m['revealed_coverage']['mean']:.1f} +/- {100*m['revealed_coverage']['episode_std']:.1f}",
                      f"{m['coverage_auc']['mean']:.3f}", f"{m['poi_fraction']['mean']:.1%}", f"{m['survived']['mean']:.1%}"])
-    table(rows, [150, 55, 73, 60, 72, 90])
+    table(rows, [150, 55, 73, 60, 72, 90], padding=4)
     story.append(ReportImage(str(output / "figures" / "outcomes.png"), width=6.75 * inch, height=2.19 * inch))
     p("Coverage is mean +/- episode standard deviation in percentage points. Bars show means. Run means, run-mean variation, wall contacts, loops, latency, and paired comparison intervals are in summary.json. No claim that PPO beats the frontier baseline is assumed.")
     for comparison in report.get("paired_comparisons", []):
