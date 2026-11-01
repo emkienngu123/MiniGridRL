@@ -12,5 +12,54 @@
     "seed": 22,
     "selected_steps": 4750000,
     "completed_steps": 5001216
+  },
+  {
+    "checkpoint": "main-33.zip",
+    "variant": "main",
+    "seed": 33,
+    "selected_steps": 3000000,
+    "completed_steps": 5001648
+  },
+  {
+    "checkpoint": "no_memory-11.zip",
+    "variant": "no_memory",
+    "seed": 11,
+    "selected_steps": 1000000,
+    "completed_steps": 5001216
+  },
+  {
+    "checkpoint": "no_memory-22.zip",
+    "variant": "no_memory",
+    "seed": 22,
+    "selected_steps": 1000000,
+    "completed_steps": 5001216
+  },
+  {
+    "checkpoint": "no_memory-33.zip",
+    "variant": "no_memory",
+    "seed": 33,
+    "selected_steps": 4000000,
+    "completed_steps": 5001216
+  },
+  {
+    "checkpoint": "no_novelty-11.zip",
+    "variant": "no_novelty",
+    "seed": 11,
+    "selected_steps": 4000000,
+    "completed_steps": 5001216
+  },
+  {
+    "checkpoint": "no_novelty-22.zip",
+    "variant": "no_novelty",
+    "seed": 22,
+    "selected_steps": 4250000,
+    "completed_steps": 5001216
+  },
+  {
+    "checkpoint": "no_novelty-33.zip",
+    "variant": "no_novelty",
+    "seed": 33,
+    "selected_steps": 3750000,
+    "completed_steps": 5001216
   }
 ]

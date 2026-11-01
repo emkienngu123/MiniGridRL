@@ -1,0 +1,42 @@
+device: cuda
+eval_every: 250000
+n_envs: 16
+output: runs\main-11
+ppo:
+  batch_size: 256
+  clip_range: 0.2
+  ent_coef: 0.01
+  gae_lambda: 0.95
+  gamma: 0.99
+  learning_rate: 0.0003
+  max_grad_norm: 0.5
+  n_epochs: 4
+  n_steps: 256
+  target_kl: 0.03
+  vf_coef: 0.5
+reward:
+  death: -1.0
+  poi: 1.0
+  seen: 0.02
+  step: -0.001
+  visited: 0.01
+  wall: -0.02
+seed: 11
+seeds:
+  test:
+  - 20000
+  - 20099
+  train:
+  - 0
+  - 9999
+  validation:
+  - 10000
+  - 10049
+timesteps: 5000000
+torch_threads: 1
+train_presets:
+- easy
+- medium
+validation_count: 50
+variant: main
+vector_backend: subproc

@@ -1,8 +1,8 @@
 {
-  "status": "preliminary_pilot",
-  "evaluation_source": "results\\interim-validation",
+  "status": "full_matrix",
+  "evaluation_source": "results\\full",
   "checkpoint_source": "runs\\main-11\\best.zip",
-  "completed_training_runs": 2,
+  "completed_training_runs": 9,
   "report": "submission\\technical-report.pdf",
   "demo_seconds": 180
 }

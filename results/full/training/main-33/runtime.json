@@ -1,0 +1,10 @@
+{
+  "initial_steps": 750000,
+  "final_steps": 5001648,
+  "resume_from": "C:\\Users\\trung\\OneDrive\\Desktop\\Kien\\AtherLabsAssignment\\minigrid-explorer\\runs\\main-33\\latest.zip",
+  "elapsed_seconds_including_validation": 5722.498387900065,
+  "transitions_per_second_including_validation": 742.9705893827592,
+  "device": "cuda",
+  "checkpoint": "runs\\main-33\\final.zip",
+  "note": "PPO rounds the requested budget up to a complete rollout. Resume restarts environment sampling; it is not bitwise continuation."
+}

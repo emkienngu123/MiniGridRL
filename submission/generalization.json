@@ -1,0 +1,127 @@
+{
+  "note": "Training-partition seeds are a diagnostic sample, not a guarantee that every particular map was encountered by every run.",
+  "test_minus_training_partition": {
+    "frontier/easy": {
+      "revealed_coverage": -0.016020370180953925,
+      "coverage_auc": -0.014290286176403155,
+      "poi_fraction": -0.010000000000000009,
+      "survived": -0.08999999999999997
+    },
+    "frontier/hard": {
+      "revealed_coverage": -0.014102722125226896,
+      "coverage_auc": -0.013191278664010486,
+      "poi_fraction": -0.0020000000000000018,
+      "survived": -0.04999999999999999
+    },
+    "frontier/medium": {
+      "revealed_coverage": 0.06650400795603628,
+      "coverage_auc": 0.060861429315398397,
+      "poi_fraction": 0.053333333333333455,
+      "survived": 0.010000000000000009
+    },
+    "main/easy": {
+      "revealed_coverage": -0.010466715581311514,
+      "coverage_auc": -0.004529981262470728,
+      "poi_fraction": -0.0016666666666665941,
+      "survived": 0.026666666666666616
+    },
+    "main/hard": {
+      "revealed_coverage": -0.00307396452479064,
+      "coverage_auc": 0.010064647465881538,
+      "poi_fraction": -0.032666666666666566,
+      "survived": -0.033333333333333326
+    },
+    "main/medium": {
+      "revealed_coverage": 0.0020632672460456636,
+      "coverage_auc": 0.009279403684225973,
+      "poi_fraction": -0.01666666666666672,
+      "survived": -0.023333333333333317
+    },
+    "no_memory/easy": {
+      "revealed_coverage": 0.007998485037707614,
+      "coverage_auc": 0.009569166938076301,
+      "poi_fraction": -0.0016666666666667052,
+      "survived": -0.01333333333333342
+    },
+    "no_memory/hard": {
+      "revealed_coverage": -0.04354773923795818,
+      "coverage_auc": -0.0372357696350446,
+      "poi_fraction": -0.04733333333333345,
+      "survived": 0.0
+    },
+    "no_memory/medium": {
+      "revealed_coverage": 0.011149217595201155,
+      "coverage_auc": 0.006665755997617984,
+      "poi_fraction": -0.014444444444444371,
+      "survived": -0.013333333333333308
+    },
+    "no_novelty/easy": {
+      "revealed_coverage": -0.016114315170207116,
+      "coverage_auc": -0.018099924303446424,
+      "poi_fraction": -0.008333333333333415,
+      "survived": -0.04999999999999993
+    },
+    "no_novelty/hard": {
+      "revealed_coverage": -0.030676567056684645,
+      "coverage_auc": -0.021273751518470857,
+      "poi_fraction": -0.04666666666666669,
+      "survived": 0.036666666666666736
+    },
+    "no_novelty/medium": {
+      "revealed_coverage": 0.01614307783544272,
+      "coverage_auc": 0.02140279503367659,
+      "poi_fraction": 5.551115123125783e-17,
+      "survived": 0.040000000000000036
+    },
+    "random/easy": {
+      "revealed_coverage": -0.015822373214590013,
+      "coverage_auc": -0.016839725992013,
+      "poi_fraction": -0.033333333333333326,
+      "survived": 0.026666666666666672
+    },
+    "random/hard": {
+      "revealed_coverage": -0.011842509709003912,
+      "coverage_auc": -0.008075600180767861,
+      "poi_fraction": -0.021999999999999964,
+      "survived": 0.036666666666666625
+    },
+    "random/medium": {
+      "revealed_coverage": 0.01756158448134304,
+      "coverage_auc": 0.014741430890975071,
+      "poi_fraction": 0.004444444444444529,
+      "survived": 0.020000000000000018
+    }
+  },
+  "hard_minus_medium_test": {
+    "frontier": {
+      "revealed_coverage": -0.06445520518519898,
+      "coverage_auc": -0.07833080637604517,
+      "poi_fraction": -0.053333333333333566,
+      "survived": -0.07999999999999996
+    },
+    "main": {
+      "revealed_coverage": -0.22101217128428147,
+      "coverage_auc": -0.1978058016724668,
+      "poi_fraction": -0.23466666666666652,
+      "survived": -0.030000000000000027
+    },
+    "no_memory": {
+      "revealed_coverage": -0.18969175276961303,
+      "coverage_auc": -0.18903384547169932,
+      "poi_fraction": -0.19733333333333347,
+      "survived": -0.01666666666666672
+    },
+    "no_novelty": {
+      "revealed_coverage": -0.19275747098438512,
+      "coverage_auc": -0.1701313848336702,
+      "poi_fraction": -0.2097777777777778,
+      "survived": -0.013333333333333308
+    },
+    "random": {
+      "revealed_coverage": -0.14289862250188823,
+      "coverage_auc": -0.12814504652703143,
+      "poi_fraction": -0.13111111111111112,
+      "survived": 0.046666666666666634
+    }
+  }
+}
