@@ -44,5 +44,6 @@ results/export-submission.log
 results/*-status.json
 results/*.log
 results/baseline-check/
+results/memory-investigation-smoke/
 **/.training.lock
 tmp/

@@ -1,0 +1,24 @@
+{
+  "checked_states": 1185,
+  "checked_known_cells": 592825,
+  "checked_current_visible_cells": 34914,
+  "headings": {
+    "0": 318,
+    "1": 294,
+    "3": 256,
+    "2": 317
+  },
+  "errors": {
+    "pose": 0,
+    "floor": 0,
+    "wall": 0,
+    "poi": 0,
+    "agent_marker": 0,
+    "missing_current_visible": 0,
+    "missing_current_poi": 0,
+    "forgotten_observations": 0,
+    "current_monster": 0
+  },
+  "mean_canvas_known_fraction": 0.16537992366990428,
+  "mean_fraction_occupied_cells_saturated": 0.017167568406609893
+}
