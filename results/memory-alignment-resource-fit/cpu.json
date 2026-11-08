@@ -1,0 +1,198 @@
+{
+  "device": "cpu",
+  "status": "passed",
+  "training": {
+    "initial_steps": 0,
+    "final_steps": 8192,
+    "resume_from": null,
+    "elapsed_seconds_including_validation": 31.002591399941593,
+    "transitions_per_second_including_validation": 264.2359760937737,
+    "device": "cpu",
+    "checkpoint": "runs\\memory-alignment-fit\\cpu\\final.zip",
+    "memory_frame": "agent_aligned",
+    "note": "PPO rounds the requested budget up to a complete rollout. Resume restarts environment sampling; it is not bitwise continuation."
+  },
+  "samples": [
+    {
+      "elapsed": 0.06179920001886785,
+      "used_mib": 21554,
+      "free_mib": 2589,
+      "utilization": 2
+    },
+    {
+      "elapsed": 1.1289067000616342,
+      "used_mib": 21535,
+      "free_mib": 2608,
+      "utilization": 8
+    },
+    {
+      "elapsed": 2.195861699990928,
+      "used_mib": 21550,
+      "free_mib": 2593,
+      "utilization": 4
+    },
+    {
+      "elapsed": 3.2556725000031292,
+      "used_mib": 21550,
+      "free_mib": 2593,
+      "utilization": 2
+    },
+    {
+      "elapsed": 4.309207800077274,
+      "used_mib": 21546,
+      "free_mib": 2597,
+      "utilization": 2
+    },
+    {
+      "elapsed": 5.3716094000265,
+      "used_mib": 21530,
+      "free_mib": 2613,
+      "utilization": 2
+    },
+    {
+      "elapsed": 6.440892999991775,
+      "used_mib": 21542,
+      "free_mib": 2601,
+      "utilization": 1
+    },
+    {
+      "elapsed": 7.497447400121018,
+      "used_mib": 21550,
+      "free_mib": 2593,
+      "utilization": 16
+    },
+    {
+      "elapsed": 8.560232399962842,
+      "used_mib": 21554,
+      "free_mib": 2589,
+      "utilization": 5
+    },
+    {
+      "elapsed": 9.624486699933186,
+      "used_mib": 21553,
+      "free_mib": 2590,
+      "utilization": 2
+    },
+    {
+      "elapsed": 10.679507600143552,
+      "used_mib": 21535,
+      "free_mib": 2608,
+      "utilization": 2
+    },
+    {
+      "elapsed": 11.747860200004652,
+      "used_mib": 21551,
+      "free_mib": 2592,
+      "utilization": 2
+    },
+    {
+      "elapsed": 12.804396100109443,
+      "used_mib": 21541,
+      "free_mib": 2602,
+      "utilization": 6
+    },
+    {
+      "elapsed": 13.872839299961925,
+      "used_mib": 21541,
+      "free_mib": 2602,
+      "utilization": 3
+    },
+    {
+      "elapsed": 14.933492199983448,
+      "used_mib": 21525,
+      "free_mib": 2618,
+      "utilization": 3
+    },
+    {
+      "elapsed": 16.001571899978444,
+      "used_mib": 21541,
+      "free_mib": 2602,
+      "utilization": 12
+    },
+    {
+      "elapsed": 17.05717430007644,
+      "used_mib": 21541,
+      "free_mib": 2602,
+      "utilization": 5
+    },
+    {
+      "elapsed": 18.116882800124586,
+      "used_mib": 21541,
+      "free_mib": 2602,
+      "utilization": 3
+    },
+    {
+      "elapsed": 19.18724639993161,
+      "used_mib": 21525,
+      "free_mib": 2618,
+      "utilization": 2
+    },
+    {
+      "elapsed": 20.254493300104514,
+      "used_mib": 21542,
+      "free_mib": 2601,
+      "utilization": 11
+    },
+    {
+      "elapsed": 21.338550799991935,
+      "used_mib": 21542,
+      "free_mib": 2601,
+      "utilization": 9
+    },
+    {
+      "elapsed": 22.395857900148258,
+      "used_mib": 21543,
+      "free_mib": 2600,
+      "utilization": 8
+    },
+    {
+      "elapsed": 23.466793600004166,
+      "used_mib": 21542,
+      "free_mib": 2601,
+      "utilization": 6
+    },
+    {
+      "elapsed": 24.533025900134817,
+      "used_mib": 21547,
+      "free_mib": 2596,
+      "utilization": 4
+    },
+    {
+      "elapsed": 25.592651300132275,
+      "used_mib": 21547,
+      "free_mib": 2596,
+      "utilization": 2
+    },
+    {
+      "elapsed": 26.652288699988276,
+      "used_mib": 21531,
+      "free_mib": 2612,
+      "utilization": 2
+    },
+    {
+      "elapsed": 27.710326900007203,
+      "used_mib": 21548,
+      "free_mib": 2595,
+      "utilization": 2
+    },
+    {
+      "elapsed": 28.779183099977672,
+      "used_mib": 21547,
+      "free_mib": 2596,
+      "utilization": 4
+    },
+    {
+      "elapsed": 29.849131300114095,
+      "used_mib": 21547,
+      "free_mib": 2596,
+      "utilization": 2
+    },
+    {
+      "elapsed": 30.918601900106296,
+      "used_mib": 21527,
+      "free_mib": 2616,
+      "utilization": 3
+    }
+  ],
+  "elapsed": 31.014737399993464
+}

@@ -12,6 +12,8 @@ import sys
 import time
 from pathlib import Path
 
+from exploration.config import load_config
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -26,7 +28,7 @@ def command(args, logfile):
             raise RuntimeError(f"Command failed ({process.returncode}); inspect {logfile}")
 
 
-def main():
+def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default="configs/main.yaml")
     parser.add_argument("--variants", nargs="+", default=["main", "no_memory", "no_novelty"])
@@ -36,7 +38,17 @@ def main():
     parser.add_argument("--tag", default="full")
     parser.add_argument("--skip-artifacts", action="store_true")
     parser.add_argument("--test-count", type=int, default=100)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
+    config = load_config(ROOT / args.config)
+    if config["memory_frame"] != "start_aligned":
+        parser.error(
+            "run_matrix.py supports only start_aligned experiments. "
+            "For agent_aligned, run each seed directly with python -m exploration train "
+            "--config configs/memory-aligned.yaml --seed <seed>. "
+            "Aligned experiments must not automatically evaluate held-out seeds or export the submission."
+        )
+    # Validate before creating status/run folders, inspecting completed runs,
+    # launching children, or touching held-out results and submission artifacts.
     status_path = ROOT / "results" / f"{args.tag}-status.json"
     status_path.parent.mkdir(exist_ok=True)
     checkpoints = []

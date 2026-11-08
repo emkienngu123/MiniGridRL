@@ -46,7 +46,7 @@ def main():
             digest = hashlib.file_digest(stream, "sha256").hexdigest()
         entries.append({"path": str(path.relative_to(ROOT)), "bytes": path.stat().st_size, "sha256": digest})
         checksums.append(f"{digest}  {path.relative_to(ROOT).as_posix()}")
-    release = {"target_repository": "emkienngu123/minigrid-explorer", "published": False,
+    release = {"target_repository": "emkienngu123/MiniGridRL", "published": False,
                "evidence_status": manifest["status"], "branch": branch,
                "source_commit": git("rev-parse", "HEAD", capture=True).stdout.strip(), "assets": entries}
     (dist / "release-manifest.json").write_text(json.dumps(release, indent=2), encoding="utf-8")

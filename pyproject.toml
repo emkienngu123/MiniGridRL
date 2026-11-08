@@ -10,11 +10,11 @@ description = "Minimalistic gridworld reinforcement learning environments."
 readme = "README.md"
 requires-python = ">= 3.11"
 authors = [{ name = "Farama Foundation", email = "contact@farama.org" }]
-license = { text = "MIT License" }
+license = { text = "Apache License 2.0" }
 keywords = ["Memory, Environment, Agent, RL, Gymnasium"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",

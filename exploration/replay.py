@@ -41,6 +41,7 @@ def replay(agent_name, checkpoint, seed, preset, output, *, frame_stride=4, fps=
         trace = {"agent": agent.name, "seed": seed, "preset": preset,
                  "checkpoint": str(checkpoint) if checkpoint else None,
                  "checkpoint_sha256": metadata.get("sha256"), "variant": env.variant,
+                 "memory_frame": getattr(agent, "memory_frame", "start_aligned"),
                  "frame_stride": frame_stride, "fps": fps,
                  "actions": actions, "metrics": metrics}
         (output / "replay.json").write_text(json.dumps(trace, indent=2), encoding="utf-8")

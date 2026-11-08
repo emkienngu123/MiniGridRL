@@ -153,7 +153,14 @@ class ExplorerUI:
             if self.env:
                 self.env.close()
             self.env, self.obs, self.agent = env, obs, agent
-            self.memory_mode_label.configure(text="History tracker / policy memory disabled" if env.variant == "no_memory" else "Built only from observations")
+            if metadata:
+                frame = agent.memory_frame.replace("_", " ")
+                memory_text = f"Start-aligned history / PPO input: {frame}"
+                if env.variant == "no_memory":
+                    memory_text += " (disabled)"
+            else:
+                memory_text = "Built only from observations / start-aligned history"
+            self.memory_mode_label.configure(text=memory_text)
             self.ended = False
             self.checkpoint_label.configure(text=Path(self.checkpoint.get()).name if self.checkpoint.get() else "No checkpoint selected")
             self.status.set(f"Ready / {self.agent.name} / seed {seed}")

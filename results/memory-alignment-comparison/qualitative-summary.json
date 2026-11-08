@@ -1,0 +1,154 @@
+[
+  {
+    "map_seed": 30000,
+    "preset": "hard",
+    "training_seed": 11,
+    "agent": "main",
+    "illustrative_only": true,
+    "metrics": {
+      "seed": 30000,
+      "preset": "hard",
+      "steps": 1378,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.4412532637075718,
+      "visited_coverage": 0.2506527415143603,
+      "coverage_auc": 0.3835451343559617,
+      "poi_discovered": 2,
+      "poi_fraction": 0.4,
+      "survived": 0,
+      "completion": 0,
+      "termination": "monster",
+      "monster_collisions": 1,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.06894049346879536,
+      "repeated_state_rate": 0.444121915820029,
+      "loop_rate": 0.444121915820029,
+      "reward": 3.8519999999997396
+    },
+    "loop_phases": {
+      "before_90_percent": {
+        "actions": 1378,
+        "loops": 612
+      },
+      "after_90_percent": {
+        "actions": 0,
+        "loops": 0
+      }
+    }
+  },
+  {
+    "map_seed": 30000,
+    "preset": "hard",
+    "training_seed": 11,
+    "agent": "no_memory",
+    "illustrative_only": true,
+    "metrics": {
+      "seed": 30000,
+      "preset": "hard",
+      "steps": 1378,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.6814621409921671,
+      "visited_coverage": 0.5117493472584856,
+      "coverage_auc": 0.5025208741296779,
+      "poi_discovered": 3,
+      "poi_fraction": 0.6,
+      "survived": 0,
+      "completion": 0,
+      "termination": "monster",
+      "monster_collisions": 1,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.14150943396226415,
+      "repeated_state_rate": 0.4005805515239477,
+      "loop_rate": 0.4005805515239477,
+      "reward": 7.692000000000322
+    },
+    "loop_phases": {
+      "before_90_percent": {
+        "actions": 1378,
+        "loops": 552
+      },
+      "after_90_percent": {
+        "actions": 0,
+        "loops": 0
+      }
+    }
+  },
+  {
+    "map_seed": 30000,
+    "preset": "hard",
+    "training_seed": 11,
+    "agent": "main_agent_aligned",
+    "illustrative_only": true,
+    "metrics": {
+      "seed": 30000,
+      "preset": "hard",
+      "steps": 1202,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.7963446475195822,
+      "visited_coverage": 0.6527415143603134,
+      "coverage_auc": 0.7105397356396868,
+      "poi_discovered": 3,
+      "poi_fraction": 0.6,
+      "survived": 0,
+      "completion": 0,
+      "termination": "monster",
+      "monster_collisions": 1,
+      "wall_collisions": 2,
+      "wall_collision_rate": 0.0016638935108153079,
+      "movement_efficiency": 0.20715474209650583,
+      "repeated_state_rate": 0.29700499168053246,
+      "loop_rate": 0.29700499168053246,
+      "reward": 9.2480000000005
+    },
+    "loop_phases": {
+      "before_90_percent": {
+        "actions": 1202,
+        "loops": 357
+      },
+      "after_90_percent": {
+        "actions": 0,
+        "loops": 0
+      }
+    }
+  },
+  {
+    "map_seed": 30000,
+    "preset": "hard",
+    "training_seed": null,
+    "agent": "frontier",
+    "illustrative_only": true,
+    "metrics": {
+      "seed": 30000,
+      "preset": "hard",
+      "steps": 1536,
+      "episode_limit": 1536,
+      "revealed_coverage": 1.0,
+      "visited_coverage": 0.6422976501305483,
+      "coverage_auc": 0.9091108436684072,
+      "poi_discovered": 5,
+      "poi_fraction": 1.0,
+      "survived": 1,
+      "completion": 1,
+      "termination": "time_limit",
+      "monster_collisions": 0,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.15950520833333334,
+      "repeated_state_rate": 0.3717447916666667,
+      "loop_rate": 0.3717447916666667,
+      "reward": 13.474000000000702
+    },
+    "loop_phases": {
+      "before_90_percent": {
+        "actions": 248,
+        "loops": 9
+      },
+      "after_90_percent": {
+        "actions": 1288,
+        "loops": 562
+      }
+    }
+  }
+]

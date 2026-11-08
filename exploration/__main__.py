@@ -5,7 +5,14 @@ import json
 import multiprocessing
 import sys
 
-from exploration.config import PRESETS, load_config, seed_values
+from exploration.config import (
+    MEMORY_FRAMES,
+    PRESETS,
+    load_config,
+    policy_label,
+    seed_values,
+    validate_config,
+)
 
 
 def parser():
@@ -16,6 +23,7 @@ def parser():
     for name, typ in (("seed", int), ("timesteps", int), ("n-envs", int), ("eval-every", int)):
         training.add_argument(f"--{name}", type=typ)
     training.add_argument("--variant", choices=["main", "no_memory", "no_novelty"])
+    training.add_argument("--memory-frame", choices=MEMORY_FRAMES)
     training.add_argument("--device", choices=["auto", "cpu", "cuda"])
     training.add_argument("--vector-backend", choices=["dummy", "subproc"])
     training.add_argument("--output")
@@ -44,16 +52,24 @@ def parser():
     return root
 
 
+def training_config(args):
+    """Resolve training options without constructing environments or models."""
+    config = load_config(args.config)
+    for key in ("seed", "timesteps", "n_envs", "eval_every", "variant", "memory_frame", "device", "vector_backend", "output"):
+        if getattr(args, key) is not None:
+            config[key] = getattr(args, key)
+    if args.output is None and any(getattr(args, key) is not None for key in ("seed", "variant", "memory_frame")):
+        label = policy_label(config["variant"], config["memory_frame"])
+        config["output"] = f"runs/{label}-{config['seed']}"
+    validate_config(config)
+    return config
+
+
 def main(argv=None):
     args = parser().parse_args(argv)
     if args.command == "train":
         from exploration.training import train
-        config = load_config(args.config)
-        for key in ("seed", "timesteps", "n_envs", "eval_every", "variant", "device", "vector_backend", "output"):
-            if getattr(args, key) is not None:
-                config[key] = getattr(args, key)
-        if args.output is None and (args.seed is not None or args.variant is not None):
-            config["output"] = f"runs/{config['variant']}-{config['seed']}"
+        config = training_config(args)
         train(config, resume=args.resume)
     elif args.command == "evaluate":
         import torch

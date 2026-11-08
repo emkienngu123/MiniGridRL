@@ -1,0 +1,36 @@
+{
+  "scope": "8192-transition resource pilots, validation only; no held-out evaluation",
+  "cpu_side_tests": {
+    "passed": 115,
+    "cuda_cases_deselected": 33
+  },
+  "new_matrix_guard_tests": {
+    "passed": 5
+  },
+  "settings": {
+    "n_envs": 16,
+    "vector_backend": "dummy",
+    "torch_threads": 1,
+    "batch_size": 256,
+    "n_steps": 256,
+    "n_epochs": 4,
+    "validation_count": 1
+  },
+  "gpu_speedup": 2.8546438161884584,
+  "gpu_torch_peak_allocated_mib": 171.73828125,
+  "gpu_torch_peak_reserved_mib": 298.0,
+  "gpu_torch_allocator_cap_mib": 768,
+  "gpu_minimum_system_free_mib": 1872,
+  "gpu_system_usage_increase_mib": 717,
+  "caveats": [
+    "Allocator cap excludes CUDA context/driver allocations and does not cap GPU compute.",
+    "System GPU memory samples include other applications and are sampled once per second.",
+    "Short pilots use one validation map per preset; full validation overhead and changing competing load affect longer-run speed."
+  ],
+  "long_training_status": "complete: three sequential CUDA runs, 5001216 transitions each",
+  "long_training_status_file": "results/memory-aligned-status.json",
+  "latest_full_test_suite": {
+    "passed": 148,
+    "includes_cuda": true
+  }
+}

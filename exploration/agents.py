@@ -6,6 +6,7 @@ from typing import Protocol
 
 import numpy as np
 
+from exploration.config import checkpoint_memory_frame, policy_label
 from exploration.environment import DIRECTIONS
 
 
@@ -112,14 +113,17 @@ class PPOAgent:
 
         self.model, self.metadata = load_checkpoint(Path(checkpoint), device=device)
         self.checkpoint = str(Path(checkpoint))
-        self.name = self.metadata["variant"]
+        self.memory_frame = checkpoint_memory_frame(self.metadata)
+        self.name = policy_label(self.metadata["variant"], self.memory_frame)
         self.training_seed = self.metadata["seed"]
         final_manifest = Path(checkpoint).with_name("final.json")
         self.completed_training_steps = self.metadata.get("completed_training_steps", self.metadata["training_steps"])
         if final_manifest.exists():
             import json
             completed = json.loads(final_manifest.read_text(encoding="utf-8"))
-            if completed.get("seed") == self.training_seed and completed.get("variant") == self.name:
+            if (completed.get("seed") == self.training_seed
+                    and completed.get("variant") == self.metadata["variant"]
+                    and checkpoint_memory_frame(completed) == self.memory_frame):
                 self.completed_training_steps = max(self.completed_training_steps, completed["training_steps"])
 
     def reset(self, seed=0):

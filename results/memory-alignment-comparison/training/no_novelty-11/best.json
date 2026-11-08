@@ -1,0 +1,71 @@
+{
+  "observation_version": "exploration-v1",
+  "variant": "no_novelty",
+  "seed": 11,
+  "training_steps": 4000000,
+  "config": {
+    "seed": 11,
+    "variant": "no_novelty",
+    "timesteps": 5000000,
+    "device": "cuda",
+    "torch_threads": 1,
+    "n_envs": 16,
+    "vector_backend": "subproc",
+    "train_presets": [
+      "easy",
+      "medium"
+    ],
+    "output": "runs\\no_novelty-11",
+    "eval_every": 250000,
+    "validation_count": 50,
+    "seeds": {
+      "train": [
+        0,
+        9999
+      ],
+      "validation": [
+        10000,
+        10049
+      ],
+      "test": [
+        20000,
+        20099
+      ]
+    },
+    "reward": {
+      "seen": 0.02,
+      "visited": 0.01,
+      "poi": 1.0,
+      "step": -0.001,
+      "wall": -0.02,
+      "death": -1.0
+    },
+    "ppo": {
+      "n_steps": 256,
+      "batch_size": 256,
+      "n_epochs": 4,
+      "learning_rate": 0.0003,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "ent_coef": 0.01,
+      "target_kl": 0.03,
+      "vf_coef": 0.5,
+      "max_grad_norm": 0.5
+    }
+  },
+  "python": "3.11.15",
+  "dependencies": {
+    "minigrid": "3.2.0",
+    "stable-baselines3": "2.9.2",
+    "torch": "2.11.0+cu128",
+    "numpy": "2.4.6",
+    "gymnasium": "1.4.0"
+  },
+  "sha256": "5ce955d1327073343278c69c1596a3c40e1055f3276ad811fa1c02eaa9216e4b",
+  "validation_score": [
+    0.47535741199139403,
+    0.5783333333333333,
+    0.6699999999999999
+  ]
+}

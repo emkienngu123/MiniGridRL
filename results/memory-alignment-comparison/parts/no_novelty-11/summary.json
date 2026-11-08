@@ -1,0 +1,461 @@
+{
+  "split": "test",
+  "seeds": [
+    30000,
+    30001,
+    30002,
+    30003,
+    30004,
+    30005,
+    30006,
+    30007,
+    30008,
+    30009,
+    30010,
+    30011,
+    30012,
+    30013,
+    30014,
+    30015,
+    30016,
+    30017,
+    30018,
+    30019,
+    30020,
+    30021,
+    30022,
+    30023,
+    30024,
+    30025,
+    30026,
+    30027,
+    30028,
+    30029,
+    30030,
+    30031,
+    30032,
+    30033,
+    30034,
+    30035,
+    30036,
+    30037,
+    30038,
+    30039,
+    30040,
+    30041,
+    30042,
+    30043,
+    30044,
+    30045,
+    30046,
+    30047,
+    30048,
+    30049,
+    30050,
+    30051,
+    30052,
+    30053,
+    30054,
+    30055,
+    30056,
+    30057,
+    30058,
+    30059,
+    30060,
+    30061,
+    30062,
+    30063,
+    30064,
+    30065,
+    30066,
+    30067,
+    30068,
+    30069,
+    30070,
+    30071,
+    30072,
+    30073,
+    30074,
+    30075,
+    30076,
+    30077,
+    30078,
+    30079,
+    30080,
+    30081,
+    30082,
+    30083,
+    30084,
+    30085,
+    30086,
+    30087,
+    30088,
+    30089,
+    30090,
+    30091,
+    30092,
+    30093,
+    30094,
+    30095,
+    30096,
+    30097,
+    30098,
+    30099
+  ],
+  "presets": [
+    "easy",
+    "medium",
+    "hard"
+  ],
+  "python": "3.11.15",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "agents": [
+    {
+      "agent": "no_novelty",
+      "training_seed": 11,
+      "policy_seed": null,
+      "checkpoint": "runs\\no_novelty-11\\best.zip",
+      "training_steps": 4000000,
+      "sha256": "5ce955d1327073343278c69c1596a3c40e1055f3276ad811fa1c02eaa9216e4b",
+      "completed_training_steps": 5001216,
+      "training_config": {
+        "seed": 11,
+        "variant": "no_novelty",
+        "timesteps": 5000000,
+        "device": "cuda",
+        "torch_threads": 1,
+        "n_envs": 16,
+        "vector_backend": "subproc",
+        "train_presets": [
+          "easy",
+          "medium"
+        ],
+        "output": "runs\\no_novelty-11",
+        "eval_every": 250000,
+        "validation_count": 50,
+        "seeds": {
+          "train": [
+            0,
+            9999
+          ],
+          "validation": [
+            10000,
+            10049
+          ],
+          "test": [
+            20000,
+            20099
+          ]
+        },
+        "reward": {
+          "seen": 0.02,
+          "visited": 0.01,
+          "poi": 1.0,
+          "step": -0.001,
+          "wall": -0.02,
+          "death": -1.0
+        },
+        "ppo": {
+          "n_steps": 256,
+          "batch_size": 256,
+          "n_epochs": 4,
+          "learning_rate": 0.0003,
+          "gamma": 0.99,
+          "gae_lambda": 0.95,
+          "clip_range": 0.2,
+          "ent_coef": 0.01,
+          "target_kl": 0.03,
+          "vf_coef": 0.5,
+          "max_grad_norm": 0.5
+        }
+      },
+      "memory_frame": "start_aligned",
+      "inference_device": "cpu"
+    }
+  ],
+  "summary": {
+    "no_novelty/easy": {
+      "episodes": 100,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.7223964593551164,
+          "episode_std": 0.23797581610561205,
+          "run_means": {
+            "11": 0.7223964593551164
+          },
+          "run_mean_std": null
+        },
+        "visited_coverage": {
+          "mean": 0.17664665974213134,
+          "episode_std": 0.11265624673911162,
+          "run_means": {
+            "11": 0.17664665974213134
+          },
+          "run_mean_std": null
+        },
+        "coverage_auc": {
+          "mean": 0.6537817386933572,
+          "episode_std": 0.21483743774007272,
+          "run_means": {
+            "11": 0.6537817386933572
+          },
+          "run_mean_std": null
+        },
+        "poi_fraction": {
+          "mean": 0.745,
+          "episode_std": 0.358835096196883,
+          "run_means": {
+            "11": 0.745
+          },
+          "run_mean_std": null
+        },
+        "survived": {
+          "mean": 0.72,
+          "episode_std": 0.4512608598542129,
+          "run_means": {
+            "11": 0.72
+          },
+          "run_mean_std": null
+        },
+        "monster_collisions": {
+          "mean": 0.28,
+          "episode_std": 0.4512608598542129,
+          "run_means": {
+            "11": 0.28
+          },
+          "run_mean_std": null
+        },
+        "wall_collision_rate": {
+          "mean": 0.0032419308383611345,
+          "episode_std": 0.020237221853122038,
+          "run_means": {
+            "11": 0.0032419308383611345
+          },
+          "run_mean_std": null
+        },
+        "movement_efficiency": {
+          "mean": 0.04708613940835581,
+          "episode_std": 0.031494437972721334,
+          "run_means": {
+            "11": 0.04708613940835581
+          },
+          "run_mean_std": null
+        },
+        "repeated_state_rate": {
+          "mean": 0.7960851715220479,
+          "episode_std": 0.15504021757685277,
+          "run_means": {
+            "11": 0.7960851715220479
+          },
+          "run_mean_std": null
+        },
+        "loop_rate": {
+          "mean": 0.7960851715220479,
+          "episode_std": 0.15504021757685277,
+          "run_means": {
+            "11": 0.7960851715220479
+          },
+          "run_mean_std": null
+        },
+        "inference_ms_mean": {
+          "mean": 0.9961873812366805,
+          "episode_std": 0.028300356702170494,
+          "run_means": {
+            "11": 0.9961873812366805
+          },
+          "run_mean_std": null
+        }
+      },
+      "inference_step_mean_ms": 0.9969776104103834
+    },
+    "no_novelty/hard": {
+      "episodes": 100,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.22878818092708503,
+          "episode_std": 0.16156020874799376,
+          "run_means": {
+            "11": 0.22878818092708503
+          },
+          "run_mean_std": null
+        },
+        "visited_coverage": {
+          "mean": 0.04969740640225597,
+          "episode_std": 0.04871618672549459,
+          "run_means": {
+            "11": 0.04969740640225597
+          },
+          "run_mean_std": null
+        },
+        "coverage_auc": {
+          "mean": 0.19540999289167593,
+          "episode_std": 0.1297502145181474,
+          "run_means": {
+            "11": 0.19540999289167593
+          },
+          "run_mean_std": null
+        },
+        "poi_fraction": {
+          "mean": 0.23199999999999998,
+          "episode_std": 0.25381135124379683,
+          "run_means": {
+            "11": 0.23199999999999998
+          },
+          "run_mean_std": null
+        },
+        "survived": {
+          "mean": 0.58,
+          "episode_std": 0.49604496374885826,
+          "run_means": {
+            "11": 0.58
+          },
+          "run_mean_std": null
+        },
+        "monster_collisions": {
+          "mean": 0.42,
+          "episode_std": 0.49604496374885826,
+          "run_means": {
+            "11": 0.42
+          },
+          "run_mean_std": null
+        },
+        "wall_collision_rate": {
+          "mean": 0.003483952537593906,
+          "episode_std": 0.021702315563588953,
+          "run_means": {
+            "11": 0.003483952537593906
+          },
+          "run_mean_std": null
+        },
+        "movement_efficiency": {
+          "mean": 0.01859765832851242,
+          "episode_std": 0.021374337606922554,
+          "run_means": {
+            "11": 0.01859765832851242
+          },
+          "run_mean_std": null
+        },
+        "repeated_state_rate": {
+          "mean": 0.8920668740171266,
+          "episode_std": 0.1703526568607713,
+          "run_means": {
+            "11": 0.8920668740171266
+          },
+          "run_mean_std": null
+        },
+        "loop_rate": {
+          "mean": 0.8920668740171266,
+          "episode_std": 0.1703526568607713,
+          "run_means": {
+            "11": 0.8920668740171266
+          },
+          "run_mean_std": null
+        },
+        "inference_ms_mean": {
+          "mean": 0.9637004236510911,
+          "episode_std": 0.02881833781908683,
+          "run_means": {
+            "11": 0.9637004236510911
+          },
+          "run_mean_std": null
+        }
+      },
+      "inference_step_mean_ms": 0.9606449967381822
+    },
+    "no_novelty/medium": {
+      "episodes": 100,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.42101906662063565,
+          "episode_std": 0.21149006572706433,
+          "run_means": {
+            "11": 0.42101906662063565
+          },
+          "run_mean_std": null
+        },
+        "visited_coverage": {
+          "mean": 0.09525905243370836,
+          "episode_std": 0.07028542483232315,
+          "run_means": {
+            "11": 0.09525905243370836
+          },
+          "run_mean_std": null
+        },
+        "coverage_auc": {
+          "mean": 0.37171695480699685,
+          "episode_std": 0.19245663893552523,
+          "run_means": {
+            "11": 0.37171695480699685
+          },
+          "run_mean_std": null
+        },
+        "poi_fraction": {
+          "mean": 0.44,
+          "episode_std": 0.34125272617239233,
+          "run_means": {
+            "11": 0.44
+          },
+          "run_mean_std": null
+        },
+        "survived": {
+          "mean": 0.59,
+          "episode_std": 0.49431107042371025,
+          "run_means": {
+            "11": 0.59
+          },
+          "run_mean_std": null
+        },
+        "monster_collisions": {
+          "mean": 0.41,
+          "episode_std": 0.4943110704237103,
+          "run_means": {
+            "11": 0.41
+          },
+          "run_mean_std": null
+        },
+        "wall_collision_rate": {
+          "mean": 0.0011990813793611385,
+          "episode_std": 0.004239726545702356,
+          "run_means": {
+            "11": 0.0011990813793611385
+          },
+          "run_mean_std": null
+        },
+        "movement_efficiency": {
+          "mean": 0.04375134187169174,
+          "episode_std": 0.06681923540231732,
+          "run_means": {
+            "11": 0.04375134187169174
+          },
+          "run_mean_std": null
+        },
+        "repeated_state_rate": {
+          "mean": 0.8454421813527524,
+          "episode_std": 0.1912572906203518,
+          "run_means": {
+            "11": 0.8454421813527524
+          },
+          "run_mean_std": null
+        },
+        "loop_rate": {
+          "mean": 0.8454421813527524,
+          "episode_std": 0.1912572906203518,
+          "run_means": {
+            "11": 0.8454421813527524
+          },
+          "run_mean_std": null
+        },
+        "inference_ms_mean": {
+          "mean": 0.9945397178322256,
+          "episode_std": 0.03366682368236913,
+          "run_means": {
+            "11": 0.9945397178322256
+          },
+          "run_mean_std": null
+        }
+      },
+      "inference_step_mean_ms": 0.9928957460896009
+    }
+  },
+  "paired_comparisons": []
+}

@@ -65,6 +65,7 @@ def run_episode(agent, preset, seed, *, variant="main", reward=None, env_kwargs=
         metrics = episode_metrics(env, terminated, truncated)
         metrics.update({
             "agent": agent.name, "training_seed": getattr(agent, "training_seed", None),
+            "memory_frame": getattr(agent, "memory_frame", "start_aligned"),
             "policy_seed": getattr(agent, "policy_seed", None),
             "inference_ms_mean": float(np.mean(times)),
             "inference_ms_p50": float(np.percentile(times, 50)),
@@ -74,6 +75,7 @@ def run_episode(agent, preset, seed, *, variant="main", reward=None, env_kwargs=
         for step in sorted(set(range(0, env.unwrapped.max_steps + 1, 32)) | {env.unwrapped.max_steps}):
             index = min(step, len(env.coverage_history) - 1)
             curves.append({"agent": agent.name, "training_seed": metrics["training_seed"],
+                           "memory_frame": metrics["memory_frame"],
                            "policy_seed": metrics["policy_seed"], "preset": preset, "seed": seed,
                            "step": step, "budget_fraction": step / env.unwrapped.max_steps,
                            "coverage": env.coverage_history[index] / len(env.unwrapped.floor_cells),
@@ -176,6 +178,7 @@ def evaluate(agents, presets, seeds, output, *, env_kwargs=None, split="validati
                            "training_steps": metadata.get("training_steps"), "sha256": metadata.get("sha256"),
                            "completed_training_steps": getattr(agent, "completed_training_steps", None),
                            "training_config": metadata.get("config"),
+                           "memory_frame": getattr(agent, "memory_frame", "start_aligned"),
                            "inference_device": str(agent.model.device) if hasattr(agent, "model") else "cpu"})
     report = {"split": split, "seeds": list(seeds), "presets": list(presets),
               "python": platform.python_version(), "platform": platform.platform(), "agents": provenance,

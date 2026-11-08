@@ -1,0 +1,28 @@
+{
+  "primary_episodes": 4800,
+  "new_train_partition_episodes": 450,
+  "latency_episodes": 96,
+  "original_artifacts_unchanged": true,
+  "report": "report.md",
+  "sha256": {
+    "protocol.json": "fd3e4c6eb525a9d4b7b00eeb744588e90f1bc70881ebc481b8e4f6ab50e723e1",
+    "episodes.csv": "89461d2a25f6332a605c06264d76807bbac01e6a615210b19746b8954084003f",
+    "curves.csv": "2f3f6c05d2e118d9d543782654796c55bf42eee69eb8bd1b8cfe4281d76806e4",
+    "summary.json": "fbd28c3487113f2d2849fa5e4c288dcc8371ef3078b558ab59dfcd3ff574655b",
+    "aggregate-metrics.csv": "ab06352f43f93ce051f32f428fc35a43329b2aa180def6775419045a0f7a386e",
+    "generalization.json": "45577eef4c9f768124fa7f467a17f02c02ef7f5ebeb47743959003813fe780a0",
+    "isolated-latency.json": "aa4c14054148b7e77b623bd1545c95fbd8ffea67eb494194146d229eb32b05a2",
+    "report.md": "386c43e4eff211f5d00b4272b1116a241526ff2b8ac45c497ec0baeecab7e6f9"
+  },
+  "reproduction_sha256": {
+    "analyze_aligned_comparison.py": "465b2dc1f266bf56b628615f776d3536c14e3fcbece872ac616e8b24309fdbb7",
+    "evaluate_aligned_comparison.py": "16bbd457c43e53ca129ef28c49f51f2b1051d67a9cf530151d45553558f8a113",
+    "evaluate_aligned_train_partition.py": "def547c1c88cf677ee0ed0a8045d16812627a7b8b55a3d6558f92c865749af25",
+    "finish_aligned_comparison.py": "9d739547544b7538345699f2bccbc74c10c01590e8df79ca0edc50d7aa42d8aa",
+    "profile_aligned_comparison.py": "d19add799c8f89f2a06c99b97381faf3f4f8683ca151773035dde4271f3347be",
+    "qualitative_aligned_comparison.py": "c85a0ded5881bf6dcea213a0f316104953ca76771e8f5b0844f289afc6314278",
+    "verify_aligned_curves.py": "ac4820eac06172f64bcbfb251c54da44a149bc0d37feef6feea5acd49a267889",
+    "write_aligned_comparison_report.py": "ff14de133948d9ce2ef37cae4841e30bf5aab52cec981f42df151d114dda68de",
+    "restore_run_layout.py": "bb1ab637df3eac5a91a8c6bd518cdae1e05c4e34f2badbba5715763d7ac497a2"
+  }
+}

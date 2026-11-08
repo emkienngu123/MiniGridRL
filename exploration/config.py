@@ -5,6 +5,8 @@ from pathlib import Path
 
 import yaml
 
+MEMORY_FRAMES = ("start_aligned", "agent_aligned")
+
 PRESETS = {
     "easy": {"size": 15, "poi_count": 2, "max_steps": 512, "monster_interval": 3},
     "medium": {"size": 21, "poi_count": 3, "max_steps": 1024, "monster_interval": 2},
@@ -13,6 +15,7 @@ PRESETS = {
 DEFAULTS = {
     "seed": 11,
     "variant": "main",
+    "memory_frame": "start_aligned",
     "timesteps": 5_000_000,
     "device": "auto",
     "torch_threads": 1,
@@ -33,8 +36,29 @@ DEFAULTS = {
 }
 
 
+def validate_memory_frame(frame: str) -> str:
+    if frame not in MEMORY_FRAMES:
+        raise ValueError(f"Unknown memory frame {frame!r}; expected one of {MEMORY_FRAMES}")
+    return frame
+
+
+def policy_label(variant: str, memory_frame: str = "start_aligned") -> str:
+    validate_memory_frame(memory_frame)
+    return variant if memory_frame == "start_aligned" else f"{variant}_{memory_frame}"
+
+
+def checkpoint_memory_frame(metadata: dict) -> str:
+    """Missing fields in legacy sidecars mean the original policy input frame."""
+    frame = validate_memory_frame(metadata.get("memory_frame", "start_aligned"))
+    configured = validate_memory_frame(metadata.get("config", {}).get("memory_frame", "start_aligned"))
+    if frame != configured:
+        raise ValueError("Checkpoint memory frame does not match its configuration")
+    return frame
+
+
 def load_config(path: str | Path | None = None) -> dict:
     config = deepcopy(DEFAULTS)
+    loaded = {}
     if path:
         loaded = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
         for key, value in loaded.items():
@@ -42,11 +66,14 @@ def load_config(path: str | Path | None = None) -> dict:
                 config[key].update(value)
             else:
                 config[key] = value
+    if "output" not in loaded:
+        config["output"] = f"runs/{policy_label(config['variant'], config['memory_frame'])}-{config['seed']}"
     validate_config(config)
     return config
 
 
 def validate_config(config: dict) -> None:
+    validate_memory_frame(config.get("memory_frame", "start_aligned"))
     intervals = list(config["seeds"].values())
     for low, high in intervals:
         if low < 0 or high < low:

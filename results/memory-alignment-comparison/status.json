@@ -1,0 +1,77 @@
+{
+  "phase": "complete",
+  "started_utc": "2026-11-07T08:57:35.762806+00:00",
+  "jobs": [
+    {
+      "name": "random",
+      "state": "complete",
+      "pid": 28476
+    },
+    {
+      "name": "frontier",
+      "state": "complete",
+      "pid": 9740
+    },
+    {
+      "name": "main_agent_aligned-11",
+      "state": "complete",
+      "pid": 27480
+    },
+    {
+      "name": "main-11",
+      "state": "complete",
+      "pid": 29152
+    },
+    {
+      "name": "no_memory-11",
+      "state": "complete",
+      "pid": 28644
+    },
+    {
+      "name": "no_novelty-11",
+      "state": "complete",
+      "pid": 20524
+    },
+    {
+      "name": "main_agent_aligned-22",
+      "state": "complete",
+      "pid": 20016
+    },
+    {
+      "name": "main-22",
+      "state": "complete",
+      "pid": 27904
+    },
+    {
+      "name": "no_memory-22",
+      "state": "complete",
+      "pid": 28516
+    },
+    {
+      "name": "no_novelty-22",
+      "state": "complete",
+      "pid": 11060
+    },
+    {
+      "name": "main_agent_aligned-33",
+      "state": "complete",
+      "pid": 24140
+    },
+    {
+      "name": "main-33",
+      "state": "complete",
+      "pid": 29240
+    },
+    {
+      "name": "no_memory-33",
+      "state": "complete",
+      "pid": 13124
+    },
+    {
+      "name": "no_novelty-33",
+      "state": "complete",
+      "pid": 27184
+    }
+  ],
+  "updated_utc": "2026-11-07T09:16:13.856460+00:00"
+}

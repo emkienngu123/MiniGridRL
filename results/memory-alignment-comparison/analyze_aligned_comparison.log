@@ -1,0 +1,126 @@
+{
+  "overall": {
+    "random": {
+      "revealed_coverage": 0.44599315925213245,
+      "visited_coverage": 0.11241040675815382,
+      "coverage_auc": 0.3956463026470544,
+      "poi_discovered": 1.3277777777777777,
+      "poi_fraction": 0.46381481481481485,
+      "survived": 0.2866666666666667,
+      "monster_collisions": 0.7133333333333334,
+      "wall_collisions": 66.51777777777778,
+      "wall_collision_rate": 0.1093070749316819,
+      "movement_efficiency": 0.059808788371020515,
+      "repeated_state_rate": 0.6810374133154126,
+      "loop_rate": 0.6810351270447671,
+      "reward": 0.19952333333335984
+    },
+    "frontier": {
+      "revealed_coverage": 0.9335272404619026,
+      "visited_coverage": 0.6076376098377906,
+      "coverage_auc": 0.8859909411737382,
+      "poi_discovered": 3.1199999999999997,
+      "poi_fraction": 0.9398888888888889,
+      "survived": 0.37666666666666665,
+      "monster_collisions": 0.6233333333333334,
+      "wall_collisions": 0.0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.32330438361684904,
+      "repeated_state_rate": 0.21017641191909822,
+      "loop_rate": 0.2101731567107649,
+      "reward": 7.338013333333497
+    },
+    "no_novelty": {
+      "revealed_coverage": 0.44364718093875716,
+      "visited_coverage": 0.10497480099800201,
+      "coverage_auc": 0.3994270692246074,
+      "poi_discovered": 1.2777777777777777,
+      "poi_fraction": 0.45599999999999996,
+      "survived": 0.6088888888888889,
+      "monster_collisions": 0.39111111111111113,
+      "wall_collisions": 5.832222222222222,
+      "wall_collision_rate": 0.006813036527529549,
+      "movement_efficiency": 0.03776350983457199,
+      "repeated_state_rate": 0.8522229897673362,
+      "loop_rate": 0.8522229897673362,
+      "reward": -0.27228999999997744
+    },
+    "no_memory": {
+      "revealed_coverage": 0.786224579201667,
+      "visited_coverage": 0.48109650665657555,
+      "coverage_auc": 0.6974823855056943,
+      "poi_discovered": 2.5399999999999996,
+      "poi_fraction": 0.8064074074074075,
+      "survived": 0.7666666666666666,
+      "monster_collisions": 0.23333333333333336,
+      "wall_collisions": 4.723333333333334,
+      "wall_collision_rate": 0.004666507062462258,
+      "movement_efficiency": 0.13854424440776836,
+      "repeated_state_rate": 0.32369985365789183,
+      "loop_rate": 0.3236991302782622,
+      "reward": 5.388971111111137
+    },
+    "main": {
+      "revealed_coverage": 0.6853767779650742,
+      "visited_coverage": 0.36221722431012965,
+      "coverage_auc": 0.6169291039014962,
+      "poi_discovered": 2.0533333333333332,
+      "poi_fraction": 0.6751851851851852,
+      "survived": 0.7288888888888888,
+      "monster_collisions": 0.2711111111111111,
+      "wall_collisions": 6.756666666666668,
+      "wall_collision_rate": 0.006442340071863912,
+      "movement_efficiency": 0.10723508386422342,
+      "repeated_state_rate": 0.4565373073423235,
+      "loop_rate": 0.4565365839626938,
+      "reward": 3.964801111111092
+    },
+    "main_agent_aligned": {
+      "revealed_coverage": 0.8921040835547619,
+      "visited_coverage": 0.6330591171446328,
+      "coverage_auc": 0.8136383159460276,
+      "poi_discovered": 2.8944444444444444,
+      "poi_fraction": 0.8947777777777778,
+      "survived": 0.7088888888888888,
+      "monster_collisions": 0.2911111111111111,
+      "wall_collisions": 12.897777777777778,
+      "wall_collision_rate": 0.015628522985240565,
+      "movement_efficiency": 0.19645487512723894,
+      "repeated_state_rate": 0.41355398133417975,
+      "loop_rate": 0.4135500027462167,
+      "reward": 6.590848888889025
+    }
+  },
+  "fresh_coverage": {
+    "random": {
+      "easy": 0.6564390157987752,
+      "medium": 0.41057205008816633,
+      "hard": 0.27096841186945575
+    },
+    "frontier": {
+      "easy": 0.9390159043111312,
+      "medium": 0.9340794816215634,
+      "hard": 0.9274863354530131
+    },
+    "no_novelty": {
+      "easy": 0.7021918669455058,
+      "medium": 0.4058536590129731,
+      "hard": 0.22289601685779256
+    },
+    "no_memory": {
+      "easy": 0.9257721270264633,
+      "medium": 0.7939013748205493,
+      "hard": 0.6390002357579885
+    },
+    "main": {
+      "easy": 0.876250614302379,
+      "medium": 0.6976570870387022,
+      "hard": 0.48222263255414133
+    },
+    "main_agent_aligned": {
+      "easy": 0.9680423882405993,
+      "medium": 0.9040721870469012,
+      "hard": 0.804197675376785
+    }
+  }
+}

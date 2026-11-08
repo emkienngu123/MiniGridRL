@@ -1,0 +1,11 @@
+{
+  "initial_steps": 0,
+  "final_steps": 5001216,
+  "resume_from": null,
+  "elapsed_seconds_including_validation": 4456.362907899995,
+  "transitions_per_second_including_validation": 1122.2640757408064,
+  "device": "cuda",
+  "checkpoint": "runs\\main_agent_aligned-33\\final.zip",
+  "memory_frame": "agent_aligned",
+  "note": "PPO rounds the requested budget up to a complete rollout. Resume restarts environment sampling; it is not bitwise continuation."
+}

@@ -2,13 +2,34 @@
 
 A reproducible reinforcement-learning exploration project built directly on the official Farama MiniGrid repository. A PPO policy explores procedural rooms and corridors using a 7 x 7 partial view and a map reconstructed only from its own observations. A moving patrol makes survival part of the task.
 
-The upstream Git history and MIT license are retained. The original README is in [README.minigrid.md](README.minigrid.md); assignment code is under `exploration/`. The two upstream integration edits add the exploration package/dependencies and explicit UTF-8 reads during Windows installation.
+This project extends **[Farama Foundation's MiniGrid](https://github.com/Farama-Foundation/Minigrid)**, starting from upstream commit [`7f585379`](https://github.com/Farama-Foundation/Minigrid/commit/7f5853792ea7f04f75614661006d87fcf949f26d). The upstream Git history, [Apache 2.0 license](LICENSE), and [citation metadata](CITATION.cff) are retained. The original README is in [README.minigrid.md](README.minigrid.md); assignment code is under `exploration/`. See [attribution and dependency licenses](ATTRIBUTION.md).
+
+## Upstream citation
+
+MiniGrid is the environment foundation; its authors and maintainers deserve credit separately from this project's exploration environment, memory representation, and experiments. The citation recommended in the upstream README is:
+
+```bibtex
+@inproceedings{MinigridMiniworld23,
+  author = {Maxime Chevalier{-}Boisvert and Bolun Dai and Mark Towers and Rodrigo Perez{-}Vicente and Lucas Willems and Salem Lahlou and Suman Pal and Pablo Samuel Castro and Jordan Terry},
+  title = {Minigrid {\&} Miniworld: Modular {\&} Customizable Reinforcement Learning Environments for Goal-Oriented Tasks},
+  booktitle = {Advances in Neural Information Processing Systems 36, New Orleans, LA, USA},
+  month = {December},
+  year = {2023}
+}
+```
 
 ![Interactive inspector](docs/ui.png)
 
 ## Try the saved policy
 
-The portable Windows build is `dist/MiniGridExplorer-Windows-CPU.zip`. Extract it and run **Launch UI.bat** or **Smoke test.bat**. Python, CUDA, internet access, and retraining are not needed. The command-line equivalent is:
+The source checkout includes the three validation-selected aligned models in [checkpoints/aligned](checkpoints/aligned), with checksums, training budgets, and selected steps recorded in its index. After installing the CPU requirements below, run:
+
+```powershell
+python -m exploration smoke --checkpoint checkpoints/aligned/main_agent_aligned-11.zip
+python -m exploration ui --checkpoint checkpoints/aligned/main_agent_aligned-11.zip
+```
+
+The existing local portable Windows build is `dist/MiniGridExplorer-Windows-CPU.zip`. It belongs to the original experiment and is not included in this source repository; an updated aligned-model build has not been published. To use the existing build locally, extract it and run **Launch UI.bat** or **Smoke test.bat**. Python, CUDA, internet access, and retraining are not needed for the packaged application. Its command-line equivalent is:
 
 ```powershell
 .\MiniGridExplorer.exe smoke --checkpoint .\_internal\checkpoints\demo.zip
@@ -22,6 +43,8 @@ The bundled model's `demo.json` records its selected training step, seed, full c
 Use **Python 3.11** (verified with 3.11.15). Run commands from this repository's root. A complete pinned CPU runtime, including test and artifact tools, is supplied:
 
 ```powershell
+git clone https://github.com/emkienngu123/MiniGridRL.git
+cd MiniGridRL
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-cpu.lock.txt
 .\.venv\Scripts\python.exe -m exploration smoke --checkpoint checkpoints/demo.zip
@@ -78,7 +101,11 @@ reward = 0.02 * new_visible_floor
 
 Each discovery is credited once per episode using observable history. Reset initializes discovery state without issuing rewards. No reward clipping or running normalization is used. PPO retains its standard advantage normalization. Tests cover repeated turns, waits, revisits, re-sightings, and hidden-map modifications. Legitimately revealing a previously unseen region by turning can earn reward once. Aggressive discovery versus survival and stationary/short-loop behavior remain measurable failure modes; return alone is not a success metric.
 
-The policy uses a local CNN (16/32 channels, 64 output features), a map CNN (32/64/64 stride-two channels, 128 output features), and eight scalar features. Separate actor and critic heads each have two 128-unit layers. The policy is feed-forward; history is represented by the auditable observation-derived map.
+Exploration depends on both immediate perception and which regions were already explored. We use MiniGrid's symbolic view for nearby geometry and currently visible threats, plus a map reconstructed from observable movement and sightings for spatial history. The policy uses a local CNN (16/32 channels, 64 output features), a map CNN (32/64/64 stride-two channels, 128 output features), and eight scalar features. Separate actor and critic heads each have two 128-unit layers. The policy is feed-forward; history is represented by the auditable observation-derived map. The [architecture rationale](docs/architecture-rationale.md) connects each choice to the task, separates experimental findings from engineering defaults, and provides a report-ready explanation. Two branches and the exact widths have not been established as optimal; our controlled evidence is strongest for the aligned map readout.
+
+With `memory_frame: agent_aligned`, the feature extractor centers the agent and rotates its remembered map so forward points upward before applying the existing CNN. The default `start_aligned` mode preserves previous policy behavior. Both modes use the same observation interface, stored history, and network architecture. The [memory alignment guide](docs/memory-alignment-review.md) explains geometry, compatibility, and verification. Train aligned policies individually using `configs/memory-aligned.yaml`; the matrix runner rejects this frame to protect the original results and submission from automatic evaluation and export.
+
+The completed alignment follow-up uses three five-million-transition runs and 4,800 comparison episodes on fresh test seeds 30,000-30,099. Mean revealed coverage is 89.2% for aligned PPO, 68.5% for original-map PPO, and 78.6% without map input. Frontier reaches 93.4%, with lower survival than aligned PPO. The [full comparison report](results/memory-alignment-comparison/report.md) includes per-preset results, paired uncertainty, learning curves, latency, failures, and reproducibility files. These fresh-map results are separate from the original submission's test results.
 
 ## Training
 
@@ -118,7 +145,7 @@ python -m exploration evaluate --agents ppo --checkpoints runs/main-11/best.zip 
 python -m exploration replay --agent ppo --checkpoint checkpoints/demo.zip --seed 10000 --preset medium --output results/replay
 ```
 
-The full protocol uses all 100 test seeds on Easy, Medium, and Hard. Hard is larger than any training map. A train/test diagnostic uses map seeds from the training partition with the same evaluator; training reward is not substituted for a generalization metric.
+The full protocol uses all 100 test seeds on Easy, Medium, and Hard. Hard is larger than any training map. For aligned policies, Hard also tests generalization to explored cells farther from the agent than those typically present on training maps. A train/test diagnostic uses map seeds from the training partition with the same evaluator; training reward is not substituted for a generalization metric.
 
 | Metric | Definition |
 |---|---|
@@ -158,7 +185,7 @@ python scripts/export_submission.py --results results/full --checkpoint runs/mai
 
 This creates `submission/technical-report.pdf` (five pages), `demo.mp4` (180 seconds, silent explanatory captions), plots, raw result copies, failure-case selections, replay videos, and `manifest.json`. Incomplete matrices are labeled preliminary. Results are never synthesized. The demo covers the Python UI, procedural maps, baseline and trained behavior, POIs, threat contact, outcome comparisons, and limitations.
 
-For a complete matrix, the exporter also commits only the generated checkpoint/result/submission paths on `assignment/exploration`, then creates `dist/MiniGridExplorer-source.bundle`, a release manifest, and SHA-256 checksums. The source bundle preserves upstream history and can be cloned with Git. Remote publication is a separate step requiring access to `emkienngu123/minigrid-explorer`; the supplied finalizer never pushes or publishes.
+For a complete original matrix, the exporter also commits only the generated checkpoint/result/submission paths on `assignment/exploration`, then creates `dist/MiniGridExplorer-source.bundle`, a release manifest, and SHA-256 checksums. The source bundle preserves upstream history and can be cloned with Git. The publication destination is [emkienngu123/MiniGridRL](https://github.com/emkienngu123/MiniGridRL); the supplied finalizer prepares local artifacts and never pushes or publishes. Historical submission files and their license erratum are described in [submission/README.md](submission/README.md).
 
 Build with a separate CPU-only environment, for example:
 

@@ -1,12 +1,12 @@
 # Attribution and licenses
 
-This repository extends [Farama Foundation MiniGrid](https://github.com/Farama-Foundation/Minigrid), starting from commit `7f5853792ea7f04f75614661006d87fcf949f26d`. Upstream history, source, copyright notices, and the root MIT `LICENSE` are preserved. The original README is retained as `README.minigrid.md`. Assignment additions use the same MIT license.
+This repository extends [Farama Foundation MiniGrid](https://github.com/Farama-Foundation/Minigrid), starting from commit `7f5853792ea7f04f75614661006d87fcf949f26d`. Upstream history, source, copyright notices, [citation metadata](CITATION.cff), and the root [Apache 2.0 LICENSE](LICENSE) are preserved. The original README is retained as `README.minigrid.md`. Assignment additions use the repository's retained license; dependencies retain their own licenses. Earlier project prose incorrectly called MiniGrid MIT; the unchanged upstream LICENSE is authoritative.
 
 The environment subclasses `MiniGridEnv` and uses MiniGrid's Grid, walls, floor objects, ball rendering, visibility processing, observations, lifecycle, and native turn/forward execution. The map generator, observation-only memory, frontier baseline, rewards, metric code, integration scripts, and inspector were written for this assignment. The PPO implementation is provided by Stable-Baselines3 and is not claimed as original work.
 
 | Dependency | Role | License / upstream |
 |---|---|---|
-| MiniGrid | Environment foundation | MIT; Farama Foundation |
+| MiniGrid | Environment foundation | Apache-2.0; Farama Foundation |
 | Gymnasium | Standard environment API and spaces | MIT; Farama Foundation |
 | Stable-Baselines3 | PPO implementation, rollout buffers, training tools | MIT; DLR-RM/stable-baselines3 |
 | PyTorch | Neural networks and inference | BSD-style; pytorch/pytorch; bundled dependencies have their own notices |

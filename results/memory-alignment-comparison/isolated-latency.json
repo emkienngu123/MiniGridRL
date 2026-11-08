@@ -1,0 +1,81 @@
+{
+  "protocol": "One CPU process, torch threads=1; policy action plus preprocessing of its input observation; no physics/rendering/loading; first action included",
+  "maps": [
+    10040,
+    10041
+  ],
+  "presets": [
+    "easy",
+    "medium",
+    "hard"
+  ],
+  "episodes": 96,
+  "summary": {
+    "frontier": {
+      "actions": 3677,
+      "total_ms_mean": 0.5230858036122726,
+      "total_ms_p50": 0.5285999941406772,
+      "total_ms_p95": 0.8694799995282664,
+      "policy_ms_mean": 0.4616866466729021,
+      "preprocessing_ms_mean": 0.06139915693937052
+    },
+    "main": {
+      "actions": 16744,
+      "total_ms_mean": 0.8837826325119635,
+      "total_ms_p50": 0.8508000028086826,
+      "total_ms_p95": 1.0626550007145847,
+      "policy_ms_mean": 0.8042282548833063,
+      "preprocessing_ms_mean": 0.0795543776286573
+    },
+    "main_agent_aligned": {
+      "actions": 15966,
+      "total_ms_mean": 1.2041955592863334,
+      "total_ms_p50": 1.1642999888863415,
+      "total_ms_p95": 1.4265000027080532,
+      "policy_ms_mean": 1.1209219340737302,
+      "preprocessing_ms_mean": 0.083273625212603
+    },
+    "no_memory": {
+      "actions": 15746,
+      "total_ms_mean": 0.8911866380790326,
+      "total_ms_p50": 0.854900004924275,
+      "total_ms_p95": 1.0712749972299207,
+      "policy_ms_mean": 0.8089718850083084,
+      "preprocessing_ms_mean": 0.08221475307072423
+    },
+    "no_novelty": {
+      "actions": 16143,
+      "total_ms_mean": 0.8885522827197615,
+      "total_ms_p50": 0.8577999979024753,
+      "total_ms_p95": 1.0644000125466846,
+      "policy_ms_mean": 0.808972966652116,
+      "preprocessing_ms_mean": 0.07957931606764544
+    },
+    "random": {
+      "actions": 13272,
+      "total_ms_mean": 0.05152829267096914,
+      "total_ms_p50": 0.0467000063508749,
+      "total_ms_p95": 0.07964500327943813,
+      "policy_ms_mean": 0.002122792349482009,
+      "preprocessing_ms_mean": 0.04940550032148713
+    }
+  },
+  "parameters": {
+    "no_novelty": {
+      "total": 649925,
+      "map_encoder": 459008
+    },
+    "no_memory": {
+      "total": 649925,
+      "map_encoder": 459008
+    },
+    "main": {
+      "total": 649925,
+      "map_encoder": 459008
+    },
+    "main_agent_aligned": {
+      "total": 649925,
+      "map_encoder": 459008
+    }
+  }
+}

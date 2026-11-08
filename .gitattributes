@@ -4,3 +4,8 @@
 *.zip binary
 *.mp4 binary
 *.bundle binary
+# Experimental archives have byte-level checksums: preserve their exact bytes
+# across Windows/Linux checkouts, including JSON/CSV and reproduction scripts.
+results/** -text whitespace=cr-at-eol
+checkpoints/** -text whitespace=cr-at-eol
+submission/** -text whitespace=cr-at-eol

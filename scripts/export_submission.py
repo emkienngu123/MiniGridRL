@@ -225,7 +225,7 @@ def report_pdf(report, checkpoint, output, complete):
         if size_gap is not None and partition_gaps:
             p(f"Generalization: main test minus training-partition coverage AUC averages {np.mean(partition_gaps):+.3f} on Easy/Medium; Hard minus Medium test AUC is {size_gap:+.3f}. Exact coverage, POI, and survival gaps are in generalization.json. Training-partition samples are not guaranteed to have been encountered by every run.")
     p("Future work: uncertain odometry, beliefs about hidden threats, recurrent-policy comparisons, richer map families, and more independent training seeds. These are extensions, not evidence supplied here.")
-    p("References and attribution: Farama Foundation MiniGrid (MIT), github.com/Farama-Foundation/Minigrid; Stable-Baselines3 (MIT), stable-baselines3.readthedocs.io; PyTorch (BSD-style); Gymnasium (MIT). See ATTRIBUTION.md and bundled third-party license files. PPO: Schulman et al., Proximal Policy Optimization Algorithms (2017), arXiv:1707.06347.")
+    p("References and attribution: Farama Foundation MiniGrid (Apache 2.0), github.com/Farama-Foundation/Minigrid; Stable-Baselines3 (MIT), stable-baselines3.readthedocs.io; PyTorch (BSD-style); Gymnasium (MIT). See ATTRIBUTION.md, upstream CITATION.cff, and bundled third-party license files. PPO: Schulman et al., Proximal Policy Optimization Algorithms (2017), arXiv:1707.06347.")
 
     def footer(canvas, doc):
         canvas.setFont("Helvetica", 8)

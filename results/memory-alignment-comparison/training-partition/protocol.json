@@ -1,0 +1,19 @@
+{
+  "map_seeds": [
+    0,
+    49
+  ],
+  "presets": [
+    "easy",
+    "medium",
+    "hard"
+  ],
+  "training_seeds": [
+    11,
+    22,
+    33
+  ],
+  "purpose": "diagnostic sample from training partition; not guaranteed encountered by every trained run",
+  "new_aligned_episodes": 450,
+  "reference": "matching rows from results/full/train-diagnostic"
+}

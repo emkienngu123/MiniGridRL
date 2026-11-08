@@ -17,7 +17,7 @@ from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv
 
 from exploration.agents import PPOAgent
-from exploration.config import seed_values, validate_config
+from exploration.config import checkpoint_memory_frame, seed_values, validate_config
 from exploration.evaluation import episode_metrics, evaluate, write_csv
 from exploration.memory import make_env
 from exploration.policy import load_checkpoint, make_model, save_checkpoint
@@ -79,6 +79,8 @@ class ValidationCallback(BaseCallback):
         previous = self.output / "best.json"
         if previous.exists():
             old = json.loads(previous.read_text(encoding="utf-8"))
+            if checkpoint_memory_frame(old) != self.config.get("memory_frame", "start_aligned"):
+                raise ValueError("Existing best checkpoint memory frame does not match the run")
             if old.get("validation_score"):
                 self.best_score = tuple(old["validation_score"])
 
@@ -141,8 +143,21 @@ def train(config, resume=None):
         raise ValueError(f"Another process is already training in {output}") from exc
 
 
+def validate_resume(metadata, config):
+    if metadata["variant"] != config["variant"] or metadata["seed"] != config["seed"]:
+        raise ValueError("Resume seed/variant must match the saved run")
+    if checkpoint_memory_frame(metadata) != config.get("memory_frame", "start_aligned"):
+        raise ValueError("Resume memory frame must match the saved run; train a fresh aligned policy")
+
+
 def _train_unlocked(config, resume=None):
     validate_config(config)
+    config = {**config, "memory_frame": config.get("memory_frame", "start_aligned")}
+    # Reject incompatible resume requests before constructing worker environments.
+    resumed_model = None
+    if resume:
+        resumed_model, metadata = load_checkpoint(resume, config["device"])
+        validate_resume(metadata, config)
     torch.set_num_threads(config["torch_threads"])
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
@@ -161,9 +176,7 @@ def _train_unlocked(config, resume=None):
     started = time.perf_counter()
     try:
         if resume:
-            model, metadata = load_checkpoint(resume, config["device"])
-            if metadata["variant"] != config["variant"] or metadata["seed"] != config["seed"]:
-                raise ValueError("Resume seed/variant must match the saved run")
+            model = resumed_model
             config["resume_from"] = str(resume)
             config["resume_initial_steps"] = metadata["training_steps"]
             model.set_env(env)
@@ -186,6 +199,7 @@ def _train_unlocked(config, resume=None):
                   "elapsed_seconds_including_validation": elapsed,
                   "transitions_per_second_including_validation": (model.num_timesteps - initial_steps) / max(elapsed, 1e-9),
                   "device": str(model.device), "checkpoint": str(final),
+                  "memory_frame": config["memory_frame"],
                   "note": "PPO rounds the requested budget up to a complete rollout. Resume restarts environment sampling; it is not bitwise continuation."}
         (output / "runtime.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
         print(json.dumps(result, indent=2), flush=True)

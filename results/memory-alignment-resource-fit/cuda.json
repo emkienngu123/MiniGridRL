@@ -1,0 +1,87 @@
+{
+  "device": "cuda",
+  "status": "passed",
+  "training": {
+    "initial_steps": 0,
+    "final_steps": 8192,
+    "resume_from": null,
+    "elapsed_seconds_including_validation": 10.860406199935824,
+    "transitions_per_second_including_validation": 754.2995951706123,
+    "device": "cuda",
+    "checkpoint": "runs\\memory-alignment-fit\\cuda\\final.zip",
+    "memory_frame": "agent_aligned",
+    "note": "PPO rounds the requested budget up to a complete rollout. Resume restarts environment sampling; it is not bitwise continuation."
+  },
+  "torch_peak_allocated_mib": 171.73828125,
+  "torch_peak_reserved_mib": 298.0,
+  "torch_allocator_cap_mib": 768,
+  "samples": [
+    {
+      "elapsed": 0.08909630007110536,
+      "used_mib": 21554,
+      "free_mib": 2589,
+      "utilization": 2
+    },
+    {
+      "elapsed": 1.1982269000727683,
+      "used_mib": 21538,
+      "free_mib": 2605,
+      "utilization": 2
+    },
+    {
+      "elapsed": 2.2535145999863744,
+      "used_mib": 21989,
+      "free_mib": 2154,
+      "utilization": 7
+    },
+    {
+      "elapsed": 3.31117230001837,
+      "used_mib": 21988,
+      "free_mib": 2155,
+      "utilization": 6
+    },
+    {
+      "elapsed": 4.377679700031877,
+      "used_mib": 22155,
+      "free_mib": 1988,
+      "utilization": 6
+    },
+    {
+      "elapsed": 5.439259999897331,
+      "used_mib": 22271,
+      "free_mib": 1872,
+      "utilization": 24
+    },
+    {
+      "elapsed": 6.50158439995721,
+      "used_mib": 22269,
+      "free_mib": 1874,
+      "utilization": 6
+    },
+    {
+      "elapsed": 7.566567699890584,
+      "used_mib": 22269,
+      "free_mib": 1874,
+      "utilization": 5
+    },
+    {
+      "elapsed": 8.633482799865305,
+      "used_mib": 22253,
+      "free_mib": 1890,
+      "utilization": 89
+    },
+    {
+      "elapsed": 9.704891999950632,
+      "used_mib": 22268,
+      "free_mib": 1875,
+      "utilization": 99
+    },
+    {
+      "elapsed": 10.7652439000085,
+      "used_mib": 22269,
+      "free_mib": 1874,
+      "utilization": 99
+    }
+  ],
+  "elapsed": 10.962270699907094
+}
