@@ -45,5 +45,20 @@ results/*-status.json
 results/*.log
 results/baseline-check/
 results/memory-investigation-smoke/
+results/release-rehearsal/
 **/.training.lock
+**/.pipeline.lock
 tmp/
+
+# LaTeX report: keep the final PDF, exclude compiler scratch files.
+/output/pdf/*
+!/output/pdf/technical-report.pdf
+/report/*.aux
+/report/*.bbl
+/report/*.blg
+/report/*.fdb_latexmk
+/report/*.fls
+/report/*.log
+/report/*.out
+/report/*.synctex.gz
+/report/technical-report.pdf

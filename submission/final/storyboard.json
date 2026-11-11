@@ -1,0 +1,88 @@
+[
+  {
+    "start": 0,
+    "seconds": 12,
+    "title": "Goal and selected policy"
+  },
+  {
+    "start": 12,
+    "seconds": 32,
+    "title": "Portable UI: seed, preset, start / pause / step / reset",
+    "source": "submission\\aligned\\ui-recording.mp4",
+    "ui_capture_padding_crop": [
+      0,
+      0,
+      1218,
+      798
+    ],
+    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+  },
+  {
+    "start": 44,
+    "seconds": 12,
+    "title": "Procedural generation"
+  },
+  {
+    "start": 56,
+    "seconds": 24,
+    "title": "Easy / validation map 10000",
+    "source": "submission\\final\\replays\\aligned-easy\\episode.mp4",
+    "ui_capture_padding_crop": null,
+    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+  },
+  {
+    "start": 80,
+    "seconds": 28,
+    "title": "Medium / validation map 10000",
+    "source": "submission\\final\\replays\\aligned-medium\\episode.mp4",
+    "ui_capture_padding_crop": null,
+    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+  },
+  {
+    "start": 108,
+    "seconds": 24,
+    "title": "Hard / size excluded from training",
+    "source": "submission\\final\\replays\\aligned-hard\\episode.mp4",
+    "ui_capture_padding_crop": null,
+    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+  },
+  {
+    "start": 132,
+    "seconds": 18,
+    "title": "Frontier / same Medium map and information boundary",
+    "source": "submission\\final\\replays\\frontier-medium\\episode.mp4",
+    "ui_capture_padding_crop": null,
+    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+  },
+  {
+    "start": 150,
+    "seconds": 18,
+    "title": "Threat contact / selected Hard map 30000",
+    "source": "submission\\final\\replays\\aligned-contact\\episode.mp4",
+    "ui_capture_padding_crop": null,
+    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+  },
+  {
+    "start": 168,
+    "seconds": 22,
+    "title": "Aggregate results"
+  },
+  {
+    "start": 190,
+    "seconds": 14,
+    "title": "Reward ablation and confirmation"
+  },
+  {
+    "start": 204,
+    "seconds": 16,
+    "title": "Failure example: a different aligned run (seed 11)",
+    "source": "submission\\final\\replays\\loop-example-seed11\\episode.mp4",
+    "ui_capture_padding_crop": null,
+    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+  },
+  {
+    "start": 220,
+    "seconds": 20,
+    "title": "Run and inspect"
+  }
+]

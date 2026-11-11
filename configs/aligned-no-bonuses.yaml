@@ -1,0 +1,37 @@
+# Matched-budget reward ablation, authorized 2026-11-11.
+# Only variant/output differ from memory-aligned.yaml; no_novelty disables seen/visit bonuses.
+seed: 11
+variant: no_novelty
+memory_frame: agent_aligned
+timesteps: 5000000
+device: auto
+torch_threads: 1
+n_envs: 16
+vector_backend: subproc
+train_presets: [easy, medium]
+output: runs/no_novelty_agent_aligned-11
+eval_every: 250000
+validation_count: 50
+seeds:
+  train: [0, 9999]
+  validation: [10000, 10049]
+  test: [20000, 20099]
+reward:
+  seen: 0.02
+  visited: 0.01
+  poi: 1.0
+  step: -0.001
+  wall: -0.02
+  death: -1.0
+ppo:
+  n_steps: 256
+  batch_size: 256
+  n_epochs: 4
+  learning_rate: 0.0003
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01
+  target_kl: 0.03
+  vf_coef: 0.5
+  max_grad_norm: 0.5

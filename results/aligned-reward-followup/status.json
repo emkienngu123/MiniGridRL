@@ -1,0 +1,114 @@
+{
+  "phase": "complete",
+  "started_utc": "2026-11-11T07:58:48.681672+00:00",
+  "pid": 33968,
+  "training": {
+    "11": {
+      "status": "complete",
+      "pid": 29488,
+      "output": "runs\\no_novelty_agent_aligned-11",
+      "training_steps": 5001216
+    },
+    "22": {
+      "status": "complete",
+      "pid": 44468,
+      "output": "runs\\no_novelty_agent_aligned-22",
+      "training_steps": 5001216
+    },
+    "33": {
+      "status": "complete",
+      "pid": 40812,
+      "output": "runs\\no_novelty_agent_aligned-33",
+      "training_steps": 5001216
+    }
+  },
+  "evaluation": {
+    "random": {
+      "status": "complete",
+      "pid": 35352,
+      "exit_code": 0
+    },
+    "frontier": {
+      "status": "complete",
+      "pid": 41592,
+      "exit_code": 0
+    },
+    "main-11": {
+      "status": "complete",
+      "pid": 40132,
+      "exit_code": 0
+    },
+    "main-22": {
+      "status": "complete",
+      "pid": 41744,
+      "exit_code": 0
+    },
+    "main-33": {
+      "status": "complete",
+      "pid": 29028,
+      "exit_code": 0
+    },
+    "no_memory-11": {
+      "status": "complete",
+      "pid": 37944,
+      "exit_code": 0
+    },
+    "no_memory-22": {
+      "status": "complete",
+      "pid": 17076,
+      "exit_code": 0
+    },
+    "no_memory-33": {
+      "status": "complete",
+      "pid": 27116,
+      "exit_code": 0
+    },
+    "no_novelty-11": {
+      "status": "complete",
+      "pid": 196,
+      "exit_code": 0
+    },
+    "no_novelty-22": {
+      "status": "complete",
+      "pid": 28216,
+      "exit_code": 0
+    },
+    "no_novelty-33": {
+      "status": "complete",
+      "pid": 41912,
+      "exit_code": 0
+    },
+    "main_agent_aligned-11": {
+      "status": "complete",
+      "pid": 35396,
+      "exit_code": 0
+    },
+    "main_agent_aligned-22": {
+      "status": "complete",
+      "pid": 44760,
+      "exit_code": 0
+    },
+    "main_agent_aligned-33": {
+      "status": "complete",
+      "pid": 38444,
+      "exit_code": 0
+    },
+    "no_novelty_agent_aligned-11": {
+      "status": "complete",
+      "pid": 29828,
+      "exit_code": 0
+    },
+    "no_novelty_agent_aligned-22": {
+      "status": "complete",
+      "pid": 32856,
+      "exit_code": 0
+    },
+    "no_novelty_agent_aligned-33": {
+      "status": "complete",
+      "pid": 8972,
+      "exit_code": 0
+    }
+  },
+  "protocol_sha256": "2737a44bbb9c3052f9a6ab6dc8e3f641337f796e097509f55d37a22b22e95aca",
+  "completed_utc": "2026-11-11T12:15:42.225619+00:00"
+}

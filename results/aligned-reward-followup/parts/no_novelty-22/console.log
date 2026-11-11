@@ -1,0 +1,3 @@
+no_novelty easy: coverage=0.688, survival=0.690
+no_novelty medium: coverage=0.408, survival=0.560
+no_novelty hard: coverage=0.234, survival=0.510

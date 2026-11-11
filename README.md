@@ -4,6 +4,8 @@ A reproducible reinforcement-learning exploration project built directly on the 
 
 This project extends **[Farama Foundation's MiniGrid](https://github.com/Farama-Foundation/Minigrid)**, starting from upstream commit [`7f585379`](https://github.com/Farama-Foundation/Minigrid/commit/7f5853792ea7f04f75614661006d87fcf949f26d). The upstream Git history, [Apache 2.0 license](LICENSE), and [citation metadata](CITATION.cff) are retained. The original README is in [README.minigrid.md](README.minigrid.md); assignment code is under `exploration/`. See [attribution and dependency licenses](ATTRIBUTION.md).
 
+The final submission is available in [GitHub release v1.0.0](https://github.com/emkienngu123/MiniGridRL/releases/tag/v1.0.0): a [five-page technical report](submission/final/technical-report.pdf), [four-minute demo](submission/final/demo.mp4), and a [portable Windows CPU build](https://github.com/emkienngu123/MiniGridRL/releases/download/v1.0.0/MiniGridExplorer-Windows-CPU.zip). The primary study contains **5,700 confirmation episodes on predeclared seeds 40000-40099**, including the completed aligned reward ablation. [Start here](submission/final/START-HERE.md) for the evaluator workflow; [edit/rebuild the LaTeX report](report/README.md) or inspect the [design rationale audit](report/design-rationale-audit.md). Historical studies and artifacts are preserved separately.
+
 ## Upstream citation
 
 MiniGrid is the environment foundation; its authors and maintainers deserve credit separately from this project's exploration environment, memory representation, and experiments. The citation recommended in the upstream README is:
@@ -22,21 +24,18 @@ MiniGrid is the environment foundation; its authors and maintainers deserve cred
 
 ## Try the saved policy
 
-The source checkout includes the three validation-selected aligned models in [checkpoints/aligned](checkpoints/aligned), with checksums, training budgets, and selected steps recorded in its index. After installing the CPU requirements below, run:
+The default release model is **aligned PPO, training seed 33**, selected at 3.75 million transitions using the highest validation AUC (0.889863) among the aligned full-reward runs. Selection did not use confirmation or demonstration scores. The source includes all three full-reward aligned policies in [checkpoints/aligned](checkpoints/aligned) and all three aligned reward-ablation policies in [checkpoints/aligned-no-bonuses](checkpoints/aligned-no-bonuses).
+
+**Windows, without Python:** download the [CPU ZIP](https://github.com/emkienngu123/MiniGridRL/releases/download/v1.0.0/MiniGridExplorer-Windows-CPU.zip), extract the complete archive, and open **Launch UI.bat**. **Smoke test.bat** verifies saved-policy loading and CPU inference. Keep the EXE beside `_internal/`. The archive includes its own start guide, report, demo, model metadata, and third-party licenses. No GPU, internet connection, or retraining is required to run it.
+
+**Source checkout:** after installing the CPU requirements below, use the explicit current checkpoint:
 
 ```powershell
-python -m exploration smoke --checkpoint checkpoints/aligned/main_agent_aligned-11.zip
-python -m exploration ui --checkpoint checkpoints/aligned/main_agent_aligned-11.zip
+python -m exploration smoke --checkpoint checkpoints/aligned/main_agent_aligned-33.zip
+python -m exploration ui --checkpoint checkpoints/aligned/main_agent_aligned-33.zip
 ```
 
-The existing local portable Windows build is `dist/MiniGridExplorer-Windows-CPU.zip`. It belongs to the original experiment and is not included in this source repository; an updated aligned-model build has not been published. To use the existing build locally, extract it and run **Launch UI.bat** or **Smoke test.bat**. Python, CUDA, internet access, and retraining are not needed for the packaged application. Its command-line equivalent is:
-
-```powershell
-.\MiniGridExplorer.exe smoke --checkpoint .\_internal\checkpoints\demo.zip
-.\MiniGridExplorer.exe ui
-```
-
-The bundled model's `demo.json` records its selected training step, seed, full configuration, dependencies, observation version, and SHA-256. Consult `submission/manifest.json` for the evidence status. An intermediate package is explicitly labeled preliminary until the full experiment matrix finishes.
+Source UI commands without a checkpoint can still find the preserved historical `checkpoints/demo.zip`; the examples above and the release build explicitly use the current aligned policy. Checkpoint metadata records the observation version, memory frame, selected training step, configuration, dependency versions, and SHA-256.
 
 ## Install from source
 
@@ -47,13 +46,13 @@ git clone https://github.com/emkienngu123/MiniGridRL.git
 cd MiniGridRL
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-cpu.lock.txt
-.\.venv\Scripts\python.exe -m exploration smoke --checkpoint checkpoints/demo.zip
-.\.venv\Scripts\python.exe -m exploration ui
+.\.venv\Scripts\python.exe -m exploration smoke --checkpoint checkpoints/aligned/main_agent_aligned-33.zip
+.\.venv\Scripts\python.exe -m exploration ui --checkpoint checkpoints/aligned/main_agent_aligned-33.zip
 ```
 
 For GPU training, use `requirements-cuda.lock.txt` instead. It pins PyTorch 2.11.0 with CUDA 12.8; the NVIDIA driver must support that runtime. The CPU package is built in a separate environment to exclude CUDA libraries. Other dependency versions are pinned in the corresponding lock file. Linux source execution is supported by the libraries; the delivered native artifact is Windows-specific.
 
-In the original assignment workspace, the prepared GPU and CPU runtimes are in `../.venv` and `../.cpu-venv`, respectively. For example: `..\.venv\Scripts\python.exe -m exploration ui`.
+In the original assignment workspace, the prepared GPU and CPU runtimes are in `../.venv` and `../.cpu-venv`, respectively. For example: `..\.venv\Scripts\python.exe -m exploration ui --checkpoint checkpoints/aligned/main_agent_aligned-33.zip`.
 
 ## Environment and agent interface
 
@@ -105,7 +104,21 @@ Exploration depends on both immediate perception and which regions were already 
 
 With `memory_frame: agent_aligned`, the feature extractor centers the agent and rotates its remembered map so forward points upward before applying the existing CNN. The default `start_aligned` mode preserves previous policy behavior. Both modes use the same observation interface, stored history, and network architecture. The [memory alignment guide](docs/memory-alignment-review.md) explains geometry, compatibility, and verification. Train aligned policies individually using `configs/memory-aligned.yaml`; the matrix runner rejects this frame to protect the original results and submission from automatic evaluation and export.
 
-The completed alignment follow-up uses three five-million-transition runs and 4,800 comparison episodes on fresh test seeds 30,000-30,099. Mean revealed coverage is 89.2% for aligned PPO, 68.5% for original-map PPO, and 78.6% without map input. Frontier reaches 93.4%, with lower survival than aligned PPO. The [full comparison report](results/memory-alignment-comparison/report.md) includes per-preset results, paired uncertainty, learning curves, latency, failures, and reproducibility files. These fresh-map results are separate from the original submission's test results.
+The final confirmation uses 15 selected PPO checkpoints (five conditions x three training seeds), random movement, and frontier exploration on identical reserved maps and budgets:
+
+| Agent | Coverage | Visited | Coverage AUC | POIs | Survival |
+|---|---:|---:|---:|---:|---:|
+| Random | 43.9% | 11.7% | 0.386 | 45.4% | 29.6% |
+| Frontier | 91.5% | 58.5% | 0.869 | 92.1% | 33.7% |
+| PPO, original map | 68.9% | 37.4% | 0.617 | 68.0% | 74.7% |
+| PPO, no map | 78.6% | 48.2% | 0.701 | 79.4% | 75.0% |
+| PPO, no bonuses, original map | 42.0% | 9.7% | 0.377 | 41.8% | 60.1% |
+| PPO, no bonuses, aligned map | 59.6% | 19.1% | 0.547 | 59.2% | 56.8% |
+| **PPO, aligned map** | **90.8%** | **65.6%** | **0.825** | **91.3%** | **72.1%** |
+
+Values weight Easy, Medium, and Hard equally. Removing seen/visit bonuses reduces aligned coverage by 31.2 percentage points. Full-minus-no-bonus gains are +16.2 / +35.8 / +41.6 points on Easy / Medium / Hard, with positive paired-map 95% intervals. Alignment also improves coverage over original-map and mapless PPO. Frontier has higher coverage AUC; its per-preset endpoint coverage intervals against aligned PPO include zero. Aligned Hard survival is 62.7%, versus 70.7% mapless and 25.0% frontier, so exploration gains do not imply uniformly better safety.
+
+See the [confirmation report](results/aligned-reward-followup/report.md), [raw measurements and paired intervals](results/aligned-reward-followup/summary.json), and [verification](results/aligned-reward-followup/verification.json). Earlier seeds 20000-20099 were exposed during investigation; old-model results on 30000-30029 also informed diagnosis. The older [alignment comparison](results/memory-alignment-comparison/report.md) remains archived with its original bytes; the final report supersedes its freshness claim. Seeds 40000-40099 were reserved before the new ablation/evaluation, with validation-only checkpoint selection and an audit of prior recorded episodes. These confirmation maps are now observed; subsequent model development needs new confirmation maps.
 
 ## Training
 
@@ -120,7 +133,7 @@ Do not reuse an existing output folder for a new run. `--resume` treats the conf
 
 Default PPO configuration: 16 subprocess environments, 256 steps/environment, batch 256, four epochs, learning rate 0.0003, gamma 0.99, GAE lambda 0.95, clipping 0.2, entropy coefficient 0.01, target KL 0.03, value coefficient 0.5, gradient norm bound 0.5. Training samples Easy and Medium with equal probability. The YAML supports all environment-independent PPO parameters, seed partitions, reward weights, device, worker backend, output folder, and evaluation cadence. UI/`make_env` expose environment parameter overrides.
 
-Run all nine experiments sequentially, with durable logs and interrupted-run recovery:
+The original nine-run matrix can be recreated with durable logs and interrupted-run recovery (historical experiment):
 
 ```powershell
 python scripts/run_matrix.py --device cuda
@@ -134,18 +147,31 @@ Run `python scripts/status.py` for a fresh per-run transition count. Training di
 
 After every requested run completes, the matrix runner performs held-out evaluation and exports the report, video, and CPU package. It does not tune on held-out results. `--skip-artifacts` stops after evaluation. Use `--tag` with a different value to keep a smaller diagnostic matrix separate from the full study.
 
+## Reproduce the final confirmation without training
+
+The selected models and frozen evidence are committed, so the final comparison does not require `runs/`, a GPU, or retraining:
+
+```powershell
+python scripts/reproduce_confirmation.py --verify-only
+python scripts/reproduce_confirmation.py --count 100 --output results/confirmation-reproduced
+```
+
+The second command uses CPU workers and checks every non-timing episode metric against the archived 5,700 episodes. Use `--count 1` for a 57-episode rehearsal. Choose a new output directory each time. Measured inference latency varies with hardware/load and is excluded from exact reproduction checks.
+
+The additional aligned no-bonus runs use [configs/aligned-no-bonuses.yaml](configs/aligned-no-bonuses.yaml), seeds 11/22/33, and the same five-million-transition budget. Their archived histories and frozen protocol are under `results/aligned-reward-followup/`; [follow-up documentation](docs/aligned-reward-followup.md) explains the experiment. The full study has 15 runs, approximately 75 million transitions. Exact network widths, reward weights, and PPO settings are engineering choices with stated reasoning, not claimed optima.
+
 ## Evaluation and metrics
 
-Committed inclusive seed ranges: training 0-9,999; validation 10,000-10,049; held-out test 20,000-20,099. Training run seeds and environment map seeds serve different roles. The random baseline uses three independent policy seeds; the deterministic frontier baseline runs once per map. All agents receive identical information and budgets. Frontier BFS uses observed floor only, fixed tie-breaking, and visible-threat avoidance; it is a fair strong baseline, not a full-map oracle.
+Inclusive ranges: training 0-9,999; validation 10,000-10,049; original test 20,000-20,099; historical alignment comparison 30,000-30,099; final reserved confirmation 40,000-40,099. The original test and part of the alignment set informed development; the final protocol addresses that exposure. Training run seeds and environment map seeds serve different roles. The random baseline uses three independent policy seeds; the deterministic frontier baseline runs once per map. All agents receive identical information and budgets. Frontier BFS uses observed floor only, fixed tie-breaking, and visible-threat avoidance; it is a fair strong baseline, not a full-map oracle.
 
 ```powershell
 python -m exploration evaluate --agents random frontier --split validation --count 10 --output results/baselines
 python -m exploration evaluate --agents random frontier ppo --checkpoints runs/main-11/best.zip runs/main-22/best.zip runs/main-33/best.zip --split test --output results/comparison
 python -m exploration evaluate --agents ppo --checkpoints runs/main-11/best.zip --split train --count 100 --output results/train-diagnostic
-python -m exploration replay --agent ppo --checkpoint checkpoints/demo.zip --seed 10000 --preset medium --output results/replay
+python -m exploration replay --agent ppo --checkpoint checkpoints/aligned/main_agent_aligned-33.zip --seed 10000 --preset medium --output results/replay
 ```
 
-The full protocol uses all 100 test seeds on Easy, Medium, and Hard. Hard is larger than any training map. For aligned policies, Hard also tests generalization to explored cells farther from the agent than those typically present on training maps. A train/test diagnostic uses map seeds from the training partition with the same evaluator; training reward is not substituted for a generalization metric.
+The final confirmation uses all 100 reserved seeds on Easy, Medium, and Hard. Hard is larger than any training map. For aligned policies, Hard also tests generalization to explored cells farther from the agent than those typically present on training maps. A train/test diagnostic uses map seeds from the training partition with the same evaluator; training reward is not substituted for a generalization metric.
 
 | Metric | Definition |
 |---|---|
@@ -177,34 +203,26 @@ The Tkinter UI exposes seed entry/randomization; preset, size, POI count, action
 
 Replay exports `episode.mp4`, `replay.json` with every action and checkpoint checksum, and `final.png`. Playback skips four simulation actions per video frame by default; the complete trace is retained. The two synchronized panels show ground truth and observation-derived memory.
 
-Generate all submission artifacts from actual evaluation files:
+Current handoff files are in [submission/final](submission/final/START-HERE.md); previous `submission/` and `submission/aligned/` outputs remain historical. Rebuild the current report, captioned demo, and Windows CPU package from the repository root:
 
 ```powershell
-python scripts/export_submission.py --results results/full --checkpoint runs/main-11/best.zip
+powershell -NoProfile -ExecutionPolicy Bypass -File report/build.ps1 -Python python
+python scripts/export_aligned_demo.py --ui-video submission/aligned/ui-recording.mp4
+python scripts/build_windows.py --checkpoint checkpoints/aligned/main_agent_aligned-33.zip --name MiniGridExplorerAligned --dist-dir dist/final --work-dir build/final --submission-dir submission/final
+python scripts/prepare_release.py
+python scripts/verify_artifacts.py --submission submission/final
 ```
 
-This creates `submission/technical-report.pdf` (five pages), `demo.mp4` (180 seconds, silent explanatory captions), plots, raw result copies, failure-case selections, replay videos, and `manifest.json`. Incomplete matrices are labeled preliminary. Results are never synthesized. The demo covers the Python UI, procedural maps, baseline and trained behavior, POIs, threat contact, outcome comparisons, and limitations.
+Build the EXE using the pinned **CPU-only** runtime. In the original workspace, use `..\.cpu-venv\Scripts\python.exe`; a normal source checkout can use its own activated `.venv`. PyInstaller outputs an executable folder, ZIP, checksum, bundled checkpoint/metadata, licenses, report, demo, and start guide. The build runs the saved-model smoke test. The published binary was additionally checked after ZIP extraction with Python environment variables removed and PATH restricted to Windows system directories; its UI was exercised on the Windows host. This is an environment/extraction rehearsal, not a claim that another physical computer was tested.
 
-For a complete original matrix, the exporter also commits only the generated checkpoint/result/submission paths on `assignment/exploration`, then creates `dist/MiniGridExplorer-source.bundle`, a release manifest, and SHA-256 checksums. The source bundle preserves upstream history and can be cloned with Git. The publication destination is [emkienngu123/MiniGridRL](https://github.com/emkienngu123/MiniGridRL); the supplied finalizer prepares local artifacts and never pushes or publishes. Historical submission files and their license erratum are described in [submission/README.md](submission/README.md).
-
-Build with a separate CPU-only environment, for example:
-
-```powershell
-py -3.11 -m venv ..\.cpu-venv
-..\.cpu-venv\Scripts\python.exe -m pip install -r requirements-cpu.lock.txt
-..\.cpu-venv\Scripts\python.exe scripts/build_windows.py --checkpoint checkpoints/demo.zip
-```
-
-The exporter uses `../.cpu-venv` for its automatic build; `--skip-build` skips that step. PyInstaller outputs a one-folder build and zipped distribution under `dist/`. The build script refuses a CUDA runtime and runs the saved-checkpoint smoke test against the executable. Packaging is Windows-only. The source workflow remains usable without the native artifact.
-
-Matching Tcl/Tk scripts are collected explicitly, so a restricted builder's inability to initialize Tcl cannot silently remove the UI. The frozen smoke test checks that UI modules import as well as loading the saved policy; the built inspector is also checked interactively.
+The video is four minutes, 1280 x 720 at 12 fps, with explanatory captions and no audio. It includes actual packaged-UI controls, fixed-map exploration/discovery, monster contact, baseline comparison, the completed reward ablation, and an explicitly labeled historical failure. Replay action traces and model hashes accompany the clips. The primary results come from the reserved confirmation study, not selected demonstrations. [Farama attribution and licenses](ATTRIBUTION.md) are retained in both source and package.
 
 ## Tests and checks
 
 ```powershell
 python -m pytest tests_exploration -q
 python -m ruff check exploration tests_exploration scripts
-python -m exploration smoke --checkpoint checkpoints/demo.zip
+python -m exploration smoke --checkpoint checkpoints/aligned/main_agent_aligned-33.zip
 ```
 
 The focused suite checks reset/trajectory reproducibility, connected maps and safe placements, native movement/odometry, occlusion, monster timing/walls, both fatal-contact orders, truncation, reward math and one-time discovery, hidden-information invariance, memory reset and threat clearing, fair baseline determinism, seed partitions, AUC after death, run/episode variation, paired comparisons, and checkpoint round trips. Upstream tests remain in `tests/`.

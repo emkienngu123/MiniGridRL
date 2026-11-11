@@ -1,0 +1,7 @@
+{
+  "report_pages": 5,
+  "report_previews": "submission\\aligned\\report-preview",
+  "demo_seconds": 240.0,
+  "demo_frames": 2880,
+  "status": "passed"
+}

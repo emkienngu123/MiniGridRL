@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checks": {
+    "pytest": {"passed": 115, "skipped_cuda": 33},
+    "confirmation_archive": {"episodes": 5700, "curve_rows": 188100, "paired_bootstrap_draws": 10000, "models": 15},
+    "cpu_reproduction": {"episodes": 57, "all_nontiming_metrics_match_archived": true},
+    "clean_source_checkout": {"imports_from_checkout": true, "all_result_manifest_hashes_match": true, "curated_models_verified": 15, "aligned_cpu_smoke": "passed"},
+    "artifacts": {"report_pages": 5, "video_seconds": 240, "video_frames": 2880, "visual_review": "passed"},
+    "portable_cpu": "See portable-verification.json for ZIP/model/document hashes and isolated-environment smoke output",
+    "portable_ui": {"source": "fresh extraction of final ZIP", "default_policy": "main_agent_aligned", "training_seed": 33, "map_seed": 10000, "preset": "easy", "single_step": "passed", "playback": "passed", "pause": "passed at step 191, coverage 100%", "reset": "passed, returned to step zero", "closed_after_check": true}
+  },
+  "scope": "Windows development host; fresh extraction and clean source checkout, not a second physical computer. CUDA tests were skipped in the CPU test environment."
+}

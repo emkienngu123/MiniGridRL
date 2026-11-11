@@ -1,0 +1,19 @@
+{
+  "folders": [{"path": ".."}],
+  "settings": {
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.outDir": "%DIR%/../output/pdf",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.recipe.default": "first",
+    "latex-workshop.latex.recipes": [
+      {"name": "Report (latexmk)", "tools": ["report-latexmk"]}
+    ],
+    "latex-workshop.latex.tools": [
+      {
+        "name": "report-latexmk",
+        "command": "latexmk",
+        "args": ["-pdf", "-synctex=1", "-interaction=nonstopmode", "-halt-on-error", "-file-line-error", "-outdir=%OUTDIR%", "%DOC%"]
+      }
+    ]
+  }
+}

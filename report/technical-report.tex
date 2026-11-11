@@ -1,0 +1,185 @@
+% !TeX root = technical-report.tex
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=19mm,headheight=14pt,headsep=6mm,footskip=10mm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,booktabs,array,tabularx}
+\usepackage[table]{xcolor}
+\usepackage{microtype,fancyhdr,lastpage}
+\usepackage[font=small,labelfont=bf,skip=5pt]{caption}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\definecolor{ink}{HTML}{17324D}
+\definecolor{accent}{HTML}{167D9A}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{ink}{MiniGrid Exploration Agent}}
+\fancyhead[R]{\small Technical report}
+\fancyfoot[L]{\footnotesize\textcolor{ink}{emkienngu123 / MiniGridRL}}
+\fancyfoot[R]{\footnotesize\thepage\,/\,\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt plus 1pt}
+\setlength{\textfloatsep}{8pt}
+\setlength{\intextsep}{8pt}
+\renewcommand{\arraystretch}{1.13}
+\newcommand{\pct}{\%}
+\newcommand{\code}[1]{\texttt{\small #1}}
+\newcommand{\heading}[1]{\vspace{5pt}{\large\bfseries\color{ink}#1}\par\vspace{1pt}}
+\newcommand{\subheading}[1]{\textbf{\color{ink}#1}\enspace}
+\input{generated/numbers.tex}
+\hypersetup{pdftitle={Learning Exploration with Agent-Aligned Map Memory in MiniGrid},pdfauthor={emkienngu123}}
+\begin{document}
+{\LARGE\bfseries\color{ink}Learning Exploration with\\[3pt]Agent-Aligned Map Memory in MiniGrid\par}
+\vspace{5pt}
+{\small emkienngu123\hfill Reinforcement Learning Engineer technical test\par}
+\vspace{6pt}
+\textbf{Abstract.} PPO combines local perception with observation-derived map memory to explore partially observed maps, discover points of interest (POIs), and survive. An initial map underperformed mapless PPO, motivating agent-centered, heading-aligned readout with unchanged capacity and rewards. Across 5,700 reserved-map episodes, aligned coverage is \AlignedCoverage\pct, versus \OriginalCoverage\pct\ original, \MaplessCoverage\pct\ mapless, \NoBonusCoverage\pct\ aligned without exploration bonuses, and \FrontierCoverage\pct\ frontier. We retain disclosure of earlier map exposure and confirm the main findings on a separate predeclared set. We explain the implementation choices and report their exploration, survival, and looping tradeoffs.
+
+\heading{1\quad Problem formulation and environment design}
+The task is a finite-horizon partially observable Markov decision process. State $s_t$ contains terrain, POIs, agent pose, current/previous monster position, time, and discovery/visit bookkeeping. The policy sees local $o_t$ and deterministic memory $m_t=f(m_{t-1},o_t,a_{t-1})$, rather than full state. It maximizes discounted return:
+\[
+ J(\theta)=\mathbb{E}_{\pi_\theta}\!\left[\sum_{t=0}^{T-1}\gamma^t r_t\right],
+ \qquad a_t\sim\pi_\theta(\cdot\mid o_t,m_t).
+\]
+The reward is a proxy: evaluation separately measures coverage, discovery, and survival so a high return alone cannot establish successful exploration.
+
+\subheading{Geometry and difficulty.} We extend \href{https://github.com/Farama-Foundation/Minigrid}{Farama Foundation's MiniGrid}~\cite{minigrid} to reuse its tested grid, movement, rendering, visibility, and Gymnasium interface. A connected depth-first maze supplies dead ends requiring backtracking; carved rooms and extra openings add open areas, route alternatives, and opportunities to loop. This makes history useful without assuming the learned policy will exploit it. Connectivity and reachable POIs are checked to avoid measuring impossible exploration. POIs remain discoverable floor tiles, so navigation and search share the same traversable space.
+
+\begin{center}\small
+\begin{tabular}{lrrrr}\toprule
+Preset & Grid & POIs & Action budget $T$ & Monster period\\\midrule
+Easy & $15\times15$ & 2 & 512 & 3 actions\\
+Medium & $21\times21$ & 3 & 1,024 & 2 actions\\
+Hard & $27\times27$ & 5 & 1,536 & 2 actions\\\bottomrule
+\end{tabular}
+\end{center}
+The presets increase spatial demand and task load; Easy's slower patrol eases timing pressure. Larger budgets permit more travel and turning. Exact sizes, counts, periods, and budgets were fixed in the initial plan, not calibrated for equal difficulty or optimized floor-count ratios.
+
+\subheading{Threat and episode rules.} Six-step spawn separation reduces immediate-contact starts without guaranteeing survival. The monster samples legal neighbors, excluding its previous cell when alternatives exist: a stochastic patrol creates timing decisions without a chase rule. Separate map/patrol RNG streams prevent behavior from consuming generation randomness. Contact is checked after agent movement and again after scheduled patrol movement, catching both collision paths. Contact terminates; the time limit truncates. POI completion leaves exploration running to reward remaining coverage. Seeds plus actions reproduce the episode.
+
+\heading{2\quad Observation and action choices}
+MiniGrid's native wall-occluded $7\times7$ view preserves partial observability while providing nearby collision cues. Five one-hot channels (unseen, empty, wall, POI, monster) express categories without treating numeric object IDs as ordered magnitudes. Four actions---left, right, forward, wait---keep control focused on navigation; wait permits letting a visible patrol pass. Four heading indicators plus movement success, wall/monster contact, and remaining time form eight scalars. Movement success supports relative odometry; contact reports observable outcomes; remaining time distinguishes otherwise identical finite-horizon situations.
+
+The seven-channel $55\times55$ map records observed cells, walls, floor, discovered POIs, visits, visible monsters, and the agent. A fixed canvas accommodates maps up to $27\times27$. Occupancy counts are clipped at ten and divided by ten to bound input, with ten a heuristic threshold. Old monster positions are cleared to avoid stale occupancy. Memory resets each episode; agent inputs exclude hidden terrain/POIs/threats and evaluator denominators.
+
+\newpage
+\heading{3\quad Reward design and its tradeoffs}
+Sparse POI rewards alone give little guidance before a discovery. We therefore credit newly seen floor ($\Delta S_t$) to encourage information gathering and first occupancy ($\Delta V_t$) to reward actual travel; first POI sightings ($\Delta P_t$) retain the explicit task objective:
+\[
+ r_t=0.02\Delta S_t+0.01\Delta V_t+\Delta P_t-0.001
+       -0.02\mathbf{1}_{\rm wall}-\mathbf{1}_{\rm monster}.
+\]
+A small step cost discourages wasting the finite budget; wall contact penalizes blocked movement; death penalizes threat contact. One-time credits prevent reward from repeatedly revisiting cells or resighting POIs. Reset initializes history without paying it, avoiding reset bonuses. Turns can earn information reward only for genuinely new observations. No reward clipping or normalization obscures these scales.
+
+The weights are transparent heuristics, not tuned optima or safety guarantees. For a 236-cell Medium map, complete revelation and visitation offer about 4.7 and 2.4 reward respectively before subtracting reset credits; three POIs offer three. Death's immediate penalty equals one POI and also removes future reward opportunities. Thus the scale permits substantial exploration reward alongside death, motivating separate survival reporting. Matched no-bonus ablations in both map frames test whether this shaping helps, while leaving exact coefficient optimization unresolved.
+
+\heading{4\quad Why this memory, network, and RL algorithm?}
+\subheading{Spatial history and alignment.} Identical-looking junctions may require different actions after different branches have been explored. Reliable movement feedback allows an inspectable map instead of requiring the policy to learn localization from reward. Initial diagnostics found correct mapping but coordinate sensitivity: translating all map channels four cells changed \TranslationFlips\pct\ of greedy decisions; jointly rotating map and heading changed \RotationFlips\pct\ across 864 sampled states. These distribution-shifting probes motivated a frame hypothesis, rather than proving its cause.
+
+The policy now reads memory with the agent centered at $(27,27)$ and forward upward. For output column $u$, row $v$, agent position $p$, and forward/right unit vectors $f_h,r_h$, it gathers
+\[
+ p_{\mathrm{src}}=p+(27-v)f_h+(u-27)r_h.
+\]
+An east-facing agent's output $(27,26)$ reads one cell east and $(28,27)$ one cell south. This aligns history with relative actions, reducing the coordinate conversion the network must learn. Integer indexing preserves symbolic values; zero padding avoids wrapping. Pose uses observable heading and the map marker. All seven channels transform together; storage, rewards, and zero-map inputs retain their meanings.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lXr@{}}\toprule
+Component & Layers & Output\\\midrule
+Local CNN & $3\times3$, $5\!\to\!16\!\to\!32$, stride 1; flatten and linear & 64\\
+Map CNN & $3\times3$, $7\!\to\!32\!\to\!64\!\to\!64$, stride 2; flatten and linear & 128\\
+Fusion & Local + map features + 8 scalars & 200\\
+Actor / critic & Separate $200\!\to\!128\!\to\!128$ MLPs; logits / value & 4 / 1\\\bottomrule
+\end{tabularx}
+\end{center}
+Separate CNNs retain immediate tile detail while compressing historical context. Convolution shares filters across recurring geometry; scalar concatenation avoids treating time and contact as images. Shared encoders avoid duplicating perception, while separate heads estimate action probabilities and value. CNN layers/projections use ReLU and the SB3 heads use Tanh. Widths, striding, activations, and feature allocation are engineering defaults for this implementation, not architecture-search results. All variants have \TotalParameters\ parameters; \MapParameters\ belong to the map encoder. Alignment adds none. This feed-forward network predicts actions, not explicit search plans; temporal history resides in the map.
+
+\subheading{PPO and resource fit.} PPO~\cite{ppo} in Stable-Baselines3~\cite{sb3} supports discrete actions, dictionary inputs, custom CNNs, and parallel rollouts. Its clipped probability-ratio objective, GAE value estimates, entropy bonus, target-KL stopping, and gradient clipping provide practical optimization controls. PPO reuses and then discards short on-policy rollouts. A later resource check strengthens its practical fit: our float32 input is 85,712 bytes, so one million observation/next-observation pairs in standard SB3 dictionary replay require about 171 GB before other fields; 4,096 rollout observations occupy about 335 MiB. This is a later feasibility observation, not the original selection rationale or proof against compressed DQN replay.
+
+\newpage
+\heading{5\quad Training choices, controls, and baselines}
+Training mixes Easy and Medium equally per reset to avoid specializing to one scale; Hard is deliberately withheld to test extrapolation beyond training. Map seeds 0--9,999 provide varied layouts. Seeds 11, 22, and 33 provide repeated optimization runs rather than a single favorable result. Five conditions isolate intended factors: full-reward original map; full-reward zero map; original map without seen/visited bonuses; full-reward aligned map; aligned map without seen/visited bonuses. Zero-map PPO still maintains discovery history for rewards, so it removes policy memory input rather than changing reward accounting.
+
+Each run targets five million transitions, approximately 75 million over 15 runs. This is a matched compute budget, not a convergence claim. The three new aligned no-bonus runs each finish 5,001,216 transitions because PPO completes rollouts. Python 3.11 and an RTX 4090 provide the training runtime. Original-map seed 33 resumed after a CUDA failure, restarting sampling; a seed-11/22 sensitivity check addresses that reference-run concern.
+
+\begin{center}\small
+\begin{tabularx}{\linewidth}{@{}lX@{}}\toprule
+Setting & Value and practical role\\\midrule
+Collection & 16 subprocess environments $\times$ 256 steps: 4,096 transitions/update; parallel sampling and bounded rollout storage\\
+Updates & Batch 256, four epochs, learning rate $3\times10^{-4}$: minibatch reuse with limited update work\\
+Return estimation & $\gamma=0.99$, GAE $\lambda=0.95$: discount distant rewards and trade estimator variance against bias\\
+Update controls & Clip 0.2, entropy 0.01, target KL 0.03, value coefficient 0.5, gradient norm cap 0.5\\\bottomrule
+\end{tabularx}
+\end{center}
+These are the fixed settings from the initial plan; several differ from SB3 defaults, and no search establishes their optimality. Entropy encourages action diversity during training; clipping, KL monitoring, and gradient clipping constrain updates without guaranteeing stability. The scale $1/(1-\gamma)=100$ steps highlights discounted emphasis on nearer rewards; it is not a hard planning horizon. A contribution to long-episode stalls remains an untested hypothesis.
+
+Every 250,000 transitions, CPU validation uses Easy/Medium seeds 10,000--10,049. Selecting by coverage AUC rewards both early information gain and sustained final coverage, rather than shaped return alone; POI fraction and survival break ties. Keeping selection off test maps avoids choosing fortunate test checkpoints. Full-reward aligned selected steps are 3.25M / 4.50M / 3.75M for seeds 11 / 22 / 33; aligned no-bonus steps are 3.25M / 5.00M / 2.25M. Mean selected validation AUC is 0.883 for full-reward alignment versus 0.667 without bonuses. The original-map seed-33 resume remains disclosed.
+
+\subheading{Why these references?} Uniform seeded random actions establish a minimal exploration floor, while explicit one-time-reward tests address reward exploits. Deterministic frontier search is a strong classical coverage reference using the same observed map: BFS routes to known cells adjacent to unknown space, with fixed tie-breaking and visible-threat avoidance. It is not an upper bound. Keeping map inputs, budgets, and threat rules comparable prevents a hidden-information advantage; ablations deliberately remove one component. The mapless comparison also changes active optimization capacity because its map branch receives zeros.
+
+\heading{6\quad Evaluation methodology and seed disclosure}
+The primary comparison reserves \textbf{seeds 40,000--40,099} before the new ablation training and evaluation. Its protocol freezes settings and existing model hashes; selected new checkpoint hashes are frozen before testing. An audit found no reserved seeds in 21,165 recorded episode rows, though unrecorded external use cannot be audited. No checkpoint or parameter was selected using confirmation outcomes.
+
+\textbf{Earlier exposure:} seeds 20,000--20,099 had informed diagnosis; an earlier review also used old original/mapless policies on 30,000--30,029. The archived 30,000--30,099 comparison therefore was not wholly independent confirmation. Its 70-map exclusion sensitivity remains historical evidence; the current primary tables use only the new reserved set.
+
+Each of five PPO conditions contributes $3\times100\times3=900$ episodes; random contributes 900 across three policy seeds and frontier 300, totaling \PrimaryEpisodes. PPO is greedy, frontier deterministic. Fixed action selection aids reproduction; its stalls remain part of the measured behavior. Hard stays outside training and checkpoint selection.
+
+Revealed/visited coverage divide observed/occupied floor by evaluator-only traversable-cell counts. POI fraction measures discovery; survival means reaching the time limit. A loop is a position-heading repetition within 16 prior states with no new floor or POI; the 16-state window is a diagnostic convention. Coverage AUC is normalized trapezoidal area over the planned budget. Curves hold terminal coverage/discovery after death to avoid survivor-only averages, with survival reported separately. Presets receive equal weight, preventing different budgets from dominating. Episode SD and SD across three run means describe different variation; paired-map bootstrap intervals average runs within maps and resample maps. Their 95\pct\ intervals condition on these models and are not multiplicity-corrected.
+
+\newpage
+\heading{7\quad Confirmation results, reward ablation, and generalization}
+\begin{table}[h!]
+\centering\small
+\caption{Revealed coverage (\pct), 100 reserved seeds per preset. $\pm$ is SD across three run means (policy seeds for random); frontier is deterministic.}
+\label{tab:coverage}
+\input{generated/coverage-table.tex}
+\end{table}
+Aligned PPO improves equal-preset coverage by 21.9 percentage points (pp) over the original map and 12.2 pp over mapless PPO. On Hard, episode SD is 21.3 pp versus run-mean SD 4.3 pp. Visited coverage and POI gains also reflect greater travel, rather than visibility alone.
+
+\begin{table}[h!]
+\centering\small
+\caption{Equal-preset means on the reserved set; percentages except AUC (0--1). Coverage before death remains credited, with survival reported separately.}
+\label{tab:overall}
+\input{generated/overall-table.tex}
+\end{table}
+\subheading{Missing ablation resolved.} Removing seen/visit bonuses reduces aligned coverage from 90.8\pct\ to 59.6\pct\ (-31.2 pp). Full-minus-no-bonus gains with paired-map 95\pct\ intervals (pp) are \RewardGains. This supports the exploration bonuses in the aligned representation; it does not identify optimal weights.
+
+\subheading{Frontier and safety.} Frontier averages 91.5\pct\ coverage versus aligned PPO's 90.8\pct; per-preset endpoint intervals include zero, while AUC favors frontier on every preset. Hard survival is 62.7\pct\ aligned versus 25.0\pct\ frontier, but 70.7\pct\ mapless. Aligned-minus-mapless Hard survival is -8.0 pp [-14.7, -1.0]: exploration gains retain a safety tradeoff.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\linewidth]{generated/hard-curves.png}
+\caption{Hard coverage and discovery on reserved maps, retaining terminal values after death. The aligned no-bonus curve isolates reward removal with the aligned architecture held fixed.}
+\label{fig:curves}
+\end{figure}
+\subheading{Extrapolation.} Medium-to-Hard coverage falls 12.4 pp aligned, versus 18.3 pp original, 15.3 pp mapless, and 7.0 pp frontier. Hard changes size, POIs, budget, and relative spatial extent jointly. Against an earlier 50-map training-partition diagnostic of the same full-reward models, aligned confirmation coverage differs by -0.5 / +1.6 / +0.1 pp (Easy/Medium/Hard); seed numbers do not guarantee training exposure, and no Hard maps were trained on. Comparable Easy/Medium confirmation AUC is 0.877 versus selected validation 0.883; the three-preset AUC of 0.825 also includes Hard.
+
+\newpage
+\heading{8\quad Failure cases and their implications}
+The following historical, post-hoc examples illustrate weaknesses separately from the reserved confirmation set.
+\subheading{Survival without exploration.} On Hard map 30029, aligned training seed 11 survives all 1,536 actions but reveals only 10.0\pct\ of terrain, discovers no POIs, and loops on 99.9\pct\ of actions. This post-hoc extreme shows why survival alone is inadequate and why greedy policies need incomplete-coverage diagnostics. The map supplies history but does not force the policy to act on it.
+
+\subheading{Early threat contact.} On Hard map 30002, the same run dies after 32 actions with 8.2\pct\ coverage and one POI. Current-visibility-only threat memory prevents stale occupancy from masquerading as current truth, but loses threat tracking under occlusion. The example motivates testing predictive threat history; it does not identify the unique cause of contact.
+
+On confirmation maps, aligned Hard loops affect 50.6\pct\ of actions, versus 32.5\pct\ mapless and 52.0\pct\ original. Some repeats occur after useful exploration is complete, so the coverage context matters. Wall contacts average 1.47\pct\ of all aligned actions versus 0.53\pct\ mapless; this does not isolate errors per forward attempt. Higher exploration may increase threat exposure, but a causal attribution requires a separate test.
+
+\heading{9\quad Computational feasibility and reproducibility}
+Earlier isolated CPU timing of the same full-reward models uses one process/thread, two shared validation maps per preset, and 96 episodes. Action selection plus input preprocessing includes the first action but excludes physics, rendering, and loading, separating agent cost from simulation. Aligned PPO averages 1.204 ms (p95 1.427), versus 0.884 ms original, 0.891 ms mapless, and 0.523 ms frontier. Alignment adds gather cost without parameters; the map encoder remains 70.6\pct\ of capacity. These timings establish feasibility on the measured machine, not hardware-independent guarantees.
+
+The \href{https://github.com/emkienngu123/MiniGridRL}{MiniGridRL repository} retains Farama history and Apache-2.0 attribution. Configurations, versioned/hashed checkpoints, raw measurements, training histories, and CPU/UI instructions support reproduction; aligned models are in \code{checkpoints/aligned/}. Automated checks cover determinism, information boundaries, rewards, geometry, and loading. The refreshed demo and Windows CPU build use validation-best aligned seed 33 (AUC 0.889863); historical artifacts remain archived separately.
+
+\heading{10\quad Remaining limitations and next experiments}
+\subheading{Rationale versus validation.} Task structure motivates spatial history, relative alignment, and local/context separation; controlled evidence supports alignment and shaping in both map frames. Exact CNN widths, feature split, activations, sharing, and visit saturation lack comparative ablations. Reward weights, geometry/spawn/patrol constants, and budgets are heuristics, not calibrated optima. Five million transitions and three seeds provide matched cost and replication, not convergence or statistical power guarantees.
+
+PPO fits the implementation and resource constraints, but no DQN or recurrent-policy comparison establishes algorithm superiority. Reward scale and $\gamma$ could influence stalls and survival; no weight/discount sweep establishes either explanation. The mapless condition changes both information and effective learning capacity. Rotation probes also modify heading and are out-of-distribution, so the retrained frame comparison is stronger evidence than perturbation sensitivity alone.
+
+\subheading{What to test next.} Independently vary encoder size, visit saturation, reward/death balance, or discounting with fixed budgets and validation selection. Compare sampled actions and threat-history/recurrent policies on stalls and contact. Add training seeds and independently reserved maps. Hard's larger relative extent is a joint extrapolation challenge. Prior map exposure, post-hoc sensitivity, and extreme examples remain disclosed; further selection requires new confirmation maps.
+
+\textbf{Conclusion.} Relative alignment made the same PPO network's map more useful for exploration, on the reserved confirmation maps. Frontier's higher coverage AUC and PPO's stalls and survival losses delimit the finding. Task-based motivation supports the design; exact constants still need controlled validation.
+
+{\footnotesize
+\setlength{\parskip}{1pt}
+\bibliographystyle{abbrv}
+\bibliography{references}
+}
+\end{document}

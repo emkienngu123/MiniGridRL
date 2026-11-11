@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "episodes": 5700,
+  "curve_episodes": 5700,
+  "curve_rows": 188100,
+  "paired_bootstrap_draws": 10000,
+  "protected_hashes_unchanged": true,
+  "curated_models_verified": 15
+}

@@ -1,0 +1,40 @@
+{
+  "excluded_seeds": [
+    30000,
+    30029
+  ],
+  "included_seeds": [
+    30030,
+    30099
+  ],
+  "disclosure_source": "User's report review: old main/no_memory results on the excluded maps informed investigation",
+  "interpretation": "Post-hoc exclusion sensitivity; not a preregistered independent confirmation experiment",
+  "macro_coverage": {
+    "main_agent_aligned": 0.8952882249892095,
+    "no_memory": 0.7808793503878788,
+    "main": 0.6853499276870766
+  },
+  "aligned_minus_mapless": {
+    "easy": {
+      "mean_difference": 0.03781211725130762,
+      "map_bootstrap_95ci": [
+        0.017014454723158184,
+        0.05989847114561391
+      ]
+    },
+    "medium": {
+      "mean_difference": 0.12501072544338246,
+      "map_bootstrap_95ci": [
+        0.09594745570945143,
+        0.1543441697310182
+      ]
+    },
+    "hard": {
+      "mean_difference": 0.18040378110930214,
+      "map_bootstrap_95ci": [
+        0.14044721212829422,
+        0.220715306238402
+      ]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+main easy: coverage=0.884, survival=0.780
+main medium: coverage=0.704, survival=0.720
+main hard: coverage=0.521, survival=0.750

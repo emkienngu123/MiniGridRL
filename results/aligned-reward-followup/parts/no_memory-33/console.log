@@ -1,0 +1,3 @@
+no_memory easy: coverage=0.935, survival=0.820
+no_memory medium: coverage=0.777, survival=0.610
+no_memory hard: coverage=0.654, survival=0.670

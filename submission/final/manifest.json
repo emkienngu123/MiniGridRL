@@ -1,0 +1,239 @@
+{
+  "checkpoint": "checkpoints\\aligned\\main_agent_aligned-33.zip",
+  "checkpoint_sha256": "abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab",
+  "training_seed": 33,
+  "selected_steps": 3750000,
+  "memory_frame": "agent_aligned",
+  "validation_score": [
+    0.8898630039639446,
+    0.9550000000000001,
+    0.8
+  ],
+  "selection": "Highest lexicographic validation AUC/discovery/survival score among the three aligned runs",
+  "qualitative_note": "Easy/Medium/Hard and frontier maps fixed at validation seed 10000. Contact map 30000 and seed-11 loop map 30029 are explicitly selected illustrations, not aggregate evidence.",
+  "comparison_seed_disclosure": "Primary: predeclared 40000-40099, no checkpoint selection on confirmation. Older 20000/30000 ranges exposed during diagnosis; archived evidence and disclosure retained.",
+  "study_summary_sha256": "9e4f44b6553ff9f3d7d6a5bf727a92b1ad94cdbf4ef54052323faf9f0a68065c",
+  "report_sha256": "b44dd2adbf44eab95e97e8de815bda846aed224ade29f5f1f712380368a26466",
+  "case_metrics": {
+    "aligned-easy": {
+      "seed": 10000,
+      "preset": "easy",
+      "steps": 512,
+      "episode_limit": 512,
+      "revealed_coverage": 1.0,
+      "visited_coverage": 0.811965811965812,
+      "coverage_auc": 0.9617471287393162,
+      "poi_discovered": 2,
+      "poi_fraction": 1.0,
+      "survived": 1,
+      "completion": 1,
+      "termination": "time_limit",
+      "monster_collisions": 0,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.18359375,
+      "repeated_state_rate": 0.544921875,
+      "loop_rate": 0.544921875,
+      "reward": 2.3280000000000354
+    },
+    "aligned-medium": {
+      "seed": 10000,
+      "preset": "medium",
+      "steps": 1024,
+      "episode_limit": 1024,
+      "revealed_coverage": 1.0,
+      "visited_coverage": 0.7280334728033473,
+      "coverage_auc": 0.9250049032426778,
+      "poi_discovered": 3,
+      "poi_fraction": 1.0,
+      "survived": 1,
+      "completion": 1,
+      "termination": "time_limit",
+      "monster_collisions": 0,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.1689453125,
+      "repeated_state_rate": 0.517578125,
+      "loop_rate": 0.517578125,
+      "reward": 7.7860000000001754
+    },
+    "aligned-hard": {
+      "seed": 10000,
+      "preset": "hard",
+      "steps": 1536,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.3687002652519894,
+      "visited_coverage": 0.22811671087533156,
+      "coverage_auc": 0.2617878260389036,
+      "poi_discovered": 4,
+      "poi_fraction": 0.8,
+      "survived": 1,
+      "completion": 1,
+      "termination": "time_limit",
+      "monster_collisions": 0,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.055338541666666664,
+      "repeated_state_rate": 0.8782552083333334,
+      "loop_rate": 0.8782552083333334,
+      "reward": 5.9539999999998905
+    },
+    "frontier-medium": {
+      "seed": 10000,
+      "preset": "medium",
+      "steps": 424,
+      "episode_limit": 1024,
+      "revealed_coverage": 1.0,
+      "visited_coverage": 0.7280334728033473,
+      "coverage_auc": 0.9619794390690377,
+      "poi_discovered": 3,
+      "poi_fraction": 1.0,
+      "survived": 0,
+      "completion": 0,
+      "termination": "monster",
+      "monster_collisions": 1,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.4080188679245283,
+      "repeated_state_rate": 0.09905660377358491,
+      "loop_rate": 0.09905660377358491,
+      "reward": 7.386000000000122
+    },
+    "aligned-contact": {
+      "seed": 30000,
+      "preset": "hard",
+      "steps": 122,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.587467362924282,
+      "visited_coverage": 0.14360313315926893,
+      "coverage_auc": 0.5673530651653612,
+      "poi_discovered": 3,
+      "poi_fraction": 0.6,
+      "survived": 0,
+      "completion": 0,
+      "termination": "monster",
+      "monster_collisions": 1,
+      "wall_collisions": 3,
+      "wall_collision_rate": 0.02459016393442623,
+      "movement_efficiency": 0.4426229508196721,
+      "repeated_state_rate": 0.21311475409836064,
+      "loop_rate": 0.21311475409836064,
+      "reward": 6.757999999999998
+    },
+    "loop-example-seed11": {
+      "seed": 30029,
+      "preset": "hard",
+      "steps": 1536,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.09974424552429667,
+      "visited_coverage": 0.005115089514066497,
+      "coverage_auc": 0.09971427429667519,
+      "poi_discovered": 0,
+      "poi_fraction": 0.0,
+      "survived": 1,
+      "completion": 1,
+      "termination": "time_limit",
+      "monster_collisions": 0,
+      "wall_collisions": 0,
+      "wall_collision_rate": 0.0,
+      "movement_efficiency": 0.0006510416666666666,
+      "repeated_state_rate": 0.9986979166666666,
+      "loop_rate": 0.9986979166666666,
+      "reward": -1.2859999999999694
+    }
+  },
+  "demo_seconds": 240,
+  "fps": 12,
+  "frames": 2880,
+  "video_sha256": "60eb08393fa9873aa2d551fdc0a708669ac0437143ae56e7ca1e560e988847d0",
+  "ui_source_sha256": "88d9d93b247e7ab59e350d8d280be1bda6bb1a46b37e7a03b3e362696c36da03",
+  "storyboard": [
+    {
+      "start": 0,
+      "seconds": 12,
+      "title": "Goal and selected policy"
+    },
+    {
+      "start": 12,
+      "seconds": 32,
+      "title": "Portable UI: seed, preset, start / pause / step / reset",
+      "source": "submission\\aligned\\ui-recording.mp4",
+      "ui_capture_padding_crop": [
+        0,
+        0,
+        1218,
+        798
+      ],
+      "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    },
+    {
+      "start": 44,
+      "seconds": 12,
+      "title": "Procedural generation"
+    },
+    {
+      "start": 56,
+      "seconds": 24,
+      "title": "Easy / validation map 10000",
+      "source": "submission\\final\\replays\\aligned-easy\\episode.mp4",
+      "ui_capture_padding_crop": null,
+      "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    },
+    {
+      "start": 80,
+      "seconds": 28,
+      "title": "Medium / validation map 10000",
+      "source": "submission\\final\\replays\\aligned-medium\\episode.mp4",
+      "ui_capture_padding_crop": null,
+      "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    },
+    {
+      "start": 108,
+      "seconds": 24,
+      "title": "Hard / size excluded from training",
+      "source": "submission\\final\\replays\\aligned-hard\\episode.mp4",
+      "ui_capture_padding_crop": null,
+      "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    },
+    {
+      "start": 132,
+      "seconds": 18,
+      "title": "Frontier / same Medium map and information boundary",
+      "source": "submission\\final\\replays\\frontier-medium\\episode.mp4",
+      "ui_capture_padding_crop": null,
+      "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    },
+    {
+      "start": 150,
+      "seconds": 18,
+      "title": "Threat contact / selected Hard map 30000",
+      "source": "submission\\final\\replays\\aligned-contact\\episode.mp4",
+      "ui_capture_padding_crop": null,
+      "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    },
+    {
+      "start": 168,
+      "seconds": 22,
+      "title": "Aggregate results"
+    },
+    {
+      "start": 190,
+      "seconds": 14,
+      "title": "Reward ablation and confirmation"
+    },
+    {
+      "start": 204,
+      "seconds": 16,
+      "title": "Failure example: a different aligned run (seed 11)",
+      "source": "submission\\final\\replays\\loop-example-seed11\\episode.mp4",
+      "ui_capture_padding_crop": null,
+      "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    },
+    {
+      "start": 220,
+      "seconds": 20,
+      "title": "Run and inspect"
+    }
+  ],
+  "audio": "Silent; explanatory on-screen captions"
+}

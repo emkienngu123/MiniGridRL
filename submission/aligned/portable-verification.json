@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "extracted_zip_sha256": "6edf4f08878aac716f6543588979a0d1e47c904bd0b51605f176f6632e405ec1",
+  "clean_environment": {
+    "python_variables_removed": true,
+    "path": "Windows/System32 and Windows only",
+    "cuda_visible_devices": ""
+  },
+  "extraction_path_contains_spaces": true,
+  "smoke": {
+    "smoke": "passed",
+    "checkpoint_loaded": true,
+    "frozen": true,
+    "ui_import_verified": true,
+    "inference_device": "cpu",
+    "seed": 123,
+    "preset": "easy",
+    "steps": 128,
+    "episode_limit": 128,
+    "revealed_coverage": 0.8898305084745762,
+    "visited_coverage": 0.3813559322033898,
+    "coverage_auc": 0.8062433792372881,
+    "poi_discovered": 2,
+    "poi_fraction": 1.0,
+    "survived": 1,
+    "completion": 1,
+    "termination": "time_limit",
+    "monster_collisions": 0,
+    "wall_collisions": 0,
+    "wall_collision_rate": 0.0,
+    "movement_efficiency": 0.34375,
+    "repeated_state_rate": 0.21875,
+    "loop_rate": 0.21875,
+    "reward": 2.8520000000000048,
+    "agent": "main_agent_aligned",
+    "training_seed": 33,
+    "memory_frame": "agent_aligned",
+    "policy_seed": null,
+    "inference_ms_mean": 1.8372023423580686,
+    "inference_ms_p50": 1.7274499405175447,
+    "inference_ms_p95": 2.357364987256005
+  }
+}

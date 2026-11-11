@@ -1,0 +1,3 @@
+frontier easy: coverage=0.962, survival=0.490
+frontier medium: coverage=0.927, survival=0.270
+frontier hard: coverage=0.857, survival=0.250

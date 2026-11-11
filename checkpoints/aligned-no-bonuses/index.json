@@ -1,0 +1,41 @@
+[
+  {
+    "family": "no_novelty_agent_aligned",
+    "seed": 11,
+    "checkpoint": "checkpoints\\aligned-no-bonuses\\no_novelty_agent_aligned-11.zip",
+    "sha256": "1e1c45f7881a4f9f78f6b12f843065e3289ef39ee64a7b9b15ecae8953a4f26c",
+    "selected_steps": 3250000,
+    "completed_steps": 5001216,
+    "validation_score": [
+      0.6416892181679248,
+      0.685,
+      0.5900000000000001
+    ]
+  },
+  {
+    "family": "no_novelty_agent_aligned",
+    "seed": 22,
+    "checkpoint": "checkpoints\\aligned-no-bonuses\\no_novelty_agent_aligned-22.zip",
+    "sha256": "6ed79f8161de1695f8f0aead32dd593d700dfcfc6715dc4339dd9ac2203a21bf",
+    "selected_steps": 5000000,
+    "completed_steps": 5001216,
+    "validation_score": [
+      0.6817668608513172,
+      0.7816666666666667,
+      0.74
+    ]
+  },
+  {
+    "family": "no_novelty_agent_aligned",
+    "seed": 33,
+    "checkpoint": "checkpoints\\aligned-no-bonuses\\no_novelty_agent_aligned-33.zip",
+    "sha256": "596ffeef2971a32946de616b3b6490767e85cfd44ccd29ab4f703c63518289f6",
+    "selected_steps": 2250000,
+    "completed_steps": 5001216,
+    "validation_score": [
+      0.6772512561640689,
+      0.7183333333333333,
+      0.6599999999999999
+    ]
+  }
+]

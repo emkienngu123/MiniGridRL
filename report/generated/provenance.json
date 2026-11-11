@@ -1,0 +1,17 @@
+{
+  "study": "aligned-reward-followup",
+  "maps": [
+    40000,
+    40099
+  ],
+  "episodes": 5700,
+  "source_sha256": {
+    "summary.json": "9e4f44b6553ff9f3d7d6a5bf727a92b1ad94cdbf4ef54052323faf9f0a68065c",
+    "episodes.csv": "8312c369ad134f25c2b80ee1ddadd4912159df27ca660050ec4d6d274e33b9db",
+    "curves.csv": "86eea74cfc05e8fa717d9a38c551ee7932afd00051837e185bf7eb046503eff8",
+    "protocol.json": "2737a44bbb9c3052f9a6ab6dc8e3f641337f796e097509f55d37a22b22e95aca",
+    "frozen-checkpoints.json": "d1c3165886ed67ecb642bd81cd8fc995670c1ffa8e3fff1389a86b6abe092d2c"
+  },
+  "verification": "Independent full archive verification in results/aligned-reward-followup/verification.json",
+  "historical_note": "Previous generated seed-overlap sensitivity remains historical; it is not the primary confirmation."
+}

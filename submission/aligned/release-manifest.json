@@ -1,0 +1,44 @@
+{
+  "repository": "https://github.com/emkienngu123/MiniGridRL",
+  "published": false,
+  "source_commit": "9bf45c193f03a44ecb7c84d85bb0698d1e5d3609",
+  "source_has_uncommitted_changes": true,
+  "selection": "Aligned seed 33; maximum validation score, not test/demo performance",
+  "checkpoint_sha256": "abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab",
+  "artifacts": [
+    {
+      "path": "submission/aligned/demo.mp4",
+      "bytes": 2375075,
+      "sha256": "eb67ab23e48d6f91b5c2d68a1c38f16b63fcdf5d7a437d257acbe2bd431af2a5"
+    },
+    {
+      "path": "submission/aligned/technical-report.pdf",
+      "bytes": 420494,
+      "sha256": "716b1b56d44ad1e2c8c28a763bfad4f18a6a2760fdbe0d3cb5b8d442f886fda4"
+    },
+    {
+      "path": "dist/aligned/MiniGridExplorerAligned-Windows-CPU.zip",
+      "bytes": 218899477,
+      "sha256": "6edf4f08878aac716f6543588979a0d1e47c904bd0b51605f176f6632e405ec1"
+    },
+    {
+      "path": "submission/aligned/portable-verification.json",
+      "bytes": 1313,
+      "sha256": "038f4c844eaba74934f62879c83bb5df0bd56d8166e38dd6fc2d687774a861c8"
+    },
+    {
+      "path": "submission/aligned/ui-verification.json",
+      "bytes": 1075,
+      "sha256": "b5574b4ba05c0b1a15f90e7042a3e8ae3e86474f60f532b10f44c64a02777374"
+    }
+  ],
+  "video_seconds": 240,
+  "report_pages": 5,
+  "portable_cpu_smoke": "passed, fresh extraction and Python-free PATH",
+  "packaged_ui": "verified interactively on this host",
+  "original_publication_and_benchmark_hashes": "unchanged",
+  "reproduction_source_sha256": {
+    "scripts/build_windows.py": "6783dbfcd1bbc71a38bdc251e9183b9a4dea8d68fc5aa76e9e2e15b414e22558",
+    "scripts/export_aligned_demo.py": "1b5afbc6bc8c885afbf526c2f613e431a8103e384e75832e6430dab815e859b7"
+  }
+}

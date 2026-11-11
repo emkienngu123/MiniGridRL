@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "method": "Computer Use interaction with the actual frozen Windows executable",
+  "executable": "dist/aligned/MiniGridExplorerAligned/MiniGridExplorerAligned.exe",
+  "default_policy": {
+    "memory_frame": "agent_aligned",
+    "training_seed": 33
+  },
+  "observed_checks": [
+    "Initial ready state: main_agent_aligned, Easy seed 10000, step 0/512",
+    "Start advances policy/environment and displays Running / CPU inference",
+    "Pause stops automatic progression at step 392",
+    "Single step advances paused state from 392 to 393",
+    "Generate/reset restores step 0 and initial observation-derived memory",
+    "Medium selection sets size 21, POIs 3, action limit 1024, patrol interval 2",
+    "Reset applies Medium geometry and observation history",
+    "Speed slider changes from 13 to 51",
+    "Random generates seed 548210797 and resets the environment",
+    "Frontier selection/reset changes the ready status and memory-frame label",
+    "Window closed after verification"
+  ],
+  "recording": "ui-recording.mp4"
+}

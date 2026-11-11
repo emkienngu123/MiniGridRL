@@ -1,0 +1,3 @@
+no_novelty_agent_aligned easy: coverage=0.842, survival=0.710
+no_novelty_agent_aligned medium: coverage=0.609, survival=0.530
+no_novelty_agent_aligned hard: coverage=0.413, survival=0.490

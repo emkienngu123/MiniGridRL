@@ -1,5 +1,7 @@
 # Architecture motivation and evidence
 
+**Final confirmation update:** the reserved-map study on seeds 40000-40099 confirms 90.8% aligned coverage versus 68.9% original and 78.6% mapless, and completes the aligned reward ablation (59.6% without seen/visit bonuses). See [the current technical report](../submission/final/technical-report.pdf) and [confirmation evidence](../results/aligned-reward-followup/report.md). The investigation narrative below retains the historical 30000-set findings and their development context; the formerly missing reward ablation is now complete.
+
 The design is a practical hypothesis about this task: explicit spatial history, expressed relative to the agent, should make exploration decisions easier to learn from partial observations. It is not a claim that PPO, two CNN branches, or the selected layer widths are universally optimal.
 
 This document separates task-based motivation, engineering choices, and what the experiments actually established. The alignment refinement followed a failed initial result; it should not be presented as if the final representation had been known to work from the outset.

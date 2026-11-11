@@ -1,0 +1,3278 @@
+{
+  "protocol": {
+    "training_config": "configs/aligned-no-bonuses.yaml",
+    "training_seeds": [
+      11,
+      22,
+      33
+    ],
+    "transitions_per_run": 5000000,
+    "confirmation_map_seeds": [
+      40000,
+      40099
+    ],
+    "presets": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "conditions": [
+      "main",
+      "no_memory",
+      "no_novelty",
+      "main_agent_aligned",
+      "no_novelty_agent_aligned"
+    ],
+    "primary_episodes": 5700,
+    "selection": "Each run's best Easy/Medium validation AUC, then discovery, then survival; never confirmation maps",
+    "hypotheses": [
+      "Seen/visit bonuses improve aligned-policy coverage/AUC",
+      "Alignment gains extend to previously unused map seeds"
+    ],
+    "inference": "Greedy PPO, deterministic frontier, random policy seeds 11/22/33; CPU single-thread children",
+    "uncertainty": "Episode/run variation separate; 10000 paired-map bootstrap draws conditional on trained policies",
+    "primary_contrasts": [
+      [
+        "main_agent_aligned",
+        "no_novelty_agent_aligned"
+      ],
+      [
+        "main_agent_aligned",
+        "no_memory"
+      ],
+      [
+        "main_agent_aligned",
+        "main"
+      ],
+      [
+        "main_agent_aligned",
+        "frontier"
+      ],
+      [
+        "main_agent_aligned",
+        "random"
+      ]
+    ],
+    "preflight": {
+      "matched_configuration": true,
+      "recorded_episode_rows_audited": 21165,
+      "note": "No reserved seeds found in recorded result episodes. This cannot audit unrecorded external/manual use."
+    },
+    "existing_checkpoints": [
+      {
+        "family": "main",
+        "seed": 11,
+        "checkpoint": "runs\\main-11\\best.zip",
+        "sha256": "f2fc83c8fe88e0fded3839974cdb40aa2173552fb87ab1a05e470bc3c5fbbc70",
+        "selected_steps": 4250000
+      },
+      {
+        "family": "main",
+        "seed": 22,
+        "checkpoint": "runs\\main-22\\best.zip",
+        "sha256": "27743af484ffd61ff1abbf5e42a6ffffca4628117b4d8f5bf8d90f0a27569b72",
+        "selected_steps": 4750000
+      },
+      {
+        "family": "main",
+        "seed": 33,
+        "checkpoint": "runs\\main-33\\best.zip",
+        "sha256": "dfb1d8bc8e9cb4a36fdcd193957f71a3f5e4b099907344fc95230e72272a7393",
+        "selected_steps": 3000000
+      },
+      {
+        "family": "no_memory",
+        "seed": 11,
+        "checkpoint": "runs\\no_memory-11\\best.zip",
+        "sha256": "66fc4cc3f5aecc28eced65d908bb9119f10f028700019cdb9e5ee636c3623c84",
+        "selected_steps": 1000000
+      },
+      {
+        "family": "no_memory",
+        "seed": 22,
+        "checkpoint": "runs\\no_memory-22\\best.zip",
+        "sha256": "c444d4ea21573f38ba838688e45036fe5da6e8e03214067565e0fafa5ef84ee8",
+        "selected_steps": 1000000
+      },
+      {
+        "family": "no_memory",
+        "seed": 33,
+        "checkpoint": "runs\\no_memory-33\\best.zip",
+        "sha256": "91177e44f8dbb6e89e79440dc8eef758c3fe6b1ef929a221ade5de2992088bd2",
+        "selected_steps": 4000000
+      },
+      {
+        "family": "no_novelty",
+        "seed": 11,
+        "checkpoint": "runs\\no_novelty-11\\best.zip",
+        "sha256": "5ce955d1327073343278c69c1596a3c40e1055f3276ad811fa1c02eaa9216e4b",
+        "selected_steps": 4000000
+      },
+      {
+        "family": "no_novelty",
+        "seed": 22,
+        "checkpoint": "runs\\no_novelty-22\\best.zip",
+        "sha256": "44e219d02540860da09fd91eef8e52e9244ec87c7e8d76182e2d5a0e1d40660f",
+        "selected_steps": 4250000
+      },
+      {
+        "family": "no_novelty",
+        "seed": 33,
+        "checkpoint": "runs\\no_novelty-33\\best.zip",
+        "sha256": "b151e550b9ac70c3abd39bfec65cecf1865d01b00efdc0c871d2e2ddf47f7b46",
+        "selected_steps": 3750000
+      },
+      {
+        "family": "main_agent_aligned",
+        "seed": 11,
+        "checkpoint": "runs\\main_agent_aligned-11\\best.zip",
+        "sha256": "83d4a1a0b527d082ae8d56907529dbbd7ed4139e619d076e8c6164a01aa18c93",
+        "selected_steps": 3250000
+      },
+      {
+        "family": "main_agent_aligned",
+        "seed": 22,
+        "checkpoint": "runs\\main_agent_aligned-22\\best.zip",
+        "sha256": "e5274ac7f5a5e8d1b52bdbcdb00d20d902caee6f53df85e69007d8e9e6f25ef9",
+        "selected_steps": 4500000
+      },
+      {
+        "family": "main_agent_aligned",
+        "seed": 33,
+        "checkpoint": "runs\\main_agent_aligned-33\\best.zip",
+        "sha256": "abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab",
+        "selected_steps": 3750000
+      }
+    ],
+    "protected_sha256": {
+      "results\\memory-alignment-comparison\\aggregate-metrics.csv": "ab06352f43f93ce051f32f428fc35a43329b2aa180def6775419045a0f7a386e",
+      "results\\memory-alignment-comparison\\analysis-status.json": "4f641254f90e8e17f633dc2f8c7e7b1750af9a9e438fc0105fd4c14786ef5f18",
+      "results\\memory-alignment-comparison\\curves.csv": "2f3f6c05d2e118d9d543782654796c55bf42eee69eb8bd1b8cfe4281d76806e4",
+      "results\\memory-alignment-comparison\\episodes.csv": "89461d2a25f6332a605c06264d76807bbac01e6a615210b19746b8954084003f",
+      "results\\memory-alignment-comparison\\failure-cases.json": "e2c1da64a1fb19e1b9527c5fc6afc2f8e59f6acc76c722665945d8c7538198e1",
+      "results\\memory-alignment-comparison\\generalization.json": "45577eef4c9f768124fa7f467a17f02c02ef7f5ebeb47743959003813fe780a0",
+      "results\\memory-alignment-comparison\\isolated-latency-samples.csv": "cd2453a4bdbdb7a32d49879ef4e55ca9ecf39b4fe5c3c84d777391671d9345fc",
+      "results\\memory-alignment-comparison\\isolated-latency.json": "aa4c14054148b7e77b623bd1545c95fbd8ffea67eb494194146d229eb32b05a2",
+      "results\\memory-alignment-comparison\\manifest.json": "b05010628d4235a8df6c900e427140c0e5bb3fa9bc54a91b75c722dc4c4f79a4",
+      "results\\memory-alignment-comparison\\optimization-diagnostics.csv": "be872109ce025ba54b084ecbcfba5e9f5b6c3d03be05d3386d67f49945c28c34",
+      "results\\memory-alignment-comparison\\protocol.json": "fd3e4c6eb525a9d4b7b00eeb744588e90f1bc70881ebc481b8e4f6ab50e723e1",
+      "results\\memory-alignment-comparison\\qualitative-summary.json": "c23547ce193dda8be758d0f96e61eb9c1c9debeee5d1833328250b871cf0596d",
+      "results\\memory-alignment-comparison\\selected-checkpoints.csv": "7532b6ada8a6d4114a779653f91a5b5177276e97c6905530fb0514574ddc5cfb",
+      "results\\memory-alignment-comparison\\status.json": "2be9c9cc79415aaa4aa816662b045ebeee863c74983a612ec74f776ff68bab5b",
+      "results\\memory-alignment-comparison\\summary.json": "fbd28c3487113f2d2849fa5e4c288dcc8371ef3078b558ab59dfcd3ff574655b",
+      "results\\memory-alignment-comparison\\parts\\frontier\\curves.csv": "0cb460b2ca2bb3cb211c25a11d685b4f64c0d68a2a861fec26f694023be2b384",
+      "results\\memory-alignment-comparison\\parts\\frontier\\episodes.csv": "73f9cd425e3f0528634a77bf517cd0e3df959c5d84ba1b71b44bbec9276586a9",
+      "results\\memory-alignment-comparison\\parts\\frontier\\summary.json": "95aff568d9fd235dfba07ae917abe987f0546d34666c6bd098e1c3834d04b098",
+      "results\\memory-alignment-comparison\\parts\\main-11\\curves.csv": "31493e56664e1801777629e5799eeb20d210fba9e526bfd2a3793fc18cd66385",
+      "results\\memory-alignment-comparison\\parts\\main-11\\episodes.csv": "78e5ed8445871d6e7b2fd6473bac95f79a540fc14362b7d752ac25d6f667c51f",
+      "results\\memory-alignment-comparison\\parts\\main-11\\summary.json": "493baebc7cd9014fa55811dd87581e19a7c3779c12f2bf1695368e68691d99cc",
+      "results\\memory-alignment-comparison\\parts\\main-22\\curves.csv": "8f6c4a3e2bedbe76741ae37055e19f7ce0f3fa6b16e8e66b15d741c8e43057d9",
+      "results\\memory-alignment-comparison\\parts\\main-22\\episodes.csv": "3b9354cf3c417eba823545b697b9ee8299fd571952c95d1bc31296e93fd4a0f8",
+      "results\\memory-alignment-comparison\\parts\\main-22\\summary.json": "bdccbc08320a4ed853097d07da58c0b08ec6d98f1f44673b627c68d8adaf26c0",
+      "results\\memory-alignment-comparison\\parts\\main-33\\curves.csv": "7e19c3b2922966c895c9c2b9ee27bf5cbc3e76e8db0d3b2519e354b24621dc3b",
+      "results\\memory-alignment-comparison\\parts\\main-33\\episodes.csv": "4b9507bcfc4b6fcdf996fff13ee4eefc74e38b960de45fd9881814a8882aa6e3",
+      "results\\memory-alignment-comparison\\parts\\main-33\\summary.json": "6afcacd488af5a9656468e077a4b287c53fad26e63477babe41884601d17b6e4",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-11\\curves.csv": "f5f085e61b7f12c537c2c9bacec73594891a045c19bf03ef1514accadb4d7d2e",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-11\\episodes.csv": "77c01002e6e411c953a33b2813ce093bb7934492352209bec944645ae644a5f2",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-11\\summary.json": "e97352c324e254d868a72319bc7c4f37a436dbb888696cc612f01f07703429b8",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-22\\curves.csv": "70225eba8fb38164c5e3790e7cf5d9555752fe93fb07a4a90d1ed619d4ecd157",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-22\\episodes.csv": "9d2f8468cbffb178f0c5df88b9eaf669bc0eb02b4d6a76b676d9590d42592dcb",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-22\\summary.json": "2cfda72cc71b24f27d944c303b04b8b954090a88bb6e59c9adf87a13a2f8a0a7",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-33\\curves.csv": "dfdddc8887bb9fe97c59be14b0430af1ad00392fd8cb3dd31cb94019532f4e61",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-33\\episodes.csv": "041d1f437b531eb9a91a745077394366ac614e98c1dceb03dd02fc1f305a19f4",
+      "results\\memory-alignment-comparison\\parts\\main_agent_aligned-33\\summary.json": "5b047475b06e6d73a030b2d783373f048e318df68a46c4dcd9bbd8743249a42d",
+      "results\\memory-alignment-comparison\\parts\\no_memory-11\\curves.csv": "7c26319689c2bd856ad47c6f1f972fbec5caedf93326b52bb2fe1055dfdfb30c",
+      "results\\memory-alignment-comparison\\parts\\no_memory-11\\episodes.csv": "17e04454732557d7e89ffd4c070dcc46f51563f11fcffedae36907de43e870cc",
+      "results\\memory-alignment-comparison\\parts\\no_memory-11\\summary.json": "b65c235c909cef178af18352d67a0df9299f10e409ff1da76aab017baeba5b6a",
+      "results\\memory-alignment-comparison\\parts\\no_memory-22\\curves.csv": "46422165b75f1b274f7e88be195c3825252603499c48db63ff1a9afde4480a62",
+      "results\\memory-alignment-comparison\\parts\\no_memory-22\\episodes.csv": "2bf46fe970a75c5b6121f50f67480347119ca4df0b815c9e423442a756bb71cd",
+      "results\\memory-alignment-comparison\\parts\\no_memory-22\\summary.json": "f48ae3aa906efaefc2cda28479617964559f2821cb795d408f7b335737dd9952",
+      "results\\memory-alignment-comparison\\parts\\no_memory-33\\curves.csv": "4ae71c975890dd3510836d379cf8341c1082fe9f7c0610055ae041ee71866de6",
+      "results\\memory-alignment-comparison\\parts\\no_memory-33\\episodes.csv": "9fd2d16ad2c3bb0929eacb47e60287eedc4104cf80271761817d30bc64962d08",
+      "results\\memory-alignment-comparison\\parts\\no_memory-33\\summary.json": "fcf18c253d61f8e19449901d93379eb9a9b6bd5ede6e7dc561202038eef2aca0",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-11\\curves.csv": "118c599e4af572a3f2956222b83939235760e79a3563ed61a7b845b33cef5d7f",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-11\\episodes.csv": "221cfb861265fc0fea6192319f18faf4cdf946578bcdf6da1707462cb961895a",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-11\\summary.json": "b9f5ee8e3efabfb46e9df4567b0e5f5fb86f381f865f3072e6546b6954680206",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-22\\curves.csv": "86a4ced49abb9176fdfeb17c01df3435a7bc577d5f135271a018e43155c90458",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-22\\episodes.csv": "0d4c982eaecd8d1f1cb4f784dd00fa63064904eba5189e0295f6ef8560f04e1d",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-22\\summary.json": "d9fa94a6546833b0f7105ceb4e539e660d990d2eeda51ddfec7759f7eaac9c49",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-33\\curves.csv": "28fe4313b8bc7ad186ec227dada9f735dbfef2e8a5ef83eb37458767993dcbec",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-33\\episodes.csv": "d205dc2164bc4964a99969fc35ceac7679a13d48ea0f746f0535bdf04f61087d",
+      "results\\memory-alignment-comparison\\parts\\no_novelty-33\\summary.json": "bfe3a39386caeef68574b451a0ba9ba7736b8792cce9f2d53a9625cacc5a73c5",
+      "results\\memory-alignment-comparison\\parts\\random\\curves.csv": "074d65286cb0b6e87ef6c435f88924bd090b8235bd0edd3ac3633710348fbc4f",
+      "results\\memory-alignment-comparison\\parts\\random\\episodes.csv": "3c4addb997265833807c95a03159be6e7ed41487ea1e78224027908047238306",
+      "results\\memory-alignment-comparison\\parts\\random\\summary.json": "4c7510574214fcfc20b2d289547d86f605f3a448681cbbe0a9387c13196dad0e",
+      "results\\memory-alignment-comparison\\qualitative\\frontier\\trace.json": "9057815f86ebd10f5729b63cf66909a0d1d30846e4bcaa170f6d6cbdc5443c2a",
+      "results\\memory-alignment-comparison\\qualitative\\main\\trace.json": "72a198eaba01f933d30220cdebe023c421599c6c44f8ff5d5b18d4b818052c98",
+      "results\\memory-alignment-comparison\\qualitative\\main_agent_aligned\\trace.json": "eee3eea6a0b7dae7b0c01fedcf7d1b83f19dccbb9109034c6f4905ae577d056f",
+      "results\\memory-alignment-comparison\\qualitative\\no_memory\\trace.json": "8981db52c649f5dc0420e5b80ae9162b1b59e822474e4e8fa04fbfaf12fd7281",
+      "results\\memory-alignment-comparison\\training\\main-11\\best.json": "290a1e95758a4b3d9f30cf3c99a9d497ec14073ee93dce78e30c30cb5e210837",
+      "results\\memory-alignment-comparison\\training\\main-11\\final.json": "137ac0dc3fe044968a3515a8557fca522f7ded470a32174b4d16f28209de17ec",
+      "results\\memory-alignment-comparison\\training\\main-11\\logs-progress.csv": "d0c67168b46e7662788fcf93f13405d1071cfc3e4918627694543820d0368abc",
+      "results\\memory-alignment-comparison\\training\\main-11\\runtime.json": "9991113ba9b6033e3c2273eac0dc2be1769af3ccc3e1d921218668489e2a0ac3",
+      "results\\memory-alignment-comparison\\training\\main-11\\validation.csv": "f748c8e7fa00110f177d3ce58ada64ff97abd6abce86a8bba55b6918cc0f45c6",
+      "results\\memory-alignment-comparison\\training\\main-22\\best.json": "38d57ddc3eaa32b1d646f276188500a970682d5e658ccb1b5af9c48d2845d0cd",
+      "results\\memory-alignment-comparison\\training\\main-22\\final.json": "a429bfc7f2f61c45a5bae8430cc2f78b4b4f2e13c6908a5c385b7377349d2fd8",
+      "results\\memory-alignment-comparison\\training\\main-22\\logs-progress.csv": "9e5392c8a01812b33d0a5b5319bfefc3450da226b579b6ee70675477fe824774",
+      "results\\memory-alignment-comparison\\training\\main-22\\runtime.json": "6de559e19ae68dc2b40cfa7cd721f4eaf4278667a81e7f7be2961d41006e1cc6",
+      "results\\memory-alignment-comparison\\training\\main-22\\validation.csv": "82d97943e1f868a9abfb7771e7974b3e2090dd07d1368697ecef45bf37ade1d7",
+      "results\\memory-alignment-comparison\\training\\main-33\\best.json": "8ab5a684d20f803a4cccd858b436e4e60b1203e4e8a68ced467ad677c5bfeed7",
+      "results\\memory-alignment-comparison\\training\\main-33\\final.json": "abbc02a918ee021c085398479adf1587d86e794ca630f8ca81e035cf07288337",
+      "results\\memory-alignment-comparison\\training\\main-33\\logs-progress.csv": "8f31ac0cdcb012c57fd1705d6d7bfd65c3bb30285181e87bee1cecd5b44c7f35",
+      "results\\memory-alignment-comparison\\training\\main-33\\logs-resume-750000-progress.csv": "400cd9fd8a5e2fd482615a5940150168d256f3e30b419f1900e0f83b060fbe3d",
+      "results\\memory-alignment-comparison\\training\\main-33\\runtime.json": "7f905dca34793794cda8fe820e433cad7ddd5408e8e905ebeaad3436c9073d20",
+      "results\\memory-alignment-comparison\\training\\main-33\\validation.csv": "11ecf46e27b5a6a5b1ea80277c78ea9c163937c4ce95a32be61f4c7b5718ded3",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-11\\best.json": "f95699a8205f524a8579f3525aaff35d1b27a676fe1fef94390d842edb59a4ab",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-11\\final.json": "bb58523cfd98d1ce80eb643d648b19f49365e8e510a20d7df6bf554fb009528b",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-11\\logs-progress.csv": "4a3860b07fe2294d40388f2ac4f04312665d92070bed3c801f4d1a7e5ae92e8e",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-11\\runtime.json": "ee29245880104ead6ecb4d4f6dbccca341271af165fe73b69f5e7a94ad1cf271",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-11\\validation.csv": "48771fa0375b7f806d9b852ad50079f7de68b14d01a6c24a87e65a59884d2265",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-22\\best.json": "55183e956125da5530800082f229dfb158e7020a13c22fcc086783243f1c444c",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-22\\final.json": "5a6598f75a505502e99f6497964c2ee04a40762c6cb3440e222f20825e869c95",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-22\\logs-progress.csv": "76dc3040db7ebecdbc395c66d579b39182aab6bc7f9151e0f866f782b5e82625",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-22\\runtime.json": "31dfb3fdf127d6a10521c75bfc81db58604eb9b48e3733f49359ab48ad7dec44",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-22\\validation.csv": "dd0a599450c4345608a3ce57db63adb32322d9f8d1d86666f27c78069ce53dff",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-33\\best.json": "428082b54f7616029c81b5d79fe58d2f40743ddd2d0df83ca42d60900717f376",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-33\\final.json": "11ff601b034317a61327d0b0525655e00e542d3f5141680142338316d6c279af",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-33\\logs-progress.csv": "4e79cf9265c79e0c62ea61ff519111d626098b3884892bdc66ea3cfbf91bafb0",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-33\\runtime.json": "6d66edd91ff227932296801f436fc583c07ce8baa96d0d322c463ed49493fd69",
+      "results\\memory-alignment-comparison\\training\\main_agent_aligned-33\\validation.csv": "717f19e7d14c409b8d672b8d8824547575d1e5a499ead74a22a56605de258cb0",
+      "results\\memory-alignment-comparison\\training\\no_memory-11\\best.json": "1823bb7d563b6f6df454d6b55d465242775746eb6f04a007934ddab3a969fb62",
+      "results\\memory-alignment-comparison\\training\\no_memory-11\\final.json": "1d60eb1e2c958eda8b862f97ee779f3bd48234f160efec2803b0f8229297e037",
+      "results\\memory-alignment-comparison\\training\\no_memory-11\\logs-progress.csv": "02ebc1706f2c660329fe1018345141db26b5b7b926af10354bffbc41df97d41b",
+      "results\\memory-alignment-comparison\\training\\no_memory-11\\runtime.json": "3cf583025d256b247bf5324a9c815f342a35da684ff6fac1d839cf55c9430a50",
+      "results\\memory-alignment-comparison\\training\\no_memory-11\\validation.csv": "83d2a87c47239e9ef51dbba1d60acd6c71a4ef94ed731a431ac766eb186d8524",
+      "results\\memory-alignment-comparison\\training\\no_memory-22\\best.json": "1fd3cdd2b4ccbc7211711ed112833f44162c6347a96b717f629a907e5d698921",
+      "results\\memory-alignment-comparison\\training\\no_memory-22\\final.json": "6b61273881160f7019e386c87ed63bbf1c7b9c4fd067ef6cb9cef0ac14009c87",
+      "results\\memory-alignment-comparison\\training\\no_memory-22\\logs-progress.csv": "2bbaa948269fd70937c7b838fdb2e41c5bd87e61b90863a713a64fff6aabfa19",
+      "results\\memory-alignment-comparison\\training\\no_memory-22\\runtime.json": "beb4f2ac4520a33debcd482479e2582e691ce93b4935164cc39243e967dd6efc",
+      "results\\memory-alignment-comparison\\training\\no_memory-22\\validation.csv": "73b2093ae61b517dd09c7b751f351e68667ce0facbe7fb6bcb0ea7beee52b99e",
+      "results\\memory-alignment-comparison\\training\\no_memory-33\\best.json": "0638cd9750a32a6bb3a023c094263892318550ba6e0b36797d172e67c1c87857",
+      "results\\memory-alignment-comparison\\training\\no_memory-33\\final.json": "5ccbe2b2befb13a1b13a16a3eb5a24f1cf2ec7a4e60ef98c96a53cfee185908a",
+      "results\\memory-alignment-comparison\\training\\no_memory-33\\logs-progress.csv": "350abc47aa2f55e201e12828bdf1c30047d93e8d3432d84ce4e78e7b4f9d7b25",
+      "results\\memory-alignment-comparison\\training\\no_memory-33\\runtime.json": "78e2e32b0b60192e2c5a65fd5c34253f4a9d444a92fa1656727f7bf748bb33b5",
+      "results\\memory-alignment-comparison\\training\\no_memory-33\\validation.csv": "927f6271d6cda5dc73be94a6ea8e3f1eb40a936eed3e3167e07dbac0b194223f",
+      "results\\memory-alignment-comparison\\training\\no_novelty-11\\best.json": "49733f2d2e16843289621f7747e03e7ff82d05e9aab5af1a743987974cd08316",
+      "results\\memory-alignment-comparison\\training\\no_novelty-11\\final.json": "82debc9d1b7a219626555b2741208d64e4d51bb9f118e1ef49ca1bae401b561c",
+      "results\\memory-alignment-comparison\\training\\no_novelty-11\\logs-progress.csv": "73c65d2f7ab7c3b8e7d9ca034fdf3836dadafd05a2838cc554e4f23de06fc800",
+      "results\\memory-alignment-comparison\\training\\no_novelty-11\\runtime.json": "ba8e26e1d87e3d401e3414fc4c75ca86e573207dcd49f0114682e074160e341f",
+      "results\\memory-alignment-comparison\\training\\no_novelty-11\\validation.csv": "58d47b0cc5c835ff36a4fb3d4326b749a9f671fed3a64a054e77e941214bd2a4",
+      "results\\memory-alignment-comparison\\training\\no_novelty-22\\best.json": "4fa71a7f157cfb65fb3f837a0a71ee50e9562c21b0a372beb3d3cd0de923ce0a",
+      "results\\memory-alignment-comparison\\training\\no_novelty-22\\final.json": "df519d7da26b5aad9123f46fea9f6e7e55e14e8a64cc89c6dd9843cb0ff85d06",
+      "results\\memory-alignment-comparison\\training\\no_novelty-22\\logs-progress.csv": "ed1c870d9c35568848a14d40ab3dbee6140a5383924b32b702473266508adf85",
+      "results\\memory-alignment-comparison\\training\\no_novelty-22\\runtime.json": "034ccec22d6f3734bacbac3c383cbd63e0d8ad3919f88cec79ff0ff9b54f0431",
+      "results\\memory-alignment-comparison\\training\\no_novelty-22\\validation.csv": "d02c44fa9d7e8f097764f6ea3d5b09f3477d28a59bffa286380bc324f8a7d3e6",
+      "results\\memory-alignment-comparison\\training\\no_novelty-33\\best.json": "cd8804ad1dccb514108708bdb6c7183e4cf65c63cdb2dc8c69001f93efac5f21",
+      "results\\memory-alignment-comparison\\training\\no_novelty-33\\final.json": "3d901d96750fe6873cd42fd615c7d21024af70bbc11269d840ee721d24d80a29",
+      "results\\memory-alignment-comparison\\training\\no_novelty-33\\logs-progress.csv": "88c81c4dbc521199fc8763c8895d0e478c1826320f10d22f84e20538898107e4",
+      "results\\memory-alignment-comparison\\training\\no_novelty-33\\runtime.json": "1871e5451d613caebdc7bb91e8ab6a0bcccd809be7540078d5008db24efb91d0",
+      "results\\memory-alignment-comparison\\training\\no_novelty-33\\validation.csv": "6b6f87b3ed64173610ee1aab2afc9841f3e9630b4e75868cfa038e31d6be6fc8",
+      "results\\memory-alignment-comparison\\training-partition\\episodes.csv": "c03d8cdef04da111c51b13d3d3044138a0fd9e9c8b095c4c1fef07cbc3299430",
+      "results\\memory-alignment-comparison\\training-partition\\protocol.json": "bf97a58d589c3c352a308732122b8336a263d7e45675153f97126642ddefba3f",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-11\\curves.csv": "83e4f53a4084e2822baa67ff3d2e59b33ad25ccee3203e8b185513fab1c5d208",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-11\\episodes.csv": "0f24467f8b996bef5782222ec75ae1c1ebe5e0028c856b41e994f366951f0a8c",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-11\\summary.json": "ec820cde81e7fcf4baa90d82f3d68d7d47d8cb74659b3bd7974513766a1753d8",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-22\\curves.csv": "12dc64dd5f03c5c92d830e7121beed92ad3179096d6655715cd1dce3af2061d3",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-22\\episodes.csv": "b0d847c06d878d77a45562b38c60e9faa895cb985d6339ef0857c8516b154053",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-22\\summary.json": "0b52591b39ae0d4baaf83674324e6ecca54e6c42f3f235ec9f3caccbd6a89cb2",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-33\\curves.csv": "681d723006edd473159850ac1581d51c3e97541fd5030b020e9f8326236c12aa",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-33\\episodes.csv": "a104cc4e7b0a057562f301095ce012d033673a0145f9d07e8a3e7ffd1d869af7",
+      "results\\memory-alignment-comparison\\training-partition\\main_agent_aligned-33\\summary.json": "3d92e61a6fc29c353b6ae4801e30ff2035b4bb0e390941fc2e2b072c3f6752a3",
+      "submission\\aligned\\artifact-checks.json": "cfdb2c692d7816ddbf9b4ad6971d102a2404867e836b6bf93870c100ba36e4fa",
+      "submission\\aligned\\demo-provenance.json": "4ff0b9d4290f5774770a13d527107f273dbb176d66e4186fd1fc0c339b0320b9",
+      "submission\\aligned\\demo.mp4": "eb67ab23e48d6f91b5c2d68a1c38f16b63fcdf5d7a437d257acbe2bd431af2a5",
+      "submission\\aligned\\manifest.json": "04e00ba9c3533cbd240e6445a16bf2fc87c107bc23656cacbc1a0f19f84d1c6d",
+      "submission\\aligned\\portable-verification.json": "038f4c844eaba74934f62879c83bb5df0bd56d8166e38dd6fc2d687774a861c8",
+      "submission\\aligned\\release-manifest.json": "ecce31fd4c0672a8cc665f2e683a53d032034ba7af3d098973ba6f5c0e5c0f6f",
+      "submission\\aligned\\storyboard.json": "21f5f1425fa72f018c19d4cfa8f44126f45dd52f7f0d56b326dd7b6e468a5d78",
+      "submission\\aligned\\technical-report.pdf": "716b1b56d44ad1e2c8c28a763bfad4f18a6a2760fdbe0d3cb5b8d442f886fda4",
+      "submission\\aligned\\ui-recording.mp4": "88d9d93b247e7ab59e350d8d280be1bda6bb1a46b37e7a03b3e362696c36da03",
+      "submission\\aligned\\ui-verification.json": "b5574b4ba05c0b1a15f90e7042a3e8ae3e86474f60f532b10f44c64a02777374",
+      "submission\\aligned\\replays\\aligned-contact\\episode.mp4": "ce9d90e9a82dfbd22d376e5267d173b99f968a68a272ecb6854315cf668533c8",
+      "submission\\aligned\\replays\\aligned-contact\\replay.json": "43ca8d13a2102585ea706e82e447727b61f9fc876ff13481aae37954d3f45e4b",
+      "submission\\aligned\\replays\\aligned-easy\\episode.mp4": "a4a99c0376910a828dae3563a865b6ec42c564401ff13ce0a449e9934cad9fa0",
+      "submission\\aligned\\replays\\aligned-easy\\replay.json": "4ad1b810180a513a4afc795e788ddae2bb034c374d8a3c61b3c7cc7e489ff578",
+      "submission\\aligned\\replays\\aligned-hard\\episode.mp4": "200f3efb425608ddf3ad63f87a4820867401c0f92551fe9817d67e68a4356ac6",
+      "submission\\aligned\\replays\\aligned-hard\\replay.json": "675c207e0558b5d47cc8760a475c3889b51ce9e5b93a407f2f4803498f4a4cdd",
+      "submission\\aligned\\replays\\aligned-medium\\episode.mp4": "9f74b96399a8d79d4cea9a99340bd92df527d9ba5ba952094449a80c260af78b",
+      "submission\\aligned\\replays\\aligned-medium\\replay.json": "bca808d6dab8ef86bd9d7778aca574f0dc49a906b2cf833c4d06d148b9216396",
+      "submission\\aligned\\replays\\frontier-medium\\episode.mp4": "bfda876e37b32768b2c8a0ad2ac60551313a21dd690c99a021882e7d0d4be2f1",
+      "submission\\aligned\\replays\\frontier-medium\\replay.json": "0fd8d663cee88a0ba574ceed7e0c0454044f38a0b70a3622fc4b5bb724948d66",
+      "submission\\aligned\\replays\\loop-example-seed11\\episode.mp4": "c16501823fef307895400b8c02ae5ec394cbf41553a72bd0dcd6e2b36384b5a4",
+      "submission\\aligned\\replays\\loop-example-seed11\\replay.json": "d75af6a1501382704a141309737e353b42e7564bce065de9cdc2c78ae65195fc",
+      "configs/aligned-no-bonuses.yaml": "f74fd7e5167c7c92386ba2a56045d43cdf30820f543c7bd0835a657ac677cf53",
+      "exploration\\agents.py": "732747486f5474ba4c6a3cfee164e8ca7a721e1cc2b89dd0e010471014fdec64",
+      "exploration\\config.py": "134f09a59efd47029e815a30fa03f7850b7d24a40c950c00c9fc75ef435d0387",
+      "exploration\\environment.py": "cc5edb9e0c7a68e547040ed41f28cf1607824ed616e3e550dcb910b385143d8a",
+      "exploration\\evaluation.py": "7e7c5bcf6305783b1dad52a7bafdcd8c058e0b9c5b3e4b1432f3c09d9ad7cac9",
+      "exploration\\memory.py": "4001a839581619d8057e6f0d9048aef400362a57d9fcb705c9e9a39b731de3a3",
+      "exploration\\policy.py": "ddefc487303e91f2ec2fefe2cb58a6861f4b9621542935bd1162aa2fee2d7c2f",
+      "exploration\\rendering.py": "f9aa612c4305edd73350e5b653a2c1cb758e0a5aac96560b9db143771f738aeb",
+      "exploration\\replay.py": "74f14e2aa282e9a4f4466c461d998c1d960d1e7bc3c345b6086d7024006e9de7",
+      "exploration\\training.py": "6a9ffe4e70dd028ef4c8d062fcddbf8567eb5d0446c048e478de26a61a83dad5",
+      "exploration\\ui.py": "8e8f944424a70cc249567b5b9711db812dcff141ecc5cad4caea3a9b28726eed",
+      "exploration\\__init__.py": "b7d8f1bda671752983388d296f658655ef2049cee81d035beaef16bffa4fd677",
+      "exploration\\__main__.py": "ff184c4b0e728ce78bfb7912569c06aa29af98ff7247609ec4ab365ccc859e61"
+    },
+    "development_note": "Earlier 20000 and 30000 seed ranges were exposed; 40000-40099 reserved before new training/testing. No tuning after confirmation."
+  },
+  "episodes": 5700,
+  "summary": {
+    "frontier/easy": {
+      "episodes": 100,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.9624458417423987,
+          "episode_std": 0.11051174119230414,
+          "run_means": {
+            "None": 0.9624458417423987
+          },
+          "run_mean_std": null
+        },
+        "visited_coverage": {
+          "mean": 0.6716059932607201,
+          "episode_std": 0.28008002673172216,
+          "run_means": {
+            "None": 0.6716059932607201
+          },
+          "run_mean_std": null
+        },
+        "coverage_auc": {
+          "mean": 0.9279240063880121,
+          "episode_std": 0.10276592382770215,
+          "run_means": {
+            "None": 0.9279240063880121
+          },
+          "run_mean_std": null
+        },
+        "poi_fraction": {
+          "mean": 0.95,
+          "episode_std": 0.19462473604038075,
+          "run_means": {
+            "None": 0.95
+          },
+          "run_mean_std": null
+        },
+        "survived": {
+          "mean": 0.49,
+          "episode_std": 0.5024183937956914,
+          "run_means": {
+            "None": 0.49
+          },
+          "run_mean_std": null
+        },
+        "monster_collisions": {
+          "mean": 0.51,
+          "episode_std": 0.5024183937956914,
+          "run_means": {
+            "None": 0.51
+          },
+          "run_mean_std": null
+        },
+        "wall_collision_rate": {
+          "mean": 0.0,
+          "episode_std": 0.0,
+          "run_means": {
+            "None": 0.0
+          },
+          "run_mean_std": null
+        },
+        "movement_efficiency": {
+          "mean": 0.2784271968131,
+          "episode_std": 0.12098631418565818,
+          "run_means": {
+            "None": 0.2784271968131
+          },
+          "run_mean_std": null
+        },
+        "repeated_state_rate": {
+          "mean": 0.20491903179788298,
+          "episode_std": 0.1674198748692017,
+          "run_means": {
+            "None": 0.20491903179788298
+          },
+          "run_mean_std": null
+        },
+        "loop_rate": {
+          "mean": 0.20489950054788297,
+          "episode_std": 0.16736679614029532,
+          "run_means": {
+            "None": 0.20489950054788297
+          },
+          "run_mean_std": null
+        },
+        "inference_ms_mean": {
+          "mean": 0.2722139903786752,
+          "episode_std": 0.051361566755419835,
+          "run_means": {
+            "None": 0.2722139903786752
+          },
+          "run_mean_std": null
+        }
+      },
+      "inference_step_mean_ms": 0.2968290356151033
+    },
+    "frontier/hard": {
+      "episodes": 100,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.8571356006312282,
+          "episode_std": 0.2525450027026595,
+          "run_means": {
+            "None": 0.8571356006312282
+          },
+          "run_mean_std": null
+        },
+        "visited_coverage": {
+          "mean": 0.5132327596020674,
+          "episode_std": 0.2468139164967657,
+          "run_means": {
+            "None": 0.5132327596020674
+          },
+          "run_mean_std": null
+        },
+        "coverage_auc": {
+          "mean": 0.8002314251129562,
+          "episode_std": 0.22759066871854594,
+          "run_means": {
+            "None": 0.8002314251129562
+          },
+          "run_mean_std": null
+        },
+        "poi_fraction": {
+          "mean": 0.8739999999999999,
+          "episode_std": 0.24561610844419943,
+          "run_means": {
+            "None": 0.8739999999999999
+          },
+          "run_mean_std": null
+        },
+        "survived": {
+          "mean": 0.25,
+          "episode_std": 0.4351941398892446,
+          "run_means": {
+            "None": 0.25
+          },
+          "run_mean_std": null
+        },
+        "monster_collisions": {
+          "mean": 0.75,
+          "episode_std": 0.4351941398892446,
+          "run_means": {
+            "None": 0.75
+          },
+          "run_mean_std": null
+        },
+        "wall_collision_rate": {
+          "mean": 0.0,
+          "episode_std": 0.0,
+          "run_means": {
+            "None": 0.0
+          },
+          "run_mean_std": null
+        },
+        "movement_efficiency": {
+          "mean": 0.3802017317954835,
+          "episode_std": 0.17130582377900833,
+          "run_means": {
+            "None": 0.3802017317954835
+          },
+          "run_mean_std": null
+        },
+        "repeated_state_rate": {
+          "mean": 0.21205971887355637,
+          "episode_std": 0.19342629903958025,
+          "run_means": {
+            "None": 0.21205971887355637
+          },
+          "run_mean_std": null
+        },
+        "loop_rate": {
+          "mean": 0.21205971887355637,
+          "episode_std": 0.19342629903958025,
+          "run_means": {
+            "None": 0.21205971887355637
+          },
+          "run_mean_std": null
+        },
+        "inference_ms_mean": {
+          "mean": 0.4769561685416761,
+          "episode_std": 0.22675298130492005,
+          "run_means": {
+            "None": 0.4769561685416761
+          },
+          "run_mean_std": null
+        }
+      },
+      "inference_step_mean_ms": 0.6416970157216172
+    },
+    "frontier/medium": {
+      "episodes": 100,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.9265945003614605,
+          "episode_std": 0.15804009783589126,
+          "run_means": {
+            "None": 0.9265945003614605
+          },
+          "run_mean_std": null
+        },
+        "visited_coverage": {
+          "mean": 0.5697350500448529,
+          "episode_std": 0.25358553933328404,
+          "run_means": {
+            "None": 0.5697350500448529
+          },
+          "run_mean_std": null
+        },
+        "coverage_auc": {
+          "mean": 0.8798725403237811,
+          "episode_std": 0.14346397945292472,
+          "run_means": {
+            "None": 0.8798725403237811
+          },
+          "run_mean_std": null
+        },
+        "poi_fraction": {
+          "mean": 0.94,
+          "episode_std": 0.18580368095476793,
+          "run_means": {
+            "None": 0.94
+          },
+          "run_mean_std": null
+        },
+        "survived": {
+          "mean": 0.27,
+          "episode_std": 0.44619604333847374,
+          "run_means": {
+            "None": 0.27
+          },
+          "run_mean_std": null
+        },
+        "monster_collisions": {
+          "mean": 0.73,
+          "episode_std": 0.44619604333847374,
+          "run_means": {
+            "None": 0.73
+          },
+          "run_mean_std": null
+        },
+        "wall_collision_rate": {
+          "mean": 0.0,
+          "episode_std": 0.0,
+          "run_means": {
+            "None": 0.0
+          },
+          "run_mean_std": null
+        },
+        "movement_efficiency": {
+          "mean": 0.3488004035499697,
+          "episode_std": 0.15764015353586214,
+          "run_means": {
+            "None": 0.3488004035499697
+          },
+          "run_mean_std": null
+        },
+        "repeated_state_rate": {
+          "mean": 0.1977128718943679,
+          "episode_std": 0.17176016015491952,
+          "run_means": {
+            "None": 0.1977128718943679
+          },
+          "run_mean_std": null
+        },
+        "loop_rate": {
+          "mean": 0.1977128718943679,
+          "episode_std": 0.17176016015491952,
+          "run_means": {
+            "None": 0.1977128718943679
+          },
+          "run_mean_std": null
+        },
+        "inference_ms_mean": {
+          "mean": 0.370058743800266,
+          "episode_std": 0.12292518673868974,
+          "run_means": {
+            "None": 0.370058743800266
+          },
+          "run_mean_std": null
+        }
+      },
+      "inference_step_mean_ms": 0.45105402575759984
+    },
+    "main/easy": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.8666959556561189,
+          "episode_std": 0.20564110207863892,
+          "run_means": {
+            "11": 0.9051308061010004,
+            "22": 0.8839726207202705,
+            "33": 0.8109844401470861
+          },
+          "run_mean_std": 0.04939379437121874
+        },
+        "visited_coverage": {
+          "mean": 0.49720460023530516,
+          "episode_std": 0.22548691509789795,
+          "run_means": {
+            "11": 0.539678402240857,
+            "22": 0.540696095722696,
+            "33": 0.4112393027423627
+          },
+          "run_mean_std": 0.07444987041488604
+        },
+        "coverage_auc": {
+          "mean": 0.7982372560387778,
+          "episode_std": 0.19003319053747939,
+          "run_means": {
+            "11": 0.8331597315515938,
+            "22": 0.8211347828906055,
+            "33": 0.740417253674134
+          },
+          "run_mean_std": 0.05043326632948147
+        },
+        "poi_fraction": {
+          "mean": 0.855,
+          "episode_std": 0.2973826740909738,
+          "run_means": {
+            "11": 0.9,
+            "22": 0.86,
+            "33": 0.805
+          },
+          "run_mean_std": 0.04769696007084726
+        },
+        "survived": {
+          "mean": 0.8166666666666667,
+          "episode_std": 0.3875860748793186,
+          "run_means": {
+            "11": 0.88,
+            "22": 0.78,
+            "33": 0.79
+          },
+          "run_mean_std": 0.05507570547286101
+        },
+        "monster_collisions": {
+          "mean": 0.18333333333333332,
+          "episode_std": 0.38758607487931857,
+          "run_means": {
+            "11": 0.12,
+            "22": 0.22,
+            "33": 0.21
+          },
+          "run_mean_std": 0.055075705472861024
+        },
+        "wall_collision_rate": {
+          "mean": 0.002996833171535699,
+          "episode_std": 0.01917495213819223,
+          "run_means": {
+            "11": 0.0003648818433371001,
+            "22": 0.005571575445501366,
+            "33": 0.0030540422257686294
+          },
+          "run_mean_std": 0.0026038182009539847
+        },
+        "movement_efficiency": {
+          "mean": 0.12870528579225882,
+          "episode_std": 0.06753022994950814,
+          "run_means": {
+            "11": 0.1296415771817011,
+            "22": 0.14695604793746025,
+            "33": 0.10951823225761506
+          },
+          "run_mean_std": 0.01873646156279177
+        },
+        "repeated_state_rate": {
+          "mean": 0.42294914482474677,
+          "episode_std": 0.29176185336430716,
+          "run_means": {
+            "11": 0.35829361908743423,
+            "22": 0.3320909268575214,
+            "33": 0.5784628885292846
+          },
+          "run_mean_std": 0.13531459134466764
+        },
+        "loop_rate": {
+          "mean": 0.4229426344080801,
+          "episode_std": 0.2917678024340176,
+          "run_means": {
+            "11": 0.3582740878374342,
+            "22": 0.3320909268575214,
+            "33": 0.5784628885292846
+          },
+          "run_mean_std": 0.135319257909464
+        },
+        "inference_ms_mean": {
+          "mean": 0.9754215340283279,
+          "episode_std": 0.04941052828531129,
+          "run_means": {
+            "11": 0.9815137476540897,
+            "22": 0.990656603332397,
+            "33": 0.9540942510984972
+          },
+          "run_mean_std": 0.019027288308252895
+        }
+      },
+      "inference_step_mean_ms": 0.9747581056335564
+    },
+    "main/hard": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.5082408523623159,
+          "episode_std": 0.24609782822324602,
+          "run_means": {
+            "11": 0.5758509068150081,
+            "22": 0.5210607215947392,
+            "33": 0.4278109286772004
+          },
+          "run_mean_std": 0.0748479830530721
+        },
+        "visited_coverage": {
+          "mean": 0.2589585711977462,
+          "episode_std": 0.17195834346855568,
+          "run_means": {
+            "11": 0.3147457981876007,
+            "22": 0.2711605581921241,
+            "33": 0.19096935721351369
+          },
+          "run_mean_std": 0.06278390080276262
+        },
+        "coverage_auc": {
+          "mean": 0.43824976392831433,
+          "episode_std": 0.20873825748876176,
+          "run_means": {
+            "11": 0.4947193120765994,
+            "22": 0.4452895292835911,
+            "33": 0.37474045042475235
+          },
+          "run_mean_std": 0.060298428943143134
+        },
+        "poi_fraction": {
+          "mean": 0.4946666666666667,
+          "episode_std": 0.32360566172926114,
+          "run_means": {
+            "11": 0.57,
+            "22": 0.49,
+            "33": 0.42400000000000004
+          },
+          "run_mean_std": 0.07311178655547494
+        },
+        "survived": {
+          "mean": 0.72,
+          "episode_std": 0.44974909393087026,
+          "run_means": {
+            "11": 0.8,
+            "22": 0.75,
+            "33": 0.61
+          },
+          "run_mean_std": 0.09848857801796107
+        },
+        "monster_collisions": {
+          "mean": 0.28,
+          "episode_std": 0.44974909393087026,
+          "run_means": {
+            "11": 0.2,
+            "22": 0.25,
+            "33": 0.39
+          },
+          "run_mean_std": 0.09848857801796104
+        },
+        "wall_collision_rate": {
+          "mean": 0.02569138775463116,
+          "episode_std": 0.1245463057795935,
+          "run_means": {
+            "11": 0.04342709153522383,
+            "22": 0.030917652604377094,
+            "33": 0.002729419124292551
+          },
+          "run_mean_std": 0.020846115180691023
+        },
+        "movement_efficiency": {
+          "mean": 0.08580057803035777,
+          "episode_std": 0.07492462686409143,
+          "run_means": {
+            "11": 0.0928359690859431,
+            "22": 0.09474591287142506,
+            "33": 0.06981985213370515
+          },
+          "run_mean_std": 0.013872623092042943
+        },
+        "repeated_state_rate": {
+          "mean": 0.5195321966675721,
+          "episode_std": 0.34274458901900867,
+          "run_means": {
+            "11": 0.41712316530534055,
+            "22": 0.47008769677286316,
+            "33": 0.6713857279245126
+          },
+          "run_mean_std": 0.13414891581669788
+        },
+        "loop_rate": {
+          "mean": 0.5195321966675721,
+          "episode_std": 0.34274458901900867,
+          "run_means": {
+            "11": 0.41712316530534055,
+            "22": 0.47008769677286316,
+            "33": 0.6713857279245126
+          },
+          "run_mean_std": 0.13414891581669788
+        },
+        "inference_ms_mean": {
+          "mean": 0.9440666801381413,
+          "episode_std": 0.02665231973923551,
+          "run_means": {
+            "11": 0.952653727087846,
+            "22": 0.95734580209989,
+            "33": 0.9222005112266881
+          },
+          "run_mean_std": 0.019081428120762217
+        }
+      },
+      "inference_step_mean_ms": 0.9452668700307258
+    },
+    "main/medium": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.690889780219454,
+          "episode_std": 0.2648759415928201,
+          "run_means": {
+            "11": 0.7458538878474422,
+            "22": 0.7035447377194803,
+            "33": 0.6232707150914399
+          },
+          "run_mean_std": 0.062263709516279034
+        },
+        "visited_coverage": {
+          "mean": 0.3646028252305157,
+          "episode_std": 0.2102126464937321,
+          "run_means": {
+            "11": 0.42308049477733617,
+            "22": 0.36558413759765884,
+            "33": 0.30514384331655225
+          },
+          "run_mean_std": 0.0589744492972765
+        },
+        "coverage_auc": {
+          "mean": 0.6145901058930108,
+          "episode_std": 0.23347502980675197,
+          "run_means": {
+            "11": 0.6641091350596402,
+            "22": 0.6279941664377138,
+            "33": 0.5516670161816787
+          },
+          "run_mean_std": 0.057406960847583226
+        },
+        "poi_fraction": {
+          "mean": 0.69,
+          "episode_std": 0.3445870648500672,
+          "run_means": {
+            "11": 0.75,
+            "22": 0.6866666666666665,
+            "33": 0.6333333333333333
+          },
+          "run_mean_std": 0.05840471822645079
+        },
+        "survived": {
+          "mean": 0.7033333333333334,
+          "episode_std": 0.4575515273966042,
+          "run_means": {
+            "11": 0.77,
+            "22": 0.72,
+            "33": 0.62
+          },
+          "run_mean_std": 0.07637626158259735
+        },
+        "monster_collisions": {
+          "mean": 0.2966666666666667,
+          "episode_std": 0.4575515273966042,
+          "run_means": {
+            "11": 0.23,
+            "22": 0.28,
+            "33": 0.38
+          },
+          "run_mean_std": 0.07637626158259733
+        },
+        "wall_collision_rate": {
+          "mean": 0.009618998645623478,
+          "episode_std": 0.0627298996173345,
+          "run_means": {
+            "11": 0.011080599703693884,
+            "22": 0.01609878959661119,
+            "33": 0.001677606636565361
+          },
+          "run_mean_std": 0.007320849522527658
+        },
+        "movement_efficiency": {
+          "mean": 0.11388794803162786,
+          "episode_std": 0.09066000952314389,
+          "run_means": {
+            "11": 0.12258372232672739,
+            "22": 0.12050570546006847,
+            "33": 0.09857441630808772
+          },
+          "run_mean_std": 0.013302545955960176
+        },
+        "repeated_state_rate": {
+          "mean": 0.44956531542808664,
+          "episode_std": 0.3101662474740007,
+          "run_means": {
+            "11": 0.3214453508822903,
+            "22": 0.4285763035345942,
+            "33": 0.5986742918673754
+          },
+          "run_mean_std": 0.13980119954824002
+        },
+        "loop_rate": {
+          "mean": 0.4495620602197533,
+          "episode_std": 0.3101636545510567,
+          "run_means": {
+            "11": 0.3214453508822903,
+            "22": 0.4285763035345942,
+            "33": 0.5986645262423754
+          },
+          "run_mean_std": 0.139795991661306
+        },
+        "inference_ms_mean": {
+          "mean": 0.9731089885274715,
+          "episode_std": 0.05606922920009808,
+          "run_means": {
+            "11": 0.99173508880099,
+            "22": 0.9998428351526207,
+            "33": 0.9277490416288036
+          },
+          "run_mean_std": 0.03949148610413481
+        }
+      },
+      "inference_step_mean_ms": 0.9720574684860724
+    },
+    "main_agent_aligned/easy": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.9752288927987216,
+          "episode_std": 0.0930810575959987,
+          "run_means": {
+            "11": 0.9695101379455886,
+            "22": 0.9801456911556004,
+            "33": 0.9760308492949753
+          },
+          "run_mean_std": 0.005362937505431204
+        },
+        "visited_coverage": {
+          "mean": 0.7732755068129761,
+          "episode_std": 0.18960173762974059,
+          "run_means": {
+            "11": 0.7725780427762445,
+            "22": 0.8075843845151234,
+            "33": 0.7396640931475601
+          },
+          "run_mean_std": 0.03396551688000012
+        },
+        "coverage_auc": {
+          "mean": 0.907363488804338,
+          "episode_std": 0.09502845534460154,
+          "run_means": {
+            "11": 0.8964007783870669,
+            "22": 0.9132083014742227,
+            "33": 0.9124813865517247
+          },
+          "run_mean_std": 0.009500940274301687
+        },
+        "poi_fraction": {
+          "mean": 0.9733333333333334,
+          "episode_std": 0.13297052086943878,
+          "run_means": {
+            "11": 0.965,
+            "22": 0.98,
+            "33": 0.975
+          },
+          "run_mean_std": 0.00763762615825974
+        },
+        "survived": {
+          "mean": 0.84,
+          "episode_std": 0.3672185974698983,
+          "run_means": {
+            "11": 0.83,
+            "22": 0.86,
+            "33": 0.83
+          },
+          "run_mean_std": 0.017320508075688787
+        },
+        "monster_collisions": {
+          "mean": 0.16,
+          "episode_std": 0.36721859746989827,
+          "run_means": {
+            "11": 0.17,
+            "22": 0.14,
+            "33": 0.17
+          },
+          "run_mean_std": 0.017320508075688773
+        },
+        "wall_collision_rate": {
+          "mean": 0.0025437764663736157,
+          "episode_std": 0.014328384970298993,
+          "run_means": {
+            "11": 0.0002247143817204301,
+            "22": 0.00324217942541592,
+            "33": 0.004164435591984498
+          },
+          "run_mean_std": 0.0020606251050471133
+        },
+        "movement_efficiency": {
+          "mean": 0.19197286583045933,
+          "episode_std": 0.04420179394776274,
+          "run_means": {
+            "11": 0.18723314582361766,
+            "22": 0.19764993049846524,
+            "33": 0.19103552116929506
+          },
+          "run_mean_std": 0.005271272332264261
+        },
+        "repeated_state_rate": {
+          "mean": 0.34928276850304213,
+          "episode_std": 0.1663101758943554,
+          "run_means": {
+            "11": 0.41621826243206406,
+            "22": 0.2540366692426373,
+            "33": 0.377593373834425
+          },
+          "run_mean_std": 0.0847162031316157
+        },
+        "loop_rate": {
+          "mean": 0.34928276850304213,
+          "episode_std": 0.1663101758943554,
+          "run_means": {
+            "11": 0.41621826243206406,
+            "22": 0.2540366692426373,
+            "33": 0.377593373834425
+          },
+          "run_mean_std": 0.0847162031316157
+        },
+        "inference_ms_mean": {
+          "mean": 1.2880956566196777,
+          "episode_std": 0.04523963700087039,
+          "run_means": {
+            "11": 1.2930641139418941,
+            "22": 1.2828499736287033,
+            "33": 1.2883728822884362
+          },
+          "run_mean_std": 0.00511271025366695
+        }
+      },
+      "inference_step_mean_ms": 1.288271813564534
+    },
+    "main_agent_aligned/hard": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.8119582726424842,
+          "episode_std": 0.21319815667264827,
+          "run_means": {
+            "11": 0.7640829143739697,
+            "22": 0.8262790512241088,
+            "33": 0.8455128523293739
+          },
+          "run_mean_std": 0.04256198096004444
+        },
+        "visited_coverage": {
+          "mean": 0.5059203444242221,
+          "episode_std": 0.22611235835202245,
+          "run_means": {
+            "11": 0.47919917481835755,
+            "22": 0.49525650953506406,
+            "33": 0.5433053489192445
+          },
+          "run_mean_std": 0.03335698458150445
+        },
+        "coverage_auc": {
+          "mean": 0.7211101483546662,
+          "episode_std": 0.17644839001310175,
+          "run_means": {
+            "11": 0.6867930835016984,
+            "22": 0.7223417880895213,
+            "33": 0.7541955734727788
+          },
+          "run_mean_std": 0.033718119993599166
+        },
+        "poi_fraction": {
+          "mean": 0.8213333333333332,
+          "episode_std": 0.24111964769363342,
+          "run_means": {
+            "11": 0.7619999999999998,
+            "22": 0.838,
+            "33": 0.8639999999999999
+          },
+          "run_mean_std": 0.053003144560802615
+        },
+        "survived": {
+          "mean": 0.6266666666666667,
+          "episode_std": 0.4844976941199832,
+          "run_means": {
+            "11": 0.62,
+            "22": 0.59,
+            "33": 0.67
+          },
+          "run_mean_std": 0.040414518843273836
+        },
+        "monster_collisions": {
+          "mean": 0.37333333333333335,
+          "episode_std": 0.4844976941199832,
+          "run_means": {
+            "11": 0.38,
+            "22": 0.41,
+            "33": 0.33
+          },
+          "run_mean_std": 0.04041451884327378
+        },
+        "wall_collision_rate": {
+          "mean": 0.03196061278790798,
+          "episode_std": 0.1079667230024538,
+          "run_means": {
+            "11": 0.04035125488005026,
+            "22": 0.025983209463756266,
+            "33": 0.02954737401991741
+          },
+          "run_mean_std": 0.007481842906976273
+        },
+        "movement_efficiency": {
+          "mean": 0.18721327092145226,
+          "episode_std": 0.09934581278504337,
+          "run_means": {
+            "11": 0.19225101215555,
+            "22": 0.17337224447000613,
+            "33": 0.19601655613880062
+          },
+          "run_mean_std": 0.012133644971510914
+        },
+        "repeated_state_rate": {
+          "mean": 0.5056457760214378,
+          "episode_std": 0.23064781542650434,
+          "run_means": {
+            "11": 0.5301340594324494,
+            "22": 0.4998004398752641,
+            "33": 0.48700282875659995
+          },
+          "run_mean_std": 0.022151788435692
+        },
+        "loop_rate": {
+          "mean": 0.5056425334792848,
+          "episode_std": 0.23064781957293948,
+          "run_means": {
+            "11": 0.5301340594324494,
+            "22": 0.499790712248805,
+            "33": 0.48700282875659995
+          },
+          "run_mean_std": 0.022153072556384917
+        },
+        "inference_ms_mean": {
+          "mean": 1.2846640129261042,
+          "episode_std": 0.03036628086482388,
+          "run_means": {
+            "11": 1.2887217374646867,
+            "22": 1.2746486459851267,
+            "33": 1.2906216553284997
+          },
+          "run_mean_std": 0.008725428539282744
+        }
+      },
+      "inference_step_mean_ms": 1.2854813722866008
+    },
+    "main_agent_aligned/medium": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.9362550542182652,
+          "episode_std": 0.13564491212339244,
+          "run_means": {
+            "11": 0.9292360208571092,
+            "22": 0.9346609530253157,
+            "33": 0.9448681887723709
+          },
+          "run_mean_std": 0.007937067304285415
+        },
+        "visited_coverage": {
+          "mean": 0.6874687202694224,
+          "episode_std": 0.21547929486880169,
+          "run_means": {
+            "11": 0.7208898904635117,
+            "22": 0.6604188523046706,
+            "33": 0.6810974180400852
+          },
+          "run_mean_std": 0.030734861852222052
+        },
+        "coverage_auc": {
+          "mean": 0.847535962956949,
+          "episode_std": 0.11946989852163176,
+          "run_means": {
+            "11": 0.8373670810899233,
+            "22": 0.8381380941645733,
+            "33": 0.8671027136163503
+          },
+          "run_mean_std": 0.016949687720300533
+        },
+        "poi_fraction": {
+          "mean": 0.9455555555555555,
+          "episode_std": 0.16915276965578985,
+          "run_means": {
+            "11": 0.94,
+            "22": 0.9433333333333335,
+            "33": 0.9533333333333333
+          },
+          "run_mean_std": 0.006938886664887065
+        },
+        "survived": {
+          "mean": 0.6966666666666667,
+          "episode_std": 0.46046605250251227,
+          "run_means": {
+            "11": 0.7,
+            "22": 0.72,
+            "33": 0.67
+          },
+          "run_mean_std": 0.025166114784235794
+        },
+        "monster_collisions": {
+          "mean": 0.30333333333333334,
+          "episode_std": 0.46046605250251227,
+          "run_means": {
+            "11": 0.3,
+            "22": 0.28,
+            "33": 0.33
+          },
+          "run_mean_std": 0.02516611478423583
+        },
+        "wall_collision_rate": {
+          "mean": 0.009712196149011927,
+          "episode_std": 0.06400152796213364,
+          "run_means": {
+            "11": 0.0017700353155838664,
+            "22": 0.01740656023134447,
+            "33": 0.009959992900107448
+          },
+          "run_mean_std": 0.007821207086037976
+        },
+        "movement_efficiency": {
+          "mean": 0.20507196000183617,
+          "episode_std": 0.07854084450449438,
+          "run_means": {
+            "11": 0.21467078634145323,
+            "22": 0.18849576913587276,
+            "33": 0.21204932452818248
+          },
+          "run_mean_std": 0.014415116830197574
+        },
+        "repeated_state_rate": {
+          "mean": 0.37525741191405587,
+          "episode_std": 0.18611595500238873,
+          "run_means": {
+            "11": 0.3515293946493528,
+            "22": 0.37033738643962044,
+            "33": 0.40390545465319433
+          },
+          "run_mean_std": 0.02653239347257089
+        },
+        "loop_rate": {
+          "mean": 0.37525741191405587,
+          "episode_std": 0.18611595500238873,
+          "run_means": {
+            "11": 0.3515293946493528,
+            "22": 0.37033738643962044,
+            "33": 0.40390545465319433
+          },
+          "run_mean_std": 0.02653239347257089
+        },
+        "inference_ms_mean": {
+          "mean": 1.2846795737103802,
+          "episode_std": 0.032272613364861195,
+          "run_means": {
+            "11": 1.2845850481018226,
+            "22": 1.2744587401369758,
+            "33": 1.2949949328923418
+          },
+          "run_mean_std": 0.010268422689945697
+        }
+      },
+      "inference_step_mean_ms": 1.285594205239067
+    },
+    "no_memory/easy": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.9335704834407769,
+          "episode_std": 0.11894838197470327,
+          "run_means": {
+            "11": 0.9411274411045025,
+            "22": 0.9245440467726042,
+            "33": 0.9350399624452236
+          },
+          "run_mean_std": 0.008388788249812502
+        },
+        "visited_coverage": {
+          "mean": 0.6217094552633107,
+          "episode_std": 0.16673943344848915,
+          "run_means": {
+            "11": 0.6277153737161856,
+            "22": 0.6057454392170301,
+            "33": 0.6316675528567162
+          },
+          "run_mean_std": 0.01396575405175597
+        },
+        "coverage_auc": {
+          "mean": 0.8597393316718706,
+          "episode_std": 0.11754036498000935,
+          "run_means": {
+            "11": 0.8667019701979102,
+            "22": 0.8561161781842399,
+            "33": 0.8563998466334611
+          },
+          "run_mean_std": 0.006031489731442045
+        },
+        "poi_fraction": {
+          "mean": 0.925,
+          "episode_std": 0.2168680994873401,
+          "run_means": {
+            "11": 0.935,
+            "22": 0.92,
+            "33": 0.92
+          },
+          "run_mean_std": 0.008660254037844393
+        },
+        "survived": {
+          "mean": 0.83,
+          "episode_std": 0.37626042358254347,
+          "run_means": {
+            "11": 0.82,
+            "22": 0.85,
+            "33": 0.82
+          },
+          "run_mean_std": 0.017320508075688787
+        },
+        "monster_collisions": {
+          "mean": 0.17,
+          "episode_std": 0.37626042358254347,
+          "run_means": {
+            "11": 0.18,
+            "22": 0.15,
+            "33": 0.18
+          },
+          "run_mean_std": 0.017320508075688773
+        },
+        "wall_collision_rate": {
+          "mean": 0.008931041038272408,
+          "episode_std": 0.05002395633543453,
+          "run_means": {
+            "11": 0.01890996393574056,
+            "22": 0.00673149025684783,
+            "33": 0.0011516689222288365
+          },
+          "run_mean_std": 0.009081177136075364
+        },
+        "movement_efficiency": {
+          "mean": 0.15952826161424766,
+          "episode_std": 0.05630057597613264,
+          "run_means": {
+            "11": 0.15953837873935345,
+            "22": 0.160571446372116,
+            "33": 0.15847495973127354
+          },
+          "run_mean_std": 0.0010482799368360732
+        },
+        "repeated_state_rate": {
+          "mean": 0.3055205095539049,
+          "episode_std": 0.17200980285158188,
+          "run_means": {
+            "11": 0.27617326628202554,
+            "22": 0.24190426497578416,
+            "33": 0.3984839974039049
+          },
+          "run_mean_std": 0.08231189869976041
+        },
+        "loop_rate": {
+          "mean": 0.3055139991372382,
+          "episode_std": 0.1720075721239977,
+          "run_means": {
+            "11": 0.27617326628202554,
+            "22": 0.24190426497578416,
+            "33": 0.3984644661539049
+          },
+          "run_mean_std": 0.08230086938540884
+        },
+        "inference_ms_mean": {
+          "mean": 0.9341155403316085,
+          "episode_std": 0.0374695431845322,
+          "run_means": {
+            "11": 0.9492926404222181,
+            "22": 0.923872715163078,
+            "33": 0.9291812654095288
+          },
+          "run_mean_std": 0.013409080945391573
+        }
+      },
+      "inference_step_mean_ms": 0.9347135167456051
+    },
+    "no_memory/hard": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.6353109401098678,
+          "episode_std": 0.2263427682775473,
+          "run_means": {
+            "11": 0.6252837662759666,
+            "22": 0.6270315860849098,
+            "33": 0.653617467968727
+          },
+          "run_mean_std": 0.015877986024887544
+        },
+        "visited_coverage": {
+          "mean": 0.36189578563741936,
+          "episode_std": 0.16107051396731323,
+          "run_means": {
+            "11": 0.3575128160611505,
+            "22": 0.35476219929528985,
+            "33": 0.3734123415558176
+          },
+          "run_mean_std": 0.010068007166979687
+        },
+        "coverage_auc": {
+          "mean": 0.5468724179959817,
+          "episode_std": 0.18876575294232942,
+          "run_means": {
+            "11": 0.5444108757395115,
+            "22": 0.5437663663217042,
+            "33": 0.5524400119267295
+          },
+          "run_mean_std": 0.0048324346587083145
+        },
+        "poi_fraction": {
+          "mean": 0.6446666666666667,
+          "episode_std": 0.29124037967183314,
+          "run_means": {
+            "11": 0.642,
+            "22": 0.6439999999999999,
+            "33": 0.6479999999999998
+          },
+          "run_mean_std": 0.003055050463303787
+        },
+        "survived": {
+          "mean": 0.7066666666666667,
+          "episode_std": 0.4560506142576407,
+          "run_means": {
+            "11": 0.71,
+            "22": 0.74,
+            "33": 0.67
+          },
+          "run_mean_std": 0.03511884584284244
+        },
+        "monster_collisions": {
+          "mean": 0.29333333333333333,
+          "episode_std": 0.4560506142576407,
+          "run_means": {
+            "11": 0.29,
+            "22": 0.26,
+            "33": 0.33
+          },
+          "run_mean_std": 0.035118845842842465
+        },
+        "wall_collision_rate": {
+          "mean": 0.0034972843966284708,
+          "episode_std": 0.013820882134885883,
+          "run_means": {
+            "11": 0.0055521901105934955,
+            "22": 0.003842526848677369,
+            "33": 0.0010971362306145475
+          },
+          "run_mean_std": 0.002247503177172709
+        },
+        "movement_efficiency": {
+          "mean": 0.1283171902288635,
+          "episode_std": 0.10105352634255403,
+          "run_means": {
+            "11": 0.13712263921233395,
+            "22": 0.11403237171502484,
+            "33": 0.13379655975923177
+          },
+          "run_mean_std": 0.012482296708221142
+        },
+        "repeated_state_rate": {
+          "mean": 0.3253360655183473,
+          "episode_std": 0.22077800807606426,
+          "run_means": {
+            "11": 0.28598656257911953,
+            "22": 0.24378973116422806,
+            "33": 0.44623190281169434
+          },
+          "run_mean_std": 0.10680353810388854
+        },
+        "loop_rate": {
+          "mean": 0.3253360655183473,
+          "episode_std": 0.22077800807606426,
+          "run_means": {
+            "11": 0.28598656257911953,
+            "22": 0.24378973116422806,
+            "33": 0.44623190281169434
+          },
+          "run_mean_std": 0.10680353810388854
+        },
+        "inference_ms_mean": {
+          "mean": 0.9309517194632305,
+          "episode_std": 0.025242846533660657,
+          "run_means": {
+            "11": 0.9285415497616583,
+            "22": 0.9293525947291345,
+            "33": 0.934961013898899
+          },
+          "run_mean_std": 0.0034957516915147652
+        }
+      },
+      "inference_step_mean_ms": 0.9296536206476165
+    },
+    "no_memory/medium": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.788000453927696,
+          "episode_std": 0.21017289613703946,
+          "run_means": {
+            "11": 0.7910415380613638,
+            "22": 0.7964495907746731,
+            "33": 0.776510232947051
+          },
+          "run_mean_std": 0.010311675042180272
+        },
+        "visited_coverage": {
+          "mean": 0.4619799596939102,
+          "episode_std": 0.18792594158888948,
+          "run_means": {
+            "11": 0.45905309336948263,
+            "22": 0.46820944607834036,
+            "33": 0.4586773396339076
+          },
+          "run_mean_std": 0.005398163870965776
+        },
+        "coverage_auc": {
+          "mean": 0.6974376753292932,
+          "episode_std": 0.18651102596786032,
+          "run_means": {
+            "11": 0.6947728446024505,
+            "22": 0.7135669837677194,
+            "33": 0.6839731976177101
+          },
+          "run_mean_std": 0.014975781674929857
+        },
+        "poi_fraction": {
+          "mean": 0.8122222222222223,
+          "episode_std": 0.26835908506763406,
+          "run_means": {
+            "11": 0.7966666666666665,
+            "22": 0.8166666666666665,
+            "33": 0.8233333333333335
+          },
+          "run_mean_std": 0.013877773329774334
+        },
+        "survived": {
+          "mean": 0.7133333333333334,
+          "episode_std": 0.4529600404188834,
+          "run_means": {
+            "11": 0.73,
+            "22": 0.8,
+            "33": 0.61
+          },
+          "run_mean_std": 0.09609023536933052
+        },
+        "monster_collisions": {
+          "mean": 0.2866666666666667,
+          "episode_std": 0.4529600404188834,
+          "run_means": {
+            "11": 0.27,
+            "22": 0.2,
+            "33": 0.39
+          },
+          "run_mean_std": 0.09609023536933049
+        },
+        "wall_collision_rate": {
+          "mean": 0.003582730108265066,
+          "episode_std": 0.019140832093318794,
+          "run_means": {
+            "11": 0.007285833289194889,
+            "22": 0.0030111209324396866,
+            "33": 0.00045123610316062185
+          },
+          "run_mean_std": 0.0034529671966661815
+        },
+        "movement_efficiency": {
+          "mean": 0.1562881772234165,
+          "episode_std": 0.11428682201094152,
+          "run_means": {
+            "11": 0.16523568787841492,
+            "22": 0.1331778767859921,
+            "33": 0.1704509670058426
+          },
+          "run_mean_std": 0.020183267174203014
+        },
+        "repeated_state_rate": {
+          "mean": 0.3201690190728149,
+          "episode_std": 0.22153011388198277,
+          "run_means": {
+            "11": 0.292149613210302,
+            "22": 0.24560194430143267,
+            "33": 0.42275549970671017
+          },
+          "run_mean_std": 0.09184040982513553
+        },
+        "loop_rate": {
+          "mean": 0.3201690190728149,
+          "episode_std": 0.22153011388198277,
+          "run_means": {
+            "11": 0.292149613210302,
+            "22": 0.24560194430143267,
+            "33": 0.42275549970671017
+          },
+          "run_mean_std": 0.09184040982513553
+        },
+        "inference_ms_mean": {
+          "mean": 0.9295286148537788,
+          "episode_std": 0.027668456832724755,
+          "run_means": {
+            "11": 0.9307898356740238,
+            "22": 0.9254866407378026,
+            "33": 0.9323093681495096
+          },
+          "run_mean_std": 0.003581956281374654
+        }
+      },
+      "inference_step_mean_ms": 0.9296988671714709
+    },
+    "no_novelty/easy": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.6407976865374397,
+          "episode_std": 0.2554175126344864,
+          "run_means": {
+            "11": 0.627132434794375,
+            "22": 0.6883582528072894,
+            "33": 0.6069023720106548
+          },
+          "run_mean_std": 0.042412491768226555
+        },
+        "visited_coverage": {
+          "mean": 0.15363732114536224,
+          "episode_std": 0.11144593790737355,
+          "run_means": {
+            "11": 0.1382692446111982,
+            "22": 0.1887898237371943,
+            "33": 0.13385289508769416
+          },
+          "run_mean_std": 0.03052293997356758
+        },
+        "coverage_auc": {
+          "mean": 0.5829398439586997,
+          "episode_std": 0.2295888955354375,
+          "run_means": {
+            "11": 0.571121324528611,
+            "22": 0.6260634899762733,
+            "33": 0.5516347173712146
+          },
+          "run_mean_std": 0.03859622519124661
+        },
+        "poi_fraction": {
+          "mean": 0.6466666666666666,
+          "episode_std": 0.3772221414971217,
+          "run_means": {
+            "11": 0.61,
+            "22": 0.705,
+            "33": 0.625
+          },
+          "run_mean_std": 0.051071844820148524
+        },
+        "survived": {
+          "mean": 0.71,
+          "episode_std": 0.45452021821096344,
+          "run_means": {
+            "11": 0.72,
+            "22": 0.69,
+            "33": 0.72
+          },
+          "run_mean_std": 0.017320508075688787
+        },
+        "monster_collisions": {
+          "mean": 0.29,
+          "episode_std": 0.45452021821096344,
+          "run_means": {
+            "11": 0.28,
+            "22": 0.31,
+            "33": 0.28
+          },
+          "run_mean_std": 0.017320508075688756
+        },
+        "wall_collision_rate": {
+          "mean": 0.007136232491034604,
+          "episode_std": 0.028326657636740638,
+          "run_means": {
+            "11": 0.0028343642770167743,
+            "22": 0.008305645611835012,
+            "33": 0.01026868758425202
+          },
+          "run_mean_std": 0.003852653117586687
+        },
+        "movement_efficiency": {
+          "mean": 0.048709866263726254,
+          "episode_std": 0.04880755977746385,
+          "run_means": {
+            "11": 0.04219265931934442,
+            "22": 0.05882586496292002,
+            "33": 0.04511107450891433
+          },
+          "run_mean_std": 0.008881405241640848
+        },
+        "repeated_state_rate": {
+          "mean": 0.8059133367640656,
+          "episode_std": 0.16694811856858877,
+          "run_means": {
+            "11": 0.8118645217474242,
+            "22": 0.7861081045224697,
+            "33": 0.8197673840223031
+          },
+          "run_mean_std": 0.017601114343745113
+        },
+        "loop_rate": {
+          "mean": 0.8057833695572755,
+          "episode_std": 0.16717436635882596,
+          "run_means": {
+            "11": 0.8118645217474242,
+            "22": 0.7857182029020993,
+            "33": 0.8197673840223031
+          },
+          "run_mean_std": 0.017820549730828274
+        },
+        "inference_ms_mean": {
+          "mean": 0.9374607250682179,
+          "episode_std": 0.04193509657607924,
+          "run_means": {
+            "11": 0.9293023572121887,
+            "22": 0.9583282840626908,
+            "33": 0.9247515339297742
+          },
+          "run_mean_std": 0.018214520634038018
+        }
+      },
+      "inference_step_mean_ms": 0.9357156141195048
+    },
+    "no_novelty/hard": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.2275500274241413,
+          "episode_std": 0.14247459155237613,
+          "run_means": {
+            "11": 0.23790432547623436,
+            "22": 0.23379469605997522,
+            "33": 0.21095106073621436
+          },
+          "run_mean_std": 0.014521244258496825
+        },
+        "visited_coverage": {
+          "mean": 0.049998868777066996,
+          "episode_std": 0.047218970203570486,
+          "run_means": {
+            "11": 0.051314386099736244,
+            "22": 0.0559889878734484,
+            "33": 0.042693232358016336
+          },
+          "run_mean_std": 0.006744791920527845
+        },
+        "coverage_auc": {
+          "mean": 0.202491940944369,
+          "episode_std": 0.11815468966787591,
+          "run_means": {
+            "11": 0.20949622840832668,
+            "22": 0.20945519575518046,
+            "33": 0.18852439866959997
+          },
+          "run_mean_std": 0.012096263837142105
+        },
+        "poi_fraction": {
+          "mean": 0.22466666666666668,
+          "episode_std": 0.22080323620655226,
+          "run_means": {
+            "11": 0.24599999999999994,
+            "22": 0.22399999999999995,
+            "33": 0.20399999999999996
+          },
+          "run_mean_std": 0.021007935008784964
+        },
+        "survived": {
+          "mean": 0.52,
+          "episode_std": 0.5004345937369794,
+          "run_means": {
+            "11": 0.59,
+            "22": 0.51,
+            "33": 0.46
+          },
+          "run_mean_std": 0.06557438524301998
+        },
+        "monster_collisions": {
+          "mean": 0.48,
+          "episode_std": 0.5004345937369794,
+          "run_means": {
+            "11": 0.41,
+            "22": 0.49,
+            "33": 0.54
+          },
+          "run_mean_std": 0.06557438524302003
+        },
+        "wall_collision_rate": {
+          "mean": 0.003585325231660019,
+          "episode_std": 0.01951482694051183,
+          "run_means": {
+            "11": 0.0020555829531159414,
+            "22": 0.004187867903480243,
+            "33": 0.004512524838383874
+          },
+          "run_mean_std": 0.0013347037538042575
+        },
+        "movement_efficiency": {
+          "mean": 0.025305742472813815,
+          "episode_std": 0.0349233651179618,
+          "run_means": {
+            "11": 0.0242589349295608,
+            "22": 0.025557666902344844,
+            "33": 0.026100625586535794
+          },
+          "run_mean_std": 0.0009463379722082112
+        },
+        "repeated_state_rate": {
+          "mean": 0.8717307463864135,
+          "episode_std": 0.18368479345823058,
+          "run_means": {
+            "11": 0.8599893014228747,
+            "22": 0.8703591374473763,
+            "33": 0.8848438002889897
+          },
+          "run_mean_std": 0.012483890090138705
+        },
+        "loop_rate": {
+          "mean": 0.8715974130530802,
+          "episode_std": 0.18389709230914442,
+          "run_means": {
+            "11": 0.8597893014228746,
+            "22": 0.8701591374473763,
+            "33": 0.8848438002889897
+          },
+          "run_mean_std": 0.012589021244581049
+        },
+        "inference_ms_mean": {
+          "mean": 0.9371127113443595,
+          "episode_std": 0.03271096904907788,
+          "run_means": {
+            "11": 0.9252120839222039,
+            "22": 0.9635329228971705,
+            "33": 0.9225931272137039
+          },
+          "run_mean_std": 0.02291801512853411
+        }
+      },
+      "inference_step_mean_ms": 0.9371879185205712
+    },
+    "no_novelty/medium": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.3930521130066155,
+          "episode_std": 0.2212258734080246,
+          "run_means": {
+            "11": 0.4102953619596756,
+            "22": 0.40764825789934683,
+            "33": 0.36121271916082426
+          },
+          "run_mean_std": 0.027605471202772687
+        },
+        "visited_coverage": {
+          "mean": 0.08725562097500844,
+          "episode_std": 0.06984944605201639,
+          "run_means": {
+            "11": 0.09378626494859961,
+            "22": 0.09468723276214897,
+            "33": 0.07329336521427678
+          },
+          "run_mean_std": 0.012100056826161049
+        },
+        "coverage_auc": {
+          "mean": 0.3444325204893298,
+          "episode_std": 0.18796556666226363,
+          "run_means": {
+            "11": 0.36263609520798745,
+            "22": 0.3555840948093089,
+            "33": 0.31507737145069303
+          },
+          "run_mean_std": 0.025665663028960957
+        },
+        "poi_fraction": {
+          "mean": 0.38333333333333336,
+          "episode_std": 0.3295493133160768,
+          "run_means": {
+            "11": 0.39666666666666667,
+            "22": 0.3999999999999999,
+            "33": 0.35333333333333333
+          },
+          "run_mean_std": 0.026034165586355486
+        },
+        "survived": {
+          "mean": 0.5733333333333334,
+          "episode_std": 0.4954193746157941,
+          "run_means": {
+            "11": 0.53,
+            "22": 0.56,
+            "33": 0.63
+          },
+          "run_mean_std": 0.051316014394468826
+        },
+        "monster_collisions": {
+          "mean": 0.4266666666666667,
+          "episode_std": 0.4954193746157941,
+          "run_means": {
+            "11": 0.47,
+            "22": 0.44,
+            "33": 0.37
+          },
+          "run_mean_std": 0.05131601439446883
+        },
+        "wall_collision_rate": {
+          "mean": 0.0028093874677349666,
+          "episode_std": 0.025728300473283273,
+          "run_means": {
+            "11": 0.0011273686041876818,
+            "22": 0.0012112264961463047,
+            "33": 0.006089567302870914
+          },
+          "run_mean_std": 0.00284102848448151
+        },
+        "movement_efficiency": {
+          "mean": 0.03341062774891269,
+          "episode_std": 0.04549413093684476,
+          "run_means": {
+            "11": 0.03325439007553658,
+            "22": 0.036009220197501544,
+            "33": 0.030968272973699945
+          },
+          "run_mean_std": 0.0025241027883635696
+        },
+        "repeated_state_rate": {
+          "mean": 0.8540747465243987,
+          "episode_std": 0.17342345506941964,
+          "run_means": {
+            "11": 0.8327243527322357,
+            "22": 0.8454286640100844,
+            "33": 0.8840712228308757
+          },
+          "run_mean_std": 0.026743061237728568
+        },
+        "loop_rate": {
+          "mean": 0.8540747465243987,
+          "episode_std": 0.17342345506941964,
+          "run_means": {
+            "11": 0.8327243527322357,
+            "22": 0.8454286640100844,
+            "33": 0.8840712228308757
+          },
+          "run_mean_std": 0.026743061237728568
+        },
+        "inference_ms_mean": {
+          "mean": 0.9414451133378438,
+          "episode_std": 0.028438235287219688,
+          "run_means": {
+            "11": 0.9413209392048368,
+            "22": 0.9592717323105246,
+            "33": 0.9237426684981693
+          },
+          "run_mean_std": 0.017764857394786063
+        }
+      },
+      "inference_step_mean_ms": 0.9416208908655241
+    },
+    "no_novelty_agent_aligned/easy": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.8135048608893085,
+          "episode_std": 0.22038989737449197,
+          "run_means": {
+            "11": 0.7644235496157105,
+            "22": 0.8418138733792196,
+            "33": 0.8342771596729956
+          },
+          "run_mean_std": 0.04267237807556862
+        },
+        "visited_coverage": {
+          "mean": 0.28105415475362916,
+          "episode_std": 0.12882804064305,
+          "run_means": {
+            "11": 0.23224541605598004,
+            "22": 0.3076285420172275,
+            "33": 0.30328850618767994
+          },
+          "run_mean_std": 0.042325272683019804
+        },
+        "coverage_auc": {
+          "mean": 0.7508329461890151,
+          "episode_std": 0.19966575146429444,
+          "run_means": {
+            "11": 0.7120622212951995,
+            "22": 0.7793773052462947,
+            "33": 0.7610593120255511
+          },
+          "run_mean_std": 0.0348032189675431
+        },
+        "poi_fraction": {
+          "mean": 0.825,
+          "episode_std": 0.3117675362437828,
+          "run_means": {
+            "11": 0.765,
+            "22": 0.85,
+            "33": 0.86
+          },
+          "run_mean_std": 0.05220153254455273
+        },
+        "survived": {
+          "mean": 0.7033333333333334,
+          "episode_std": 0.45755152739660415,
+          "run_means": {
+            "11": 0.63,
+            "22": 0.71,
+            "33": 0.77
+          },
+          "run_mean_std": 0.07023769168568493
+        },
+        "monster_collisions": {
+          "mean": 0.2966666666666667,
+          "episode_std": 0.4575515273966042,
+          "run_means": {
+            "11": 0.37,
+            "22": 0.29,
+            "33": 0.23
+          },
+          "run_mean_std": 0.07023769168568492
+        },
+        "wall_collision_rate": {
+          "mean": 0.003088603720872117,
+          "episode_std": 0.014941237793421859,
+          "run_means": {
+            "11": 0.004769877481601264,
+            "22": 0.0020271632378951457,
+            "33": 0.0024687704431199417
+          },
+          "run_mean_std": 0.0014726728505726789
+        },
+        "movement_efficiency": {
+          "mean": 0.0811662519783142,
+          "episode_std": 0.04268582025781201,
+          "run_means": {
+            "11": 0.07129972968940682,
+            "22": 0.08515646264237428,
+            "33": 0.08704256360316148
+          },
+          "run_mean_std": 0.008596542372762445
+        },
+        "repeated_state_rate": {
+          "mean": 0.6935429152626614,
+          "episode_std": 0.13600085922400662,
+          "run_means": {
+            "11": 0.7440668004184025,
+            "22": 0.6403279469204012,
+            "33": 0.6962339984491809
+          },
+          "run_mean_std": 0.05192175726810022
+        },
+        "loop_rate": {
+          "mean": 0.693529894429328,
+          "episode_std": 0.13598858661965768,
+          "run_means": {
+            "11": 0.7440277379184025,
+            "22": 0.6403279469204012,
+            "33": 0.6962339984491809
+          },
+          "run_mean_std": 0.05190275327157439
+        },
+        "inference_ms_mean": {
+          "mean": 1.2491855644618288,
+          "episode_std": 0.04023224062656761,
+          "run_means": {
+            "11": 1.2659112283066256,
+            "22": 1.2588160406377178,
+            "33": 1.222829424441143
+          },
+          "run_mean_std": 0.02309913439085436
+        }
+      },
+      "inference_step_mean_ms": 1.2484654890553446
+    },
+    "no_novelty_agent_aligned/hard": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.39572411617436926,
+          "episode_std": 0.18114635563010897,
+          "run_means": {
+            "11": 0.3341378683276042,
+            "22": 0.412864310526059,
+            "33": 0.4401701696694447
+          },
+          "run_mean_std": 0.05505499004424566
+        },
+        "visited_coverage": {
+          "mean": 0.1192096055261695,
+          "episode_std": 0.0666510601985891,
+          "run_means": {
+            "11": 0.08519661507251493,
+            "22": 0.12284236519360306,
+            "33": 0.14958983631239042
+          },
+          "run_mean_std": 0.032349952743595894
+        },
+        "coverage_auc": {
+          "mean": 0.36148575607619315,
+          "episode_std": 0.1591562103668953,
+          "run_means": {
+            "11": 0.30842649394011556,
+            "22": 0.3720604401064552,
+            "33": 0.40397033418200884
+          },
+          "run_mean_std": 0.04864179590431479
+        },
+        "poi_fraction": {
+          "mean": 0.3846666666666667,
+          "episode_std": 0.27303243627773377,
+          "run_means": {
+            "11": 0.32,
+            "22": 0.408,
+            "33": 0.426
+          },
+          "run_mean_std": 0.05672154205708209
+        },
+        "survived": {
+          "mean": 0.5133333333333333,
+          "episode_std": 0.5006573159847486,
+          "run_means": {
+            "11": 0.45,
+            "22": 0.49,
+            "33": 0.6
+          },
+          "run_mean_std": 0.07767453465154028
+        },
+        "monster_collisions": {
+          "mean": 0.4866666666666667,
+          "episode_std": 0.5006573159847486,
+          "run_means": {
+            "11": 0.55,
+            "22": 0.51,
+            "33": 0.4
+          },
+          "run_mean_std": 0.0776745346515403
+        },
+        "wall_collision_rate": {
+          "mean": 0.005391404662267853,
+          "episode_std": 0.044246390651886985,
+          "run_means": {
+            "11": 0.010416449076424743,
+            "22": 0.00498591283895663,
+            "33": 0.0007718520714221866
+          },
+          "run_mean_std": 0.004835067792834477
+        },
+        "movement_efficiency": {
+          "mean": 0.0566003611017405,
+          "episode_std": 0.05297136938608259,
+          "run_means": {
+            "11": 0.04272033328376613,
+            "22": 0.06282117701833367,
+            "33": 0.06425957300312168
+          },
+          "run_mean_std": 0.012041952703904391
+        },
+        "repeated_state_rate": {
+          "mean": 0.8077566544138286,
+          "episode_std": 0.1562369747288497,
+          "run_means": {
+            "11": 0.8516501430418982,
+            "22": 0.7761092304779812,
+            "33": 0.7955105897216062
+          },
+          "run_mean_std": 0.039231134868646246
+        },
+        "loop_rate": {
+          "mean": 0.8077566544138286,
+          "episode_std": 0.1562369747288497,
+          "run_means": {
+            "11": 0.8516501430418982,
+            "22": 0.7761092304779812,
+            "33": 0.7955105897216062
+          },
+          "run_mean_std": 0.039231134868646246
+        },
+        "inference_ms_mean": {
+          "mean": 1.1909186910801945,
+          "episode_std": 0.04478234585197576,
+          "run_means": {
+            "11": 1.2267651154398003,
+            "22": 1.1805592021023097,
+            "33": 1.165431755698473
+          },
+          "run_mean_std": 0.03195206586751396
+        }
+      },
+      "inference_step_mean_ms": 1.18942033131159
+    },
+    "no_novelty_agent_aligned/medium": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.5779712023714546,
+          "episode_std": 0.2427708359211389,
+          "run_means": {
+            "11": 0.5461193762382006,
+            "22": 0.6087903136456477,
+            "33": 0.5790039172305156
+          },
+          "run_mean_std": 0.03134822919826784
+        },
+        "visited_coverage": {
+          "mean": 0.1729958729973153,
+          "episode_std": 0.09375962729979252,
+          "run_means": {
+            "11": 0.15319548711740494,
+            "22": 0.17937832571581358,
+            "33": 0.18641380615872744
+          },
+          "run_mean_std": 0.017504740986677626
+        },
+        "coverage_auc": {
+          "mean": 0.5296390183517917,
+          "episode_std": 0.21730211393163834,
+          "run_means": {
+            "11": 0.49961562336629,
+            "22": 0.5546538323702421,
+            "33": 0.5346475993188432
+          },
+          "run_mean_std": 0.02785885003133316
+        },
+        "poi_fraction": {
+          "mean": 0.5677777777777777,
+          "episode_std": 0.3568081105395593,
+          "run_means": {
+            "11": 0.52,
+            "22": 0.6066666666666667,
+            "33": 0.5766666666666667
+          },
+          "run_mean_std": 0.044011782934085246
+        },
+        "survived": {
+          "mean": 0.4866666666666667,
+          "episode_std": 0.5006573159847486,
+          "run_means": {
+            "11": 0.43,
+            "22": 0.53,
+            "33": 0.5
+          },
+          "run_mean_std": 0.051316014394468853
+        },
+        "monster_collisions": {
+          "mean": 0.5133333333333333,
+          "episode_std": 0.5006573159847486,
+          "run_means": {
+            "11": 0.57,
+            "22": 0.47,
+            "33": 0.5
+          },
+          "run_mean_std": 0.051316014394468826
+        },
+        "wall_collision_rate": {
+          "mean": 0.0044723088727422885,
+          "episode_std": 0.032145665229953296,
+          "run_means": {
+            "11": 0.001820530741067354,
+            "22": 0.008115885982947033,
+            "33": 0.0034805098942124768
+          },
+          "run_mean_std": 0.0032627631412232593
+        },
+        "movement_efficiency": {
+          "mean": 0.06785468311544124,
+          "episode_std": 0.05080476138373555,
+          "run_means": {
+            "11": 0.05738720156407628,
+            "22": 0.06697582901627987,
+            "33": 0.07920101876596757
+          },
+          "run_mean_std": 0.010933432380780136
+        },
+        "repeated_state_rate": {
+          "mean": 0.7613790879634879,
+          "episode_std": 0.15559312470331807,
+          "run_means": {
+            "11": 0.801257533428118,
+            "22": 0.7479772735819455,
+            "33": 0.7349024568804
+          },
+          "run_mean_std": 0.035149047177005587
+        },
+        "loop_rate": {
+          "mean": 0.7613382651209408,
+          "episode_std": 0.15569461164034798,
+          "run_means": {
+            "11": 0.801257533428118,
+            "22": 0.7479772735819455,
+            "33": 0.7347799883527592
+          },
+          "run_mean_std": 0.03519521375116823
+        },
+        "inference_ms_mean": {
+          "mean": 1.2287515216016522,
+          "episode_std": 0.044763971181388355,
+          "run_means": {
+            "11": 1.2630864387113547,
+            "22": 1.2235092518068007,
+            "33": 1.1996588742868015
+          },
+          "run_mean_std": 0.03203708829870815
+        }
+      },
+      "inference_step_mean_ms": 1.226852124843442
+    },
+    "random/easy": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.624339992551781,
+          "episode_std": 0.21969854408066358,
+          "run_means": {
+            "11": 0.6128988894134396,
+            "22": 0.6250226798768351,
+            "33": 0.6350984083650679
+          },
+          "run_mean_std": 0.011115494002012163
+        },
+        "visited_coverage": {
+          "mean": 0.15430932379331125,
+          "episode_std": 0.09465481229490882,
+          "run_means": {
+            "11": 0.15612550357683314,
+            "22": 0.14575941969626396,
+            "33": 0.1610430481068366
+          },
+          "run_mean_std": 0.007802000134752045
+        },
+        "coverage_auc": {
+          "mean": 0.5561459869088039,
+          "episode_std": 0.1923248645684092,
+          "run_means": {
+            "11": 0.5499878101593279,
+            "22": 0.5519030690810476,
+            "33": 0.5665470814860364
+          },
+          "run_mean_std": 0.00905837350122567
+        },
+        "poi_fraction": {
+          "mean": 0.6483333333333333,
+          "episode_std": 0.3664398305136125,
+          "run_means": {
+            "11": 0.615,
+            "22": 0.66,
+            "33": 0.67
+          },
+          "run_mean_std": 0.029297326385411604
+        },
+        "survived": {
+          "mean": 0.34,
+          "episode_std": 0.47450026519722915,
+          "run_means": {
+            "11": 0.33,
+            "22": 0.3,
+            "33": 0.39
+          },
+          "run_mean_std": 0.04582575694955841
+        },
+        "monster_collisions": {
+          "mean": 0.66,
+          "episode_std": 0.47450026519722915,
+          "run_means": {
+            "11": 0.67,
+            "22": 0.7,
+            "33": 0.61
+          },
+          "run_mean_std": 0.04582575694955839
+        },
+        "wall_collision_rate": {
+          "mean": 0.11055060518330743,
+          "episode_std": 0.04411190334855267,
+          "run_means": {
+            "11": 0.1069172767973946,
+            "22": 0.11046112643089499,
+            "33": 0.1142734123216327
+          },
+          "run_mean_std": 0.0036788839745348577
+        },
+        "movement_efficiency": {
+          "mean": 0.06765672910034105,
+          "episode_std": 0.04437476844278604,
+          "run_means": {
+            "11": 0.06586477548881435,
+            "22": 0.06785737319778995,
+            "33": 0.06924803861441887
+          },
+          "run_mean_std": 0.0017005325297240372
+        },
+        "repeated_state_rate": {
+          "mean": 0.6746529568860733,
+          "episode_std": 0.07950081748811219,
+          "run_means": {
+            "11": 0.6730284756734889,
+            "22": 0.6775977203417552,
+            "33": 0.6733326746429761
+          },
+          "run_mean_std": 0.002554771635723772
+        },
+        "loop_rate": {
+          "mean": 0.674535672935456,
+          "episode_std": 0.07950209247008554,
+          "run_means": {
+            "11": 0.6730284756734889,
+            "22": 0.6775236462676812,
+            "33": 0.6730548968651984
+          },
+          "run_mean_std": 0.00258769453286299
+        },
+        "inference_ms_mean": {
+          "mean": 0.05461611430352519,
+          "episode_std": 0.006199813081296418,
+          "run_means": {
+            "11": 0.05487830378454978,
+            "22": 0.05526677872201322,
+            "33": 0.05370326040401257
+          },
+          "run_mean_std": 0.0008140668741883903
+        }
+      },
+      "inference_step_mean_ms": 0.053856203151324604
+    },
+    "random/hard": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.2743470661684481,
+          "episode_std": 0.1295060195248127,
+          "run_means": {
+            "11": 0.28809617860493436,
+            "22": 0.27533730593366557,
+            "33": 0.2596077139667444
+          },
+          "run_mean_std": 0.014270024017317317
+        },
+        "visited_coverage": {
+          "mean": 0.08208577137261368,
+          "episode_std": 0.05337344784744156,
+          "run_means": {
+            "11": 0.08751272579170752,
+            "22": 0.08377611930186181,
+            "33": 0.07496846902427169
+          },
+          "run_mean_std": 0.0064406949588747785
+        },
+        "coverage_auc": {
+          "mean": 0.2387555959394456,
+          "episode_std": 0.10634446989591524,
+          "run_means": {
+            "11": 0.2447068120699817,
+            "22": 0.24502746656402252,
+            "33": 0.2265325091843324
+          },
+          "run_mean_std": 0.010586717725216058
+        },
+        "poi_fraction": {
+          "mean": 0.2826666666666667,
+          "episode_std": 0.23724919280617054,
+          "run_means": {
+            "11": 0.29,
+            "22": 0.298,
+            "33": 0.26
+          },
+          "run_mean_std": 0.020033305601755612
+        },
+        "survived": {
+          "mean": 0.2833333333333333,
+          "episode_std": 0.45136977205609974,
+          "run_means": {
+            "11": 0.3,
+            "22": 0.33,
+            "33": 0.22
+          },
+          "run_mean_std": 0.05686240703077327
+        },
+        "monster_collisions": {
+          "mean": 0.7166666666666667,
+          "episode_std": 0.45136977205609974,
+          "run_means": {
+            "11": 0.7,
+            "22": 0.67,
+            "33": 0.78
+          },
+          "run_mean_std": 0.05686240703077327
+        },
+        "wall_collision_rate": {
+          "mean": 0.1152057626175175,
+          "episode_std": 0.03301331447542766,
+          "run_means": {
+            "11": 0.11336283088930241,
+            "22": 0.11452096980966163,
+            "33": 0.1177334871535884
+          },
+          "run_mean_std": 0.0022643685515842888
+        },
+        "movement_efficiency": {
+          "mean": 0.049018212209900686,
+          "episode_std": 0.03397214563992312,
+          "run_means": {
+            "11": 0.04838139958732581,
+            "22": 0.04450767731835247,
+            "33": 0.054165559724023746
+          },
+          "run_mean_std": 0.004860331354717156
+        },
+        "repeated_state_rate": {
+          "mean": 0.6907830003347801,
+          "episode_std": 0.05564877720496175,
+          "run_means": {
+            "11": 0.693328269459913,
+            "22": 0.6950721848717104,
+            "33": 0.6839485466727172
+          },
+          "run_mean_std": 0.0059826940323771255
+        },
+        "loop_rate": {
+          "mean": 0.6907739423637657,
+          "episode_std": 0.05563888268212187,
+          "run_means": {
+            "11": 0.6933010955468696,
+            "22": 0.6950721848717104,
+            "33": 0.6839485466727172
+          },
+          "run_mean_std": 0.005976931411993878
+        },
+        "inference_ms_mean": {
+          "mean": 0.054628533051984195,
+          "episode_std": 0.003864085670089865,
+          "run_means": {
+            "11": 0.054668454543307814,
+            "22": 0.05521431049501617,
+            "33": 0.0540028341176286
+          },
+          "run_mean_std": 0.0006067240289820018
+        }
+      },
+      "inference_step_mean_ms": 0.05440391841083824
+    },
+    "random/medium": {
+      "episodes": 300,
+      "metrics": {
+        "revealed_coverage": {
+          "mean": 0.41938246872814666,
+          "episode_std": 0.19044297153322784,
+          "run_means": {
+            "11": 0.4255079151544991,
+            "22": 0.4048272639212675,
+            "33": 0.42781222710867334
+          },
+          "run_mean_std": 0.01265772308210232
+        },
+        "visited_coverage": {
+          "mean": 0.11542800864866976,
+          "episode_std": 0.06834960695077646,
+          "run_means": {
+            "11": 0.11465355674206648,
+            "22": 0.11073190785023736,
+            "33": 0.12089856135370539
+          },
+          "run_mean_std": 0.005127381659446248
+        },
+        "coverage_auc": {
+          "mean": 0.3630092003126491,
+          "episode_std": 0.15681657580686623,
+          "run_means": {
+            "11": 0.37184035071205523,
+            "22": 0.3482390488712933,
+            "33": 0.3689482013545988
+          },
+          "run_mean_std": 0.012872807082252797
+        },
+        "poi_fraction": {
+          "mean": 0.43,
+          "episode_std": 0.31779269376369795,
+          "run_means": {
+            "11": 0.44666666666666666,
+            "22": 0.41,
+            "33": 0.4333333333333333
+          },
+          "run_mean_std": 0.018559214542766746
+        },
+        "survived": {
+          "mean": 0.2633333333333333,
+          "episode_std": 0.44117760727332966,
+          "run_means": {
+            "11": 0.27,
+            "22": 0.28,
+            "33": 0.24
+          },
+          "run_mean_std": 0.020816659994661344
+        },
+        "monster_collisions": {
+          "mean": 0.7366666666666667,
+          "episode_std": 0.44117760727332966,
+          "run_means": {
+            "11": 0.73,
+            "22": 0.72,
+            "33": 0.76
+          },
+          "run_mean_std": 0.020816659994661344
+        },
+        "wall_collision_rate": {
+          "mean": 0.11374737654278391,
+          "episode_std": 0.03612764602286323,
+          "run_means": {
+            "11": 0.116716279936599,
+            "22": 0.1104072439855022,
+            "33": 0.1141186057062505
+          },
+          "run_mean_std": 0.0031708582398010275
+        },
+        "movement_efficiency": {
+          "mean": 0.056436413767329344,
+          "episode_std": 0.03484216358471487,
+          "run_means": {
+            "11": 0.054439510215801484,
+            "22": 0.05707273664301004,
+            "33": 0.05779699444317649
+          },
+          "run_mean_std": 0.001766877241308492
+        },
+        "repeated_state_rate": {
+          "mean": 0.685897642106778,
+          "episode_std": 0.06358218104189424,
+          "run_means": {
+            "11": 0.6911818972861381,
+            "22": 0.6861670262406051,
+            "33": 0.6803440027935903
+          },
+          "run_mean_std": 0.005423966732619943
+        },
+        "loop_rate": {
+          "mean": 0.6858906457835923,
+          "episode_std": 0.06358411451025268,
+          "run_means": {
+            "11": 0.6911706739415816,
+            "22": 0.6861572606156051,
+            "33": 0.6803440027935903
+          },
+          "run_mean_std": 0.005418257527856505
+        },
+        "inference_ms_mean": {
+          "mean": 0.054452876964732395,
+          "episode_std": 0.003902414911869159,
+          "run_means": {
+            "11": 0.05587228598019877,
+            "22": 0.053429173019889815,
+            "33": 0.054057171894108566
+          },
+          "run_mean_std": 0.0012687147478434412
+        }
+      },
+      "inference_step_mean_ms": 0.054179550244413587
+    }
+  },
+  "overall": {
+    "random": {
+      "revealed_coverage": 0.4393565091494586,
+      "visited_coverage": 0.11727436793819823,
+      "coverage_auc": 0.38597026105363286,
+      "poi_fraction": 0.45366666666666666,
+      "survived": 0.2955555555555555,
+      "loop_rate": 0.6837334203609381
+    },
+    "frontier": {
+      "revealed_coverage": 0.9153919809116958,
+      "visited_coverage": 0.5848579343025468,
+      "coverage_auc": 0.8693426572749164,
+      "poi_fraction": 0.9213333333333332,
+      "survived": 0.33666666666666667,
+      "loop_rate": 0.20489069710526908
+    },
+    "main": {
+      "revealed_coverage": 0.688608862745963,
+      "visited_coverage": 0.37358866555452236,
+      "coverage_auc": 0.6170257086200343,
+      "poi_fraction": 0.6798888888888889,
+      "survived": 0.7466666666666667,
+      "loop_rate": 0.46401229709846853
+    },
+    "no_memory": {
+      "revealed_coverage": 0.7856272924927802,
+      "visited_coverage": 0.48186173353154677,
+      "coverage_auc": 0.7013498083323819,
+      "poi_fraction": 0.7939629629629631,
+      "survived": 0.75,
+      "loop_rate": 0.3170063612428002
+    },
+    "no_novelty": {
+      "revealed_coverage": 0.42046660898939886,
+      "visited_coverage": 0.09696393696581256,
+      "coverage_auc": 0.3766214351307995,
+      "poi_fraction": 0.4182222222222222,
+      "survived": 0.601111111111111,
+      "loop_rate": 0.8438185097115848
+    },
+    "main_agent_aligned": {
+      "revealed_coverage": 0.9078140732198237,
+      "visited_coverage": 0.6555548571688735,
+      "coverage_auc": 0.8253365333719844,
+      "poi_fraction": 0.9134074074074073,
+      "survived": 0.721111111111111,
+      "loop_rate": 0.4100609046321276
+    },
+    "no_novelty_agent_aligned": {
+      "revealed_coverage": 0.5957333931450441,
+      "visited_coverage": 0.1910865444257047,
+      "coverage_auc": 0.5473192402056667,
+      "poi_fraction": 0.5924814814814815,
+      "survived": 0.5677777777777777,
+      "loop_rate": 0.7542082713213659
+    }
+  },
+  "paired_comparisons": [
+    {
+      "preset": "easy",
+      "left": "main_agent_aligned",
+      "right": "no_novelty_agent_aligned",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.16172403190941284,
+          "map_bootstrap_95ci": [
+            0.134546899882159,
+            0.19050179397570277
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.15653054261532295,
+          "map_bootstrap_95ci": [
+            0.13256031869509763,
+            0.18271566985337667
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.14833333333333334,
+          "map_bootstrap_95ci": [
+            0.10666666666666666,
+            0.19333333333333338
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.1366666666666667,
+          "map_bootstrap_95ci": [
+            0.06666666666666667,
+            0.20666666666666672
+          ]
+        }
+      }
+    },
+    {
+      "preset": "easy",
+      "left": "main_agent_aligned",
+      "right": "no_memory",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.04165840935794456,
+          "map_bootstrap_95ci": [
+            0.02825848070577899,
+            0.056778577380013885
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.047624157132467614,
+          "map_bootstrap_95ci": [
+            0.033707843347102244,
+            0.06202290069193243
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.04833333333333334,
+          "map_bootstrap_95ci": [
+            0.02,
+            0.08166666666666668
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.010000000000000004,
+          "map_bootstrap_95ci": [
+            -0.04999999999999999,
+            0.06666666666666668
+          ]
+        }
+      }
+    },
+    {
+      "preset": "easy",
+      "left": "main_agent_aligned",
+      "right": "main",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.10853293714260254,
+          "map_bootstrap_95ci": [
+            0.08336323686781016,
+            0.13568747967617498
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.10912623276556026,
+          "map_bootstrap_95ci": [
+            0.08743965090376896,
+            0.13269753602561266
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.11833333333333335,
+          "map_bootstrap_95ci": [
+            0.07833333333333334,
+            0.16166666666666665
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.02333333333333333,
+          "map_bootstrap_95ci": [
+            -0.03333333333333333,
+            0.08
+          ]
+        }
+      }
+    },
+    {
+      "preset": "easy",
+      "left": "main_agent_aligned",
+      "right": "frontier",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.012783051056322754,
+          "map_bootstrap_95ci": [
+            -0.006158082514851142,
+            0.03386989378584445
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": -0.020560517583674144,
+          "map_bootstrap_95ci": [
+            -0.0387067097655982,
+            -0.000974591579603197
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.023333333333333334,
+          "map_bootstrap_95ci": [
+            -0.006666666666666663,
+            0.06
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.3499999999999999,
+          "map_bootstrap_95ci": [
+            0.2433333333333333,
+            0.45666666666666667
+          ]
+        }
+      }
+    },
+    {
+      "preset": "easy",
+      "left": "main_agent_aligned",
+      "right": "random",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.3508889002469405,
+          "map_bootstrap_95ci": [
+            0.31571138851085784,
+            0.38804142877313574
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.3512175018955343,
+          "map_bootstrap_95ci": [
+            0.3196613699667907,
+            0.3842115609250724
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.32499999999999996,
+          "map_bootstrap_95ci": [
+            0.26333333333333336,
+            0.3866666666666667
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.5000000000000001,
+          "map_bootstrap_95ci": [
+            0.41666666666666663,
+            0.5800000000000001
+          ]
+        }
+      }
+    },
+    {
+      "preset": "medium",
+      "left": "main_agent_aligned",
+      "right": "no_novelty_agent_aligned",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.35828385184681066,
+          "map_bootstrap_95ci": [
+            0.3217049514609522,
+            0.39632569056322114
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.3178969446051574,
+          "map_bootstrap_95ci": [
+            0.28757058021887033,
+            0.34984300359119874
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.37777777777777777,
+          "map_bootstrap_95ci": [
+            0.3244444444444445,
+            0.4322222222222223
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.20999999999999994,
+          "map_bootstrap_95ci": [
+            0.12000000000000002,
+            0.3
+          ]
+        }
+      }
+    },
+    {
+      "preset": "medium",
+      "left": "main_agent_aligned",
+      "right": "no_memory",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.14825460029056933,
+          "map_bootstrap_95ci": [
+            0.12055445401765452,
+            0.17596947016995557
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.15009828762765584,
+          "map_bootstrap_95ci": [
+            0.12580772536485263,
+            0.1738568039888526
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.13333333333333336,
+          "map_bootstrap_95ci": [
+            0.09555555555555557,
+            0.1711111111111111
+          ]
+        },
+        "survived": {
+          "mean_difference": -0.016666666666666656,
+          "map_bootstrap_95ci": [
+            -0.09333333333333332,
+            0.06000000000000001
+          ]
+        }
+      }
+    },
+    {
+      "preset": "medium",
+      "left": "main_agent_aligned",
+      "right": "main",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.2453652739988113,
+          "map_bootstrap_95ci": [
+            0.21122470372031588,
+            0.28217020098430506
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.23294585706393822,
+          "map_bootstrap_95ci": [
+            0.2027477895102608,
+            0.26473257258605226
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.2555555555555556,
+          "map_bootstrap_95ci": [
+            0.21111111111111114,
+            0.3022222222222223
+          ]
+        },
+        "survived": {
+          "mean_difference": -0.0066666666666666706,
+          "map_bootstrap_95ci": [
+            -0.09,
+            0.07333333333333336
+          ]
+        }
+      }
+    },
+    {
+      "preset": "medium",
+      "left": "main_agent_aligned",
+      "right": "frontier",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.009660553856804735,
+          "map_bootstrap_95ci": [
+            -0.022998132069135663,
+            0.04445143430127449
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": -0.03233657736683179,
+          "map_bootstrap_95ci": [
+            -0.06198146305766656,
+            -0.0006850398936426389
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.0055555555555555445,
+          "map_bootstrap_95ci": [
+            -0.03222222222222224,
+            0.04555555555555555
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.42666666666666664,
+          "map_bootstrap_95ci": [
+            0.32666666666666666,
+            0.5233333333333333
+          ]
+        }
+      }
+    },
+    {
+      "preset": "medium",
+      "left": "main_agent_aligned",
+      "right": "random",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.5168725854901186,
+          "map_bootstrap_95ci": [
+            0.4848319506403624,
+            0.5492794914626373
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.48452676264429995,
+          "map_bootstrap_95ci": [
+            0.4568635885390224,
+            0.5117796312673459
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.5155555555555555,
+          "map_bootstrap_95ci": [
+            0.46444444444444444,
+            0.5666666666666668
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.4333333333333334,
+          "map_bootstrap_95ci": [
+            0.3299999999999999,
+            0.5366666666666666
+          ]
+        }
+      }
+    },
+    {
+      "preset": "hard",
+      "left": "main_agent_aligned",
+      "right": "no_novelty_agent_aligned",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.4162341564681148,
+          "map_bootstrap_95ci": [
+            0.37803195685136765,
+            0.45345332729152626
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.3596243922784729,
+          "map_bootstrap_95ci": [
+            0.327640571380042,
+            0.3907830295754553
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.4366666666666667,
+          "map_bootstrap_95ci": [
+            0.3866666666666667,
+            0.4886666666666667
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.11333333333333333,
+          "map_bootstrap_95ci": [
+            0.03666666666666668,
+            0.19
+          ]
+        }
+      }
+    },
+    {
+      "preset": "hard",
+      "left": "main_agent_aligned",
+      "right": "no_memory",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.1766473325326164,
+          "map_bootstrap_95ci": [
+            0.13998933162901878,
+            0.21303358551378598
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.17423773035868437,
+          "map_bootstrap_95ci": [
+            0.14422362224583657,
+            0.2042351192002202
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.17666666666666664,
+          "map_bootstrap_95ci": [
+            0.136,
+            0.21866666666666668
+          ]
+        },
+        "survived": {
+          "mean_difference": -0.08000000000000002,
+          "map_bootstrap_95ci": [
+            -0.14666666666666667,
+            -0.009999999999999998
+          ]
+        }
+      }
+    },
+    {
+      "preset": "hard",
+      "left": "main_agent_aligned",
+      "right": "main",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.3037174202801683,
+          "map_bootstrap_95ci": [
+            0.2605882290206865,
+            0.34731719943075107
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.2828603844263518,
+          "map_bootstrap_95ci": [
+            0.24569912945163025,
+            0.3203725682534718
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.32666666666666666,
+          "map_bootstrap_95ci": [
+            0.27466666666666667,
+            0.37999999999999995
+          ]
+        },
+        "survived": {
+          "mean_difference": -0.09333333333333335,
+          "map_bootstrap_95ci": [
+            -0.16666666666666669,
+            -0.016666666666666666
+          ]
+        }
+      }
+    },
+    {
+      "preset": "hard",
+      "left": "main_agent_aligned",
+      "right": "frontier",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": -0.04517732798874406,
+          "map_bootstrap_95ci": [
+            -0.0950931267017263,
+            0.006391025286558505
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": -0.07912127675828999,
+          "map_bootstrap_95ci": [
+            -0.12315608000988916,
+            -0.03284160027250722
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": -0.05266666666666667,
+          "map_bootstrap_95ci": [
+            -0.10266666666666667,
+            5.551115123045003e-20
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.3766666666666666,
+          "map_bootstrap_95ci": [
+            0.27333333333333326,
+            0.47666666666666657
+          ]
+        }
+      }
+    },
+    {
+      "preset": "hard",
+      "left": "main_agent_aligned",
+      "right": "random",
+      "metrics": {
+        "revealed_coverage": {
+          "mean_difference": 0.5376112064740362,
+          "map_bootstrap_95ci": [
+            0.5048332514165517,
+            0.5711395692826872
+          ]
+        },
+        "coverage_auc": {
+          "mean_difference": 0.4823545524152206,
+          "map_bootstrap_95ci": [
+            0.45360586009381754,
+            0.5110719235475356
+          ]
+        },
+        "poi_fraction": {
+          "mean_difference": 0.5386666666666666,
+          "map_bootstrap_95ci": [
+            0.49066666666666664,
+            0.5866666666666667
+          ]
+        },
+        "survived": {
+          "mean_difference": 0.3433333333333334,
+          "map_bootstrap_95ci": [
+            0.25666666666666665,
+            0.43
+          ]
+        }
+      }
+    }
+  ],
+  "uncertainty": "Intervals condition on these trained runs; run SD is separate; no multiplicity correction"
+}
