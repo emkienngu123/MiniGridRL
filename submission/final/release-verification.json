@@ -1,13 +1,69 @@
 {
   "status": "passed",
   "checks": {
-    "pytest": {"passed": 115, "skipped_cuda": 33},
-    "confirmation_archive": {"episodes": 5700, "curve_rows": 188100, "paired_bootstrap_draws": 10000, "models": 15},
-    "cpu_reproduction": {"episodes": 57, "all_nontiming_metrics_match_archived": true},
-    "clean_source_checkout": {"imports_from_checkout": true, "all_result_manifest_hashes_match": true, "curated_models_verified": 15, "aligned_cpu_smoke": "passed"},
-    "artifacts": {"report_pages": 5, "video_seconds": 240, "video_frames": 2880, "visual_review": "passed"},
-    "portable_cpu": "See portable-verification.json for ZIP/model/document hashes and isolated-environment smoke output",
-    "portable_ui": {"source": "fresh extraction of final ZIP", "default_policy": "main_agent_aligned", "training_seed": 33, "map_seed": 10000, "preset": "easy", "single_step": "passed", "playback": "passed", "pause": "passed at step 191, coverage 100%", "reset": "passed, returned to step zero", "closed_after_check": true}
+    "pytest": {
+      "passed": 115,
+      "skipped_cuda": 33,
+      "date": "2026-11-13",
+      "source": "clean source snapshot",
+      "warning": "Gymnasium wrapper warning"
+    },
+    "confirmation_archive": {
+      "episodes": 5700,
+      "curve_rows": 188100,
+      "paired_bootstrap_draws": 10000,
+      "models": 15
+    },
+    "cpu_reproduction": {
+      "episodes": 57,
+      "all_nontiming_metrics_match_archived": true
+    },
+    "clean_source_checkout": {
+      "imports_from_checkout": true,
+      "all_result_manifest_hashes_match": true,
+      "curated_models_verified": 15,
+      "aligned_cpu_smoke": "passed",
+      "readme_evaluation_episodes": 21,
+      "readme_evaluation_models": [
+        11,
+        22,
+        33
+      ]
+    },
+    "artifacts": {
+      "report_pages": 5,
+      "video_seconds": 240,
+      "video_frames": 2880,
+      "visual_review": "passed",
+      "report_sha256": "a9f020c29db4cc1dd60e70f1827a6c25c7601eaf10e427e3e31d4655c1146973",
+      "video_sha256": "82866fbc9bc9af3897c635be17c7c2225be5f50e99d561add5138870d31b7d8a"
+    },
+    "portable_cpu": "Fresh v1.0.1 ZIP extraction and isolated CPU smoke passed; see portable-verification.json",
+    "portable_ui": {
+      "source": "Previously exercised UI; executable and all scientific/UI sources unchanged in refreshed v1.0.1 package",
+      "default_policy": "main_agent_aligned",
+      "training_seed": 33,
+      "map_seed": 10000,
+      "preset": "easy",
+      "single_step": "passed",
+      "playback": "passed",
+      "pause": "passed at step 191, coverage 100%",
+      "reset": "passed, returned to step zero",
+      "closed_after_check": true,
+      "last_interaction_check_date": "2026-11-11",
+      "tested_executable_sha256": "e63d5063ed86f1dce2858a919eca11b022f12c9de696db68ed163bc231a8420d",
+      "same_executable_in_v1_0_1": true
+    },
+    "readme": {
+      "local_handoff_links_verified": 38,
+      "core_dependency_versions_verified": true,
+      "headline_training_configs": "parser/configuration checked; no training started",
+      "environment_override": "passed",
+      "unused_seed_config_removed": true
+    }
   },
-  "scope": "Windows development host; fresh extraction and clean source checkout, not a second physical computer. CUDA tests were skipped in the CPU test environment."
+  "scope": "Windows development host; fresh extraction and clean source checkout, not a second physical computer. CUDA tests were skipped in the CPU test environment.",
+  "release_tag": "v1.0.1",
+  "verified_date": "2026-11-13",
+  "model_or_experiment_changes": false
 }

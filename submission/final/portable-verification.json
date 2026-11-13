@@ -1,23 +1,23 @@
 {
   "status": "passed",
   "archive": "MiniGridExplorer-Windows-CPU.zip",
-  "archive_sha256": "be243c1daafbd7f611dba1449e9596e05ddeb46ccd90796d0f4c4af5e909c81a",
-  "archive_bytes": 221617182,
+  "archive_sha256": "7ba314a80e6bd2146fc26e3ac598eeffa36e47ed3b4467ce2623c3aa9752a65a",
+  "archive_bytes": 222035794,
   "checkpoint_sha256": "abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab",
   "torch": "2.11.0+cpu",
   "memory_frame": "agent_aligned",
   "training_seed": 33,
   "selected_steps": 3750000,
   "bundled_assets_verified": {
-    "technical-report.pdf": "b44dd2adbf44eab95e97e8de815bda846aed224ade29f5f1f712380368a26466",
-    "demo.mp4": "60eb08393fa9873aa2d551fdc0a708669ac0437143ae56e7ca1e560e988847d0",
-    "START-HERE.md": "ef6d8c4187b66cb813d76d44b8b823841634130e994430dd1c6b8705e773001a"
+    "technical-report.pdf": "a9f020c29db4cc1dd60e70f1827a6c25c7601eaf10e427e3e31d4655c1146973",
+    "demo.mp4": "82866fbc9bc9af3897c635be17c7c2225be5f50e99d561add5138870d31b7d8a",
+    "START-HERE.md": "56a907b0909055f512663797f062b7c43903a4a8e83e0a57571fdaba77ddd3c9"
   },
   "path_contains_spaces": true,
   "python_environment_removed": true,
   "path_windows_only": true,
   "cuda_devices_hidden": true,
   "smoke_exit_code": 0,
-  "smoke_stdout": "{\n  \"smoke\": \"passed\",\n  \"checkpoint_loaded\": true,\n  \"frozen\": true,\n  \"ui_import_verified\": true,\n  \"inference_device\": \"cpu\",\n  \"seed\": 123,\n  \"preset\": \"easy\",\n  \"steps\": 64,\n  \"episode_limit\": 64,\n  \"revealed_coverage\": 0.8813559322033898,\n  \"visited_coverage\": 0.2627118644067797,\n  \"coverage_auc\": 0.6889565677966103,\n  \"poi_discovered\": 2,\n  \"poi_fraction\": 1.0,\n  \"survived\": 1,\n  \"completion\": 1,\n  \"termination\": \"time_limit\",\n  \"monster_collisions\": 0,\n  \"wall_collisions\": 0,\n  \"wall_collision_rate\": 0.0,\n  \"movement_efficiency\": 0.46875,\n  \"repeated_state_rate\": 0.21875,\n  \"loop_rate\": 0.21875,\n  \"reward\": 2.7560000000000002,\n  \"agent\": \"main_agent_aligned\",\n  \"training_seed\": 33,\n  \"memory_frame\": \"agent_aligned\",\n  \"policy_seed\": null,\n  \"inference_ms_mean\": 4.10419375384663,\n  \"inference_ms_p50\": 2.692299982300028,\n  \"inference_ms_p95\": 13.542120004422015\n}\n",
+  "smoke_stdout": "{\n  \"smoke\": \"passed\",\n  \"checkpoint_loaded\": true,\n  \"frozen\": true,\n  \"ui_import_verified\": true,\n  \"inference_device\": \"cpu\",\n  \"seed\": 123,\n  \"preset\": \"easy\",\n  \"steps\": 64,\n  \"episode_limit\": 64,\n  \"revealed_coverage\": 0.8813559322033898,\n  \"visited_coverage\": 0.2627118644067797,\n  \"coverage_auc\": 0.6889565677966103,\n  \"poi_discovered\": 2,\n  \"poi_fraction\": 1.0,\n  \"survived\": 1,\n  \"completion\": 1,\n  \"termination\": \"time_limit\",\n  \"monster_collisions\": 0,\n  \"wall_collisions\": 0,\n  \"wall_collision_rate\": 0.0,\n  \"movement_efficiency\": 0.46875,\n  \"repeated_state_rate\": 0.21875,\n  \"loop_rate\": 0.21875,\n  \"reward\": 2.7560000000000002,\n  \"agent\": \"main_agent_aligned\",\n  \"training_seed\": 33,\n  \"memory_frame\": \"agent_aligned\",\n  \"policy_seed\": null,\n  \"inference_ms_mean\": 4.423289055921487,\n  \"inference_ms_p50\": 4.0639000362716615,\n  \"inference_ms_p95\": 6.037044915137811\n}\n",
   "scope": "Fresh extraction and isolated environment on the development Windows host; not a separate physical machine"
 }
