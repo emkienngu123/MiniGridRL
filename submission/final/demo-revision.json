@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "date": "2026-11-13",
+  "author": "Kiên Nguyễn",
+  "assignment": "Atherlabs",
+  "video_seconds": 240,
+  "fps": 12,
+  "frames": 2880,
+  "dimensions": [
+    1280,
+    720
+  ],
+  "video_sha256": "82866fbc9bc9af3897c635be17c7c2225be5f50e99d561add5138870d31b7d8a",
+  "previous_video_sha256": "a0ce7fff076dc3421636a27b1001a7837d224567df30ce1c270c4b88fee6c62b",
+  "checkpoint_sha256": "abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab",
+  "report_sha256": "a9f020c29db4cc1dd60e70f1827a6c25c7601eaf10e427e3e31d4655c1146973",
+  "model_selection_unchanged": true,
+  "primary_5700_episode_evidence_unchanged": true,
+  "hard_validation_audit": {
+    "checkpoint": "checkpoints/aligned/main_agent_aligned-33.zip",
+    "checkpoint_sha256": "abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab",
+    "training_seed": 33,
+    "device": "cpu",
+    "map_seeds": [
+      10000,
+      10049
+    ],
+    "episodes": 50,
+    "median_coverage": 0.8982869827441782,
+    "example_seed": 10039,
+    "example_coverage": 0.898936170212766,
+    "example_distance_to_median": 0.0006491874685877752,
+    "nearest_median_candidates": [
+      10010,
+      10039
+    ],
+    "example_is_nearest_median_candidate": true,
+    "example_adjacent_steps": [
+      258,
+      260,
+      1068,
+      1070
+    ],
+    "example_adjacent_intervals": [
+      [
+        258,
+        258
+      ],
+      [
+        260,
+        260
+      ],
+      [
+        1068,
+        1068
+      ],
+      [
+        1070,
+        1070
+      ]
+    ],
+    "selection": "Reviewer proposed map 10039 after a 50-map audit. Independently checked against all 50: chosen for near-median coverage and a survived close pass. This is a qualitative example, not a random episode.",
+    "information_boundary": "Hard maps do not select the checkpoint or hyperparameters. Evaluator-only proximity is used solely to annotate the demonstration.",
+    "not_primary_evidence": true
+  },
+  "source_replays_verified_unchanged": [
+    "aligned-contact",
+    "aligned-easy",
+    "aligned-hard",
+    "aligned-medium",
+    "frontier-medium",
+    "loop-example-seed11"
+  ],
+  "new_replay": {
+    "path": "replays/aligned-hard-typical",
+    "frame_stride": 1,
+    "actions_match_independent_audit": true,
+    "metrics_match_independent_audit": true,
+    "metrics": {
+      "seed": 10039,
+      "preset": "hard",
+      "steps": 1536,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.898936170212766,
+      "visited_coverage": 0.601063829787234,
+      "coverage_auc": 0.7531530501994682,
+      "poi_discovered": 5,
+      "poi_fraction": 1.0,
+      "survived": 1,
+      "completion": 1,
+      "termination": "time_limit",
+      "monster_collisions": 0,
+      "wall_collisions": 1,
+      "wall_collision_rate": 0.0006510416666666666,
+      "movement_efficiency": 0.146484375,
+      "repeated_state_rate": 0.6341145833333334,
+      "loop_rate": 0.6341145833333334,
+      "reward": 11.774000000000731
+    }
+  },
+  "failure_example": {
+    "seed": 10000,
+    "training_seed": 33,
+    "same_checkpoint_as_main_hard": true,
+    "coverage": 0.3687002652519894,
+    "turning_loop_actions": 665,
+    "source_unchanged": true
+  },
+  "pacing": {
+    "main_hard_start": 108,
+    "main_hard_seconds": 36,
+    "close_pass_slowed": true,
+    "turning_loops_fast_forwarded_and_labeled": true,
+    "failure_start": 216,
+    "closing_start": 232,
+    "closing_seconds": 8
+  },
+  "selection_limit": "A disclosed near-median validation illustration, one of two equally close maps; not a random episode or a model-selection result.",
+  "proximity_limit": "Four post-step orthogonal adjacent observations; no claim of eight distinct passes or intentional avoidance.",
+  "visual_review": "Representative frames decoded from finished video; close pass, final Hard outcome, failure, results, and closing inspected.",
+  "script_ruff": "passed",
+  "release_tag": "v1.0.1"
+}

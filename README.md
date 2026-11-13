@@ -1,24 +1,10 @@
 # MiniGrid Explorer
 
-A reproducible reinforcement-learning exploration project built directly on the official Farama MiniGrid repository. A PPO policy explores procedural rooms and corridors using a 7 x 7 partial view and a map reconstructed only from its own observations. A moving patrol makes survival part of the task.
+A reproducible reinforcement-learning exploration project prepared by **Kiên Nguyễn** for the **Atherlabs Reinforcement Learning Engineer Technical Test**, built directly on the official Farama MiniGrid repository. A PPO policy explores procedural rooms and corridors using a 7 x 7 partial view and a map reconstructed only from its own observations. A moving patrol makes survival part of the task.
 
 This project extends **[Farama Foundation's MiniGrid](https://github.com/Farama-Foundation/Minigrid)**, starting from upstream commit [`7f585379`](https://github.com/Farama-Foundation/Minigrid/commit/7f5853792ea7f04f75614661006d87fcf949f26d). The upstream Git history, [Apache 2.0 license](LICENSE), and [citation metadata](CITATION.cff) are retained. The original README is in [README.minigrid.md](README.minigrid.md); assignment code is under `exploration/`. See [attribution and dependency licenses](ATTRIBUTION.md).
 
-The final submission is available in [GitHub release v1.0.0](https://github.com/emkienngu123/MiniGridRL/releases/tag/v1.0.0): a [five-page technical report](submission/final/technical-report.pdf), [four-minute demo](submission/final/demo.mp4), and a [portable Windows CPU build](https://github.com/emkienngu123/MiniGridRL/releases/download/v1.0.0/MiniGridExplorer-Windows-CPU.zip). The primary study contains **5,700 confirmation episodes on predeclared seeds 40000-40099**, including the completed aligned reward ablation. [Start here](submission/final/START-HERE.md) for the evaluator workflow; [edit/rebuild the LaTeX report](report/README.md) or inspect the [design rationale audit](report/design-rationale-audit.md). Historical studies and artifacts are preserved separately.
-
-## Upstream citation
-
-MiniGrid is the environment foundation; its authors and maintainers deserve credit separately from this project's exploration environment, memory representation, and experiments. The citation recommended in the upstream README is:
-
-```bibtex
-@inproceedings{MinigridMiniworld23,
-  author = {Maxime Chevalier{-}Boisvert and Bolun Dai and Mark Towers and Rodrigo Perez{-}Vicente and Lucas Willems and Salem Lahlou and Suman Pal and Pablo Samuel Castro and Jordan Terry},
-  title = {Minigrid {\&} Miniworld: Modular {\&} Customizable Reinforcement Learning Environments for Goal-Oriented Tasks},
-  booktitle = {Advances in Neural Information Processing Systems 36, New Orleans, LA, USA},
-  month = {December},
-  year = {2023}
-}
-```
+The final submission is available in [GitHub release v1.0.1](https://github.com/emkienngu123/MiniGridRL/releases/tag/v1.0.1): a [five-page technical report](submission/final/technical-report.pdf), [four-minute demo](submission/final/demo.mp4), and a [portable Windows CPU build](https://github.com/emkienngu123/MiniGridRL/releases/download/v1.0.1/MiniGridExplorer-Windows-CPU.zip). The primary study contains **5,700 confirmation episodes on predeclared seeds 40000-40099**, including the completed aligned reward ablation. [Start here](submission/final/START-HERE.md) for the evaluator workflow; [edit/rebuild the LaTeX report](report/README.md) or inspect the [design rationale audit](report/design-rationale-audit.md). Historical studies and artifacts are preserved separately.
 
 ![Interactive inspector](docs/ui.png)
 
@@ -26,7 +12,7 @@ MiniGrid is the environment foundation; its authors and maintainers deserve cred
 
 The default release model is **aligned PPO, training seed 33**, selected at 3.75 million transitions using the highest validation AUC (0.889863) among the aligned full-reward runs. Selection did not use confirmation or demonstration scores. The source includes all three full-reward aligned policies in [checkpoints/aligned](checkpoints/aligned) and all three aligned reward-ablation policies in [checkpoints/aligned-no-bonuses](checkpoints/aligned-no-bonuses).
 
-**Windows, without Python:** download the [CPU ZIP](https://github.com/emkienngu123/MiniGridRL/releases/download/v1.0.0/MiniGridExplorer-Windows-CPU.zip), extract the complete archive, and open **Launch UI.bat**. **Smoke test.bat** verifies saved-policy loading and CPU inference. Keep the EXE beside `_internal/`. The archive includes its own start guide, report, demo, model metadata, and third-party licenses. No GPU, internet connection, or retraining is required to run it.
+**Windows, without Python:** download the [CPU ZIP](https://github.com/emkienngu123/MiniGridRL/releases/download/v1.0.1/MiniGridExplorer-Windows-CPU.zip), extract the complete archive, and open **Launch UI.bat**. **Smoke test.bat** verifies saved-policy loading and CPU inference. Keep the EXE beside `_internal/`. The archive includes its own start guide, report, demo, model metadata, and third-party licenses. No GPU, internet connection, or retraining is required to run it.
 
 **Source checkout:** after installing the CPU requirements below, use the explicit current checkpoint:
 
@@ -50,9 +36,25 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m exploration ui --checkpoint checkpoints/aligned/main_agent_aligned-33.zip
 ```
 
+Subsequent `python` commands assume this virtual environment is active; otherwise use `.\.venv\Scripts\python.exe` explicitly.
+
+Verified core versions: **minigrid 3.2.0** (this repository), **gymnasium 1.4.0**, **stable-baselines3 2.9.2**, **torch 2.11.0** (+cpu or CUDA 12.8), and **numpy 2.4.6**. The lock file's `-e .` installs this checkout as the `minigrid` package, including the exploration code. Use that source installation; a separate PyPI MiniGrid install can replace it and hide this project's extensions.
+
 For GPU training, use `requirements-cuda.lock.txt` instead. It pins PyTorch 2.11.0 with CUDA 12.8; the NVIDIA driver must support that runtime. The CPU package is built in a separate environment to exclude CUDA libraries. Other dependency versions are pinned in the corresponding lock file. Linux source execution is supported by the libraries; the delivered native artifact is Windows-specific.
 
-In the original assignment workspace, the prepared GPU and CPU runtimes are in `../.venv` and `../.cpu-venv`, respectively. For example: `..\.venv\Scripts\python.exe -m exploration ui --checkpoint checkpoints/aligned/main_agent_aligned-33.zip`.
+## Checkpoint locations
+
+Every saved model has a `.zip` and matching `.json` sidecar. The curated models are committed; training directories are local only.
+
+| Location | Purpose |
+|---|---|
+| [checkpoints/aligned/](checkpoints/aligned) | Full-reward aligned PPO, seeds 11/22/33; seed 33 is the release default |
+| [checkpoints/aligned-no-bonuses/](checkpoints/aligned-no-bonuses) | Aligned PPO without seen/visit bonuses, seeds 11/22/33 |
+| `checkpoints/main-{11,22,33}.zip` | Original start-relative map policies |
+| `checkpoints/no_memory-{11,22,33}.zip` | No-map policies |
+| `checkpoints/no_novelty-{11,22,33}.zip` | Original-map policies without seen/visit bonuses |
+| [checkpoints/demo.zip](checkpoints/demo.zip) | Historical default retained for compatibility |
+| `runs/` | Ignored local training outputs: best/latest/final weights, logs, and validation history |
 
 ## Environment and agent interface
 
@@ -62,6 +64,14 @@ from exploration.memory import make_env
 env = make_env("easy")
 observation, info = env.reset(seed=123)
 observation, reward, terminated, truncated, info = env.step(2)
+env.close()
+```
+
+Environment settings can also be overridden explicitly:
+
+```python
+env = make_env("medium", size=25, poi_count=4, max_steps=1200, monster_interval=3)
+observation, info = env.reset(seed=123)
 env.close()
 ```
 
@@ -122,30 +132,39 @@ See the [confirmation report](results/aligned-reward-followup/report.md), [raw m
 
 ## Training
 
+Train the headline aligned model and its matched reward ablation from fresh weights:
+
 ```powershell
-python -m exploration train --config configs/pilot.yaml --device cuda
-python -m exploration train --config configs/main.yaml --seed 11 --variant main --output runs/main-11
-python -m exploration train --config configs/main.yaml --seed 11 --variant main --output runs/main-11 --resume runs/main-11/latest.zip
-python -m exploration matrix
+python -m exploration train --config configs/memory-aligned.yaml --seed 33 --device cuda
+python -m exploration train --config configs/aligned-no-bonuses.yaml --seed 33 --device cuda
+```
+
+Repeat with seeds 11 and 22 for the other runs. These commands train for five million transitions each and write separate `runs/main_agent_aligned-33` and `runs/no_novelty_agent_aligned-33` directories. To resume an interrupted aligned run:
+
+```powershell
+python -m exploration train --config configs/memory-aligned.yaml --seed 33 --device cuda --resume runs/main_agent_aligned-33/latest.zip
 ```
 
 Do not reuse an existing output folder for a new run. `--resume` treats the configured timesteps as a total target. PPO rounds to a complete rollout. Resume preserves optimizer weights and step count but restarts environment sampling; it is not bitwise continuation. Incompatible observation versions, action/observation spaces, missing sidecars, and invalid checkpoint checksums are rejected.
 
 Default PPO configuration: 16 subprocess environments, 256 steps/environment, batch 256, four epochs, learning rate 0.0003, gamma 0.99, GAE lambda 0.95, clipping 0.2, entropy coefficient 0.01, target KL 0.03, value coefficient 0.5, gradient norm bound 0.5. Training samples Easy and Medium with equal probability. The YAML supports all environment-independent PPO parameters, seed partitions, reward weights, device, worker backend, output folder, and evaluation cadence. UI/`make_env` expose environment parameter overrides.
 
-The original nine-run matrix can be recreated with durable logs and interrupted-run recovery (historical experiment):
+### Historical matrix workflow
+
+The original nine-run start-relative-map matrix is retained for historical reproduction. It is separate from the aligned model commands and final confirmation workflow:
 
 ```powershell
+python -m exploration matrix
 python scripts/run_matrix.py --device cuda
 ```
 
 This trains `main`, `no_memory`, and `no_novelty` for training seeds 11, 22, and 33 to five million transitions each. No-memory zeros the policy's memory branch while retaining internal reward bookkeeping. No-novelty zeros seen-floor and first-visit rewards. Validation occurs every 250,000 transitions plus the final rollout. The selected checkpoint maximizes validation coverage AUC, then POI discovery, then survival. Validation RNG state is restored so evaluation does not perturb training randomness.
 
-Progress is recorded in `results/full-status.json`; per-run output is under `runs/<variant>-<seed>/`. Each folder contains `config.yaml`, `console.log`, `logs/progress.csv`, TensorBoard events, `training_episodes.csv`, `validation.csv`, validation episode results, `best/latest/final.zip` plus JSON sidecars, and `runtime.json`. Inspect TensorBoard with `tensorboard --logdir runs`.
+The historical runner records progress in `results/full-status.json`; its per-run output is under `runs/<variant>-<seed>/`. Each folder contains `config.yaml`, `console.log`, `logs/progress.csv`, TensorBoard events, `training_episodes.csv`, `validation.csv`, validation episode results, `best/latest/final.zip` plus JSON sidecars, and `runtime.json`. Inspect TensorBoard with `tensorboard --logdir runs`.
 
 Run `python scripts/status.py` for a fresh per-run transition count. Training directories are protected by process locks. CUDA subprocess failures retry from the latest saved checkpoint at most twice; the status file records failure if recovery is exhausted.
 
-After every requested run completes, the matrix runner performs held-out evaluation and exports the report, video, and CPU package. It does not tune on held-out results. `--skip-artifacts` stops after evaluation. Use `--tag` with a different value to keep a smaller diagnostic matrix separate from the full study.
+In that historical workflow, the matrix runner performs its original held-out evaluation and artifact export after the requested runs complete. Those outputs are not the final aligned confirmation artifacts. It does not tune on held-out results. `--skip-artifacts` stops after evaluation. Use `--tag` with a different value to keep a smaller diagnostic matrix separate from the full study.
 
 ## Reproduce the final confirmation without training
 
@@ -166,8 +185,8 @@ Inclusive ranges: training 0-9,999; validation 10,000-10,049; original test 20,0
 
 ```powershell
 python -m exploration evaluate --agents random frontier --split validation --count 10 --output results/baselines
-python -m exploration evaluate --agents random frontier ppo --checkpoints runs/main-11/best.zip runs/main-22/best.zip runs/main-33/best.zip --split test --output results/comparison
-python -m exploration evaluate --agents ppo --checkpoints runs/main-11/best.zip --split train --count 100 --output results/train-diagnostic
+python -m exploration evaluate --config results/aligned-reward-followup/confirmation-config.yaml --agents random frontier ppo --checkpoints checkpoints/aligned/main_agent_aligned-11.zip checkpoints/aligned/main_agent_aligned-22.zip checkpoints/aligned/main_agent_aligned-33.zip --split test --output results/aligned-example
+python -m exploration evaluate --agents ppo --checkpoints checkpoints/aligned/main_agent_aligned-33.zip --split train --count 100 --output results/train-diagnostic
 python -m exploration replay --agent ppo --checkpoint checkpoints/aligned/main_agent_aligned-33.zip --seed 10000 --preset medium --output results/replay
 ```
 
@@ -193,7 +212,7 @@ Episode rows contain their own latency mean, median, and p95. The summary's `inf
 
 Outputs: `episodes.csv` (every episode), `curves.csv` (every 32 actions plus final budget), `summary.json` (means, episode standard deviations, individual run means, run-mean standard deviations, paired-map bootstrap intervals, seed and checkpoint provenance). Paired comparisons average runs per map before resampling common maps; these intervals quantify map variation, not complete uncertainty across training seeds. A single deterministic run has no invented between-run standard deviation.
 
-The complete submission export also evaluates 100 training-partition seeds and writes `generalization.json`: test-minus-training-partition gaps and Hard-minus-Medium gaps for coverage, AUC, discoveries, and survival. This diagnostic does not imply that every sampled training-partition map was encountered by every training run. Curated training histories and selected checkpoints are exported alongside the results; `checkpoints/index.json` separates selected steps from the completed training budget.
+The historical matrix exporter evaluated 100 training-partition seeds and wrote `generalization.json`: test-minus-training-partition gaps and Hard-minus-Medium gaps for coverage, AUC, discoveries, and survival. This diagnostic does not imply that every sampled training-partition map was encountered by every training run. Curated training histories and selected checkpoints are exported alongside the results; `checkpoints/index.json` separates selected steps from the completed training budget.
 
 The research goal is improvement over random exploration with meaningful discovery and survival. Results against the stronger frontier baseline are reported honestly. A higher training reward or an attractive selected video alone does not establish learning.
 
@@ -213,9 +232,9 @@ python scripts/prepare_release.py
 python scripts/verify_artifacts.py --submission submission/final
 ```
 
-Build the EXE using the pinned **CPU-only** runtime. In the original workspace, use `..\.cpu-venv\Scripts\python.exe`; a normal source checkout can use its own activated `.venv`. PyInstaller outputs an executable folder, ZIP, checksum, bundled checkpoint/metadata, licenses, report, demo, and start guide. The build runs the saved-model smoke test. The published binary was additionally checked after ZIP extraction with Python environment variables removed and PATH restricted to Windows system directories; its UI was exercised on the Windows host. This is an environment/extraction rehearsal, not a claim that another physical computer was tested.
+Build the EXE using an activated environment with the pinned **CPU-only** runtime. PyInstaller outputs an executable folder, ZIP, checksum, bundled checkpoint/metadata, licenses, report, demo, and start guide. The build runs the saved-model smoke test. The published binary was additionally checked after ZIP extraction with Python environment variables removed and PATH restricted to Windows system directories; its UI was exercised on the Windows host. This is an environment/extraction rehearsal, not a claim that another physical computer was tested.
 
-The video is four minutes, 1280 x 720 at 12 fps, with explanatory captions and no audio. It includes actual packaged-UI controls, fixed-map exploration/discovery, monster contact, baseline comparison, the completed reward ablation, and an explicitly labeled historical failure. Replay action traces and model hashes accompany the clips. The primary results come from the reserved confirmation study, not selected demonstrations. [Farama attribution and licenses](ATTRIBUTION.md) are retained in both source and package.
+The video is four minutes, 1280 x 720 at 12 fps, with explanatory captions and no audio. It includes actual packaged-UI controls, exploration/discovery, a near-median Hard example (map 10039: 89.9% coverage, 5/5 POIs, survival), and a slowed one-cell monster pass. The original map-10000 turning loop appears as a failure of the same checkpoint. The clip-selection rule and 50-map audit are in [hard-example-selection](submission/final/hard-example-selection/README.md). Baseline and exploration-reward comparisons use the full recorded study; long loops are labeled and fast-forwarded. Replay action traces and model hashes accompany the clips. The primary results come from the reserved confirmation study, not selected demonstrations. [Farama attribution and licenses](ATTRIBUTION.md) are retained in both source and package.
 
 ## Tests and checks
 
@@ -229,6 +248,27 @@ The focused suite checks reset/trajectory reproducibility, connected maps and sa
 
 ## Limitations and attribution
 
-Exact compass/contact odometry simplifies localization. Only one generator family and patrol rule are implemented. Fixed memory supports map sizes through 27. A deterministic policy may loop despite stochastic training; loop rates and failure replays expose that. GPU training is reproducible within the tested runtime but cross-device bitwise equality is not promised. Selected checkpoints may precede the final five-million-transition budget; completed-run counts and selected checkpoint steps are recorded separately.
+Exact compass/contact odometry simplifies localization. Only one generator family and patrol rule are implemented. Fixed memory supports map sizes through 27. A deterministic policy may loop despite stochastic training; loop rates and failure replays expose that. Selected checkpoints may precede the final five-million-transition budget; completed-run counts and selected checkpoint steps are recorded separately.
+
+Observed failures and tradeoffs include:
+
+- **Turning loops:** the release checkpoint on Hard map 10000 reveals only 36.9% of floor despite surviving the full budget. See its [action trace](submission/final/replays/aligned-hard/replay.json).
+- **Early threat contact:** on Hard map 30000, the same policy dies at step 122, with 58.7% coverage and 3/5 POIs. See the [contact replay](submission/final/replays/aligned-contact/replay.json).
+- **Hard survival tradeoff:** aligned PPO survives 62.7% of episodes versus 70.7% for mapless PPO, despite higher coverage.
+- **Exploration speed:** frontier has higher coverage AUC on every preset; learned exploration does not uniformly outperform the classical baseline.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for upstream revision, library licenses, and research references. Future work includes uncertain odometry, recurrent-policy comparisons, richer map distributions, and tracking beliefs about hidden threats.
+
+## Upstream citation
+
+MiniGrid is the environment foundation; its authors and maintainers deserve credit separately from this project's exploration environment, memory representation, and experiments. The citation recommended in the upstream README is:
+
+```bibtex
+@inproceedings{MinigridMiniworld23,
+  author = {Maxime Chevalier{-}Boisvert and Bolun Dai and Mark Towers and Rodrigo Perez{-}Vicente and Lucas Willems and Salem Lahlou and Suman Pal and Pablo Samuel Castro and Jordan Terry},
+  title = {Minigrid {\&} Miniworld: Modular {\&} Customizable Reinforcement Learning Environments for Goal-Oriented Tasks},
+  booktitle = {Advances in Neural Information Processing Systems 36, New Orleans, LA, USA},
+  month = {December},
+  year = {2023}
+}
+```

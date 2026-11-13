@@ -8,14 +8,14 @@
 2. Open `report.code-workspace` using **File > Open Workspace from File**.
 3. Open `technical-report.tex`. **Ctrl+Alt+B** compiles; **Ctrl+Alt+V** opens the PDF preview. Saving rebuilds the PDF. Review compiler diagnostics in **Output > LaTeX Workshop**.
 
-The workspace settings route LaTeX output and SyncTeX files to `output/pdf/`. They do not change global VS Code settings. Tables and figures are already generated and checked in, so normal text edits require only LaTeX, not Python or training.
+The workspace settings route LaTeX output and SyncTeX files to `output/pdf/`. They do not change global VS Code settings. Tables and figures are already generated and checked in, so normal text edits require only LaTeX, not Python or training. The author name uses Vietnamese T5 encoding; a minimal TeX installation also needs the `vntex` package (`tlmgr install vntex`).
 
 ## Rebuild from recorded evidence
 
 From the repository root, using a Python environment with NumPy and Matplotlib:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File report/build.ps1 -Python ..\.cpu-venv\Scripts\python.exe
+powershell -NoProfile -ExecutionPolicy Bypass -File report/build.ps1 -Python python
 ```
 
 If the environment lives elsewhere, replace the `-Python` path. To compile only the text, from `report/`:

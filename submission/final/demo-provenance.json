@@ -10,10 +10,10 @@
     0.8
   ],
   "selection": "Highest lexicographic validation AUC/discovery/survival score among the three aligned runs",
-  "qualitative_note": "Easy/Medium/Hard and frontier maps fixed at validation seed 10000. Contact map 30000 and seed-11 loop map 30029 are explicitly selected illustrations, not aggregate evidence.",
+  "qualitative_note": "Easy, Medium, and frontier use map 10000. Main Hard replay uses map 10039, one of two equally near the 50-map Hard validation coverage median, selected for a survived close pass. The same-model map-10000 turning loop is retained as a failure example. Contact map 30000 is a selected illustration. Stored seed-11/map-30029 replay is not shown in this revision. Clips are qualitative, not aggregate evidence.",
   "comparison_seed_disclosure": "Primary: predeclared 40000-40099, no checkpoint selection on confirmation. Older 20000/30000 ranges exposed during diagnosis; archived evidence and disclosure retained.",
   "study_summary_sha256": "9e4f44b6553ff9f3d7d6a5bf727a92b1ad94cdbf4ef54052323faf9f0a68065c",
-  "report_sha256": "b44dd2adbf44eab95e97e8de815bda846aed224ade29f5f1f712380368a26466",
+  "report_sha256": "a9f020c29db4cc1dd60e70f1827a6c25c7601eaf10e427e3e31d4655c1146973",
   "case_metrics": {
     "aligned-easy": {
       "seed": 10000,
@@ -78,6 +78,27 @@
       "loop_rate": 0.8782552083333334,
       "reward": 5.9539999999998905
     },
+    "aligned-hard-typical": {
+      "seed": 10039,
+      "preset": "hard",
+      "steps": 1536,
+      "episode_limit": 1536,
+      "revealed_coverage": 0.898936170212766,
+      "visited_coverage": 0.601063829787234,
+      "coverage_auc": 0.7531530501994682,
+      "poi_discovered": 5,
+      "poi_fraction": 1.0,
+      "survived": 1,
+      "completion": 1,
+      "termination": "time_limit",
+      "monster_collisions": 0,
+      "wall_collisions": 1,
+      "wall_collision_rate": 0.0006510416666666666,
+      "movement_efficiency": 0.146484375,
+      "repeated_state_rate": 0.6341145833333334,
+      "loop_rate": 0.6341145833333334,
+      "reward": 11.774000000000731
+    },
     "frontier-medium": {
       "seed": 10000,
       "preset": "medium",
@@ -141,5 +162,45 @@
       "loop_rate": 0.9986979166666666,
       "reward": -1.2859999999999694
     }
-  }
+  },
+  "report_revision": {
+    "date": "2026-11-13",
+    "author": "KiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªn NguyÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚Â»ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦n",
+    "assignment": "Atherlabs",
+    "previous_report_sha256": "b44dd2adbf44eab95e97e8de815bda846aed224ade29f5f1f712380368a26466",
+    "changes": "Correct author/assignment, formalize POMDP and PPO, revise technical prose; results unchanged",
+    "published_v1_0_0_report_sha256": "b44dd2adbf44eab95e97e8de815bda846aed224ade29f5f1f712380368a26466",
+    "demo_provenance_note": "The unchanged demo-provenance.json records the original report at video-export time."
+  },
+  "presentation_revision": {
+    "date": "2026-11-13",
+    "author": "Kiên Nguyễn",
+    "assignment": "Atherlabs",
+    "changes": "Near-median Hard exploration and a survived close pass, with same-model turning-loop failure retained",
+    "source_replays_unchanged": true
+  },
+  "shown_replays": [
+    "aligned-easy",
+    "aligned-medium",
+    "aligned-hard-typical",
+    "frontier-medium",
+    "aligned-contact",
+    "aligned-hard"
+  ],
+  "hard_loop_diagnostics": "submission/final/hard-replay-diagnostics.json",
+  "hard_example_selection": {
+    "record": "submission\\final\\hard-example-selection\\selection.json",
+    "record_sha256": "917734942248977c1a9a2ea26576efc30ad9e66844aa0a919cc1938c84a10413",
+    "episodes_sha256": "2bbc933f7753b7c7fa667b9b969c7ddb9127a3d56a787f7aa89ca9254ba2d17e",
+    "median_coverage": 0.8982869827441782,
+    "example_seed": 10039,
+    "nearest_median_candidates": [
+      10010,
+      10039
+    ],
+    "rule": "Near-median validation coverage; of two equally close episodes, use the survived close-pass example.",
+    "not_checkpoint_selection": true,
+    "proximity_definition": "Post-step Manhattan distance of one cell; no claim of intentional avoidance or eight distinct encounters"
+  },
+  "release_tag": "v1.0.1"
 }

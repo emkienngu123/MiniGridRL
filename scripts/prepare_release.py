@@ -32,6 +32,9 @@ def main() -> None:
     model = folder / "_internal/checkpoints/demo.zip"
     if sha256(model) != expected["checkpoint_sha256"]:
         raise ValueError("Bundled weights differ from the validation-selected demonstration model")
+    for name, digest in info.get("scientific_source_sha256", {}).items():
+        if sha256(ROOT / name) != digest:
+            raise ValueError(f"Bundled executable source is stale: {name}; rebuild with build_windows.py")
     assets = {}
     for name in ("technical-report.pdf", "demo.mp4", "START-HERE.md"):
         source = submission / name
@@ -51,7 +54,7 @@ def main() -> None:
         destination = output / name
         shutil.copy2(submission / name, destination)
         paths.append(destination)
-    manifest = {"assets": {p.name: {"bytes": p.stat().st_size, "sha256": sha256(p)} for p in paths},
+    manifest = {"release_tag": expected.get("release_tag"), "assets": {p.name: {"bytes": p.stat().st_size, "sha256": sha256(p)} for p in paths},
                 "checkpoint_sha256": expected["checkpoint_sha256"],
                 "memory_frame": info["memory_frame"], "training_seed": info["training_seed"],
                 "selected_steps": info["selected_steps"],

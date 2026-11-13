@@ -1,6 +1,0 @@
-# Inclusive endpoints. Map RNG and training RNG are distinct.
-training_map_seeds: [0, 9999]
-validation_map_seeds: [10000, 10049]
-held_out_map_seeds: [20000, 20099]
-training_run_seeds: [11, 22, 33]
-presets: [easy, medium, hard]

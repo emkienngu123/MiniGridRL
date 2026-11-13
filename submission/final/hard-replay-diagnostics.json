@@ -1,0 +1,217 @@
+{
+  "map_seed": 10000,
+  "steps": 1536,
+  "actions": {
+    "1": 694,
+    "3": 57,
+    "2": 123,
+    "0": 662
+  },
+  "coverage": 0.3687002652519894,
+  "poi": 4,
+  "recorded_coverage": 0.3687002652519894,
+  "longest_spans": {
+    "wait": [
+      {
+        "start": 2,
+        "end": 5,
+        "length": 4,
+        "actions": {
+          "3": 4
+        },
+        "seen_before": 12,
+        "seen_after": 12,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 7,
+        "end": 7,
+        "length": 1,
+        "actions": {
+          "3": 1
+        },
+        "seen_before": 15,
+        "seen_after": 15,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 9,
+        "end": 9,
+        "length": 1,
+        "actions": {
+          "3": 1
+        },
+        "seen_before": 16,
+        "seen_after": 16,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 11,
+        "end": 11,
+        "length": 1,
+        "actions": {
+          "3": 1
+        },
+        "seen_before": 19,
+        "seen_after": 19,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 13,
+        "end": 13,
+        "length": 1,
+        "actions": {
+          "3": 1
+        },
+        "seen_before": 19,
+        "seen_after": 19,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      }
+    ],
+    "stationary": [
+      {
+        "start": 129,
+        "end": 793,
+        "length": 665,
+        "actions": {
+          "1": 334,
+          "0": 331
+        },
+        "seen_before": 74,
+        "seen_after": 74,
+        "visible_monster_steps": 2,
+        "wall_contacts": 0
+      },
+      {
+        "start": 948,
+        "end": 1536,
+        "length": 589,
+        "actions": {
+          "1": 296,
+          "0": 293
+        },
+        "seen_before": 138,
+        "seen_after": 139,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 845,
+        "end": 859,
+        "length": 15,
+        "actions": {
+          "1": 9,
+          "0": 6
+        },
+        "seen_before": 74,
+        "seen_after": 74,
+        "visible_monster_steps": 5,
+        "wall_contacts": 0
+      },
+      {
+        "start": 798,
+        "end": 804,
+        "length": 7,
+        "actions": {
+          "1": 4,
+          "0": 3
+        },
+        "seen_before": 74,
+        "seen_after": 74,
+        "visible_monster_steps": 4,
+        "wall_contacts": 0
+      },
+      {
+        "start": 90,
+        "end": 95,
+        "length": 6,
+        "actions": {
+          "0": 3,
+          "1": 3
+        },
+        "seen_before": 74,
+        "seen_after": 74,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      }
+    ],
+    "no_new_floor": [
+      {
+        "start": 79,
+        "end": 876,
+        "length": 798,
+        "actions": {
+          "1": 376,
+          "2": 49,
+          "0": 361,
+          "3": 12
+        },
+        "seen_before": 74,
+        "seen_after": 74,
+        "visible_monster_steps": 25,
+        "wall_contacts": 0
+      },
+      {
+        "start": 949,
+        "end": 1536,
+        "length": 588,
+        "actions": {
+          "1": 295,
+          "0": 293
+        },
+        "seen_before": 139,
+        "seen_after": 139,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 28,
+        "end": 53,
+        "length": 26,
+        "actions": {
+          "2": 11,
+          "1": 6,
+          "3": 9
+        },
+        "seen_before": 33,
+        "seen_after": 33,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 935,
+        "end": 942,
+        "length": 8,
+        "actions": {
+          "2": 4,
+          "3": 3,
+          "1": 1
+        },
+        "seen_before": 135,
+        "seen_after": 135,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      },
+      {
+        "start": 914,
+        "end": 920,
+        "length": 7,
+        "actions": {
+          "2": 4,
+          "3": 3
+        },
+        "seen_before": 115,
+        "seen_after": 115,
+        "visible_monster_steps": 0,
+        "wall_contacts": 0
+      }
+    ]
+  },
+  "source_trace_sha256": "675c207e0558b5d47cc8760a475c3889b51ce9e5b93a407f2f4803498f4a4cdd",
+  "interpretation": "Recorded greedy policy enters turning cycles. Sampling every four actions can alias alternating headings; this is distinct from the deliberate two-second final-frame hold."
+}

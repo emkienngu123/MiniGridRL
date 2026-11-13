@@ -2,12 +2,12 @@
   {
     "start": 0,
     "seconds": 12,
-    "title": "Goal and selected policy"
+    "title": "Exploring an unknown world"
   },
   {
     "start": 12,
     "seconds": 32,
-    "title": "Portable UI: seed, preset, start / pause / step / reset",
+    "title": "Interactive inspection: seed, difficulty, and agent",
     "source": "submission\\aligned\\ui-recording.mp4",
     "ui_capture_padding_crop": [
       0,
@@ -15,74 +15,203 @@
       1218,
       798
     ],
-    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    "source_sha256": "88d9d93b247e7ab59e350d8d280be1bda6bb1a46b37e7a03b3e362696c36da03",
+    "final_hold_seconds": 2,
+    "presentation": "Whole source clip resampled; final outcome held for two seconds",
+    "timing_segments": [],
+    "evaluator_highlight": null,
+    "source_frame_indices_sha256": "79d816df66c65514c08d3020844cc164b37adfb4d618dcbc823b1d88d7caa864"
   },
   {
     "start": 44,
     "seconds": 12,
-    "title": "Procedural generation"
+    "title": "Procedural maps at three scales"
   },
   {
     "start": 56,
     "seconds": 24,
-    "title": "Easy / validation map 10000",
+    "title": "Easy / building a map from local observations",
     "source": "submission\\final\\replays\\aligned-easy\\episode.mp4",
     "ui_capture_padding_crop": null,
-    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    "source_sha256": "a4a99c0376910a828dae3563a865b6ec42c564401ff13ce0a449e9934cad9fa0",
+    "final_hold_seconds": 2,
+    "presentation": "Whole source clip resampled; final outcome held for two seconds",
+    "timing_segments": [],
+    "evaluator_highlight": null,
+    "source_frame_indices_sha256": "770ad651c021dd437c45e2ab481e6599127bbc297870ab30353e8412be985471"
   },
   {
     "start": 80,
     "seconds": 28,
-    "title": "Medium / validation map 10000",
+    "title": "Medium / navigating with spatial history",
     "source": "submission\\final\\replays\\aligned-medium\\episode.mp4",
     "ui_capture_padding_crop": null,
-    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    "source_sha256": "9f74b96399a8d79d4cea9a99340bd92df527d9ba5ba952094449a80c260af78b",
+    "final_hold_seconds": 2,
+    "presentation": "Whole source clip resampled; final outcome held for two seconds",
+    "timing_segments": [],
+    "evaluator_highlight": null,
+    "source_frame_indices_sha256": "331baa808aab9bae9a9519fd5771a59fc6a3891f1f1987b67200015c46cfaf6a"
   },
   {
     "start": 108,
-    "seconds": 24,
-    "title": "Hard / size excluded from training",
-    "source": "submission\\final\\replays\\aligned-hard\\episode.mp4",
+    "seconds": 36,
+    "title": "Hard / near-median validation episode",
+    "source": "submission\\final\\replays\\aligned-hard-typical\\episode.mp4",
     "ui_capture_padding_crop": null,
-    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    "source_sha256": "1c41a7a2fc7cb6d9de2e22f15dfbf9e84578bd8169d148b3a32feef490e7f156",
+    "final_hold_seconds": 2,
+    "presentation": "Variable-speed episode replay; turning loops labeled and fast-forwarded",
+    "timing_segments": [
+      {
+        "source_steps": [
+          0,
+          244
+        ],
+        "screen_start": 108,
+        "screen_seconds": 8,
+        "caption": "Chosen near the median of 50 Hard validation episodes / fixed checkpoint."
+      },
+      {
+        "source_steps": [
+          244,
+          276
+        ],
+        "screen_start": 116,
+        "screen_seconds": 8,
+        "caption": "Monster passes within one cell at step 258; the episode survives. Gold rings: evaluator overlay."
+      },
+      {
+        "source_steps": [
+          276,
+          401
+        ],
+        "screen_start": 124,
+        "screen_seconds": 4,
+        "caption": "Near-median validation example / exploration continues."
+      },
+      {
+        "source_steps": [
+          401,
+          909
+        ],
+        "screen_start": 128,
+        "screen_seconds": 2,
+        "caption": "Turning loop / fast-forward"
+      },
+      {
+        "source_steps": [
+          909,
+          1180
+        ],
+        "screen_start": 130,
+        "screen_seconds": 10,
+        "caption": "Exploration resumes; final coverage reaches 89.9%, with all 5 POIs."
+      },
+      {
+        "source_steps": [
+          1180,
+          1536
+        ],
+        "screen_start": 140,
+        "screen_seconds": 2,
+        "caption": "Turning in place until the time limit / fast-forward"
+      }
+    ],
+    "evaluator_highlight": {
+      "source_steps": [
+        250,
+        268
+      ],
+      "meaning": "Gold rings mark ground-truth agent and monster positions; not policy inputs"
+    },
+    "source_frame_indices_sha256": "03494ff86cbbb0273e1c9ac663222c70eb562c98ea8fa38da3461e4dfe9781a9"
   },
   {
-    "start": 132,
+    "start": 144,
     "seconds": 18,
-    "title": "Frontier / same Medium map and information boundary",
+    "title": "Frontier / BFS toward unexplored space",
     "source": "submission\\final\\replays\\frontier-medium\\episode.mp4",
     "ui_capture_padding_crop": null,
-    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    "source_sha256": "bfda876e37b32768b2c8a0ad2ac60551313a21dd690c99a021882e7d0d4be2f1",
+    "final_hold_seconds": 2,
+    "presentation": "Whole source clip resampled; final outcome held for two seconds",
+    "timing_segments": [],
+    "evaluator_highlight": null,
+    "source_frame_indices_sha256": "0048253b8cdcdd83208434f6ac1efba55c853c911b81efc10849e10d88541b8e"
   },
   {
-    "start": 150,
+    "start": 162,
     "seconds": 18,
-    "title": "Threat contact / selected Hard map 30000",
+    "title": "Threat contact ends the episode",
     "source": "submission\\final\\replays\\aligned-contact\\episode.mp4",
     "ui_capture_padding_crop": null,
-    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    "source_sha256": "ce9d90e9a82dfbd22d376e5267d173b99f968a68a272ecb6854315cf668533c8",
+    "final_hold_seconds": 2,
+    "presentation": "Whole source clip resampled; final outcome held for two seconds",
+    "timing_segments": [],
+    "evaluator_highlight": null,
+    "source_frame_indices_sha256": "a9cbbdcab2ccca35a5f04c4b83e32d4a7d2561a06933b830f9c64d4a30a786eb"
   },
   {
-    "start": 168,
+    "start": 180,
     "seconds": 22,
-    "title": "Aggregate results"
+    "title": "Comparing exploration, discovery, and survival"
   },
   {
-    "start": 190,
+    "start": 202,
     "seconds": 14,
-    "title": "Reward ablation and confirmation"
+    "title": "The contribution of exploration rewards"
   },
   {
-    "start": 204,
-    "seconds": 16,
-    "title": "Failure example: a different aligned run (seed 11)",
-    "source": "submission\\final\\replays\\loop-example-seed11\\episode.mp4",
+    "start": 216,
+    "seconds": 8,
+    "title": "Failure / the same policy can enter a turning loop",
+    "source": "submission\\final\\replays\\aligned-hard\\episode.mp4",
     "ui_capture_padding_crop": null,
-    "presentation": "Whole source clip resampled; last outcome held for two seconds"
+    "source_sha256": "200f3efb425608ddf3ad63f87a4820867401c0f92551fe9817d67e68a4356ac6",
+    "final_hold_seconds": 2,
+    "presentation": "Variable-speed episode replay; turning loops labeled and fast-forwarded",
+    "timing_segments": [
+      {
+        "source_steps": [
+          0,
+          128
+        ],
+        "screen_start": 216,
+        "screen_seconds": 2,
+        "caption": "Same checkpoint, Hard map 10000: early exploration."
+      },
+      {
+        "source_steps": [
+          128,
+          793
+        ],
+        "screen_start": 218,
+        "screen_seconds": 3,
+        "caption": "Turning loop / 665 actions / fast-forward"
+      },
+      {
+        "source_steps": [
+          793,
+          1536
+        ],
+        "screen_start": 221,
+        "screen_seconds": 1,
+        "caption": "Later movement and another loop / fast-forward"
+      }
+    ],
+    "evaluator_highlight": null,
+    "source_frame_indices_sha256": "424d6a199ff5cc26f6cc1e69b26117d633dcafda3b5f0ebba41ce771c53ae2b1"
   },
   {
-    "start": 220,
-    "seconds": 20,
-    "title": "Run and inspect"
+    "start": 224,
+    "seconds": 8,
+    "title": "Where the policy still struggles"
+  },
+  {
+    "start": 232,
+    "seconds": 8,
+    "title": "Run the saved policy"
   }
 ]

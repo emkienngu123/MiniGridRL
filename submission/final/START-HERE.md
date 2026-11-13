@@ -1,6 +1,8 @@
 # MiniGrid exploration agent - final submission
 
-The current release is [v1.0.0](https://github.com/emkienngu123/MiniGridRL/releases/tag/v1.0.0).
+Author: **Kiên Nguyễn**. Prepared for the **Atherlabs Reinforcement Learning Engineer Technical Test**.
+
+The current submission is [release v1.0.1](https://github.com/emkienngu123/MiniGridRL/releases/tag/v1.0.1). The release and Windows package contain the revised report and four-minute demo in this folder.
 
 ## Review in order
 
@@ -35,8 +37,12 @@ The portable ZIP is verified after extraction in a path containing spaces, with 
 
 ## Video chapters
 
-0:00 task/model; 0:12 packaged UI; 0:44 map generation; 0:56 Easy; 1:20 Medium; 1:48 Hard; 2:12 frontier; 2:30 threat contact; 2:48 confirmation results; 3:10 aligned reward ablation; 3:24 historical loop failure (different trained seed 11); 3:40 portable launch.
+0:00 task/model; 0:12 packaged UI; 0:44 map generation; 0:56 Easy; 1:20 Medium; 1:48 Hard (near-median map 10039); 2:00 close pass (within the Hard replay); 2:24 frontier; 2:42 threat contact; 3:00 results; 3:22 exploration rewards; 3:36 failure (same checkpoint, map 10000); 3:44 limitations; 3:52 portable launch.
 
-Qualitative examples use fixed validation map 10000 and explicitly selected historical contact/failure maps. They are illustrative, not the primary dataset. Complete action traces, checkpoint hashes, and clip provenance are retained. The displayed history is start-relative; PPO aligns its input internally. Ground-truth evaluator views are never policy inputs.
+Easy, Medium, and frontier use fixed validation-numbered map 10000. The main Hard episode is map **10039**, selected for near-median coverage and a survived close pass after auditing all 50 Hard maps 10000-10049 with the already-fixed seed-33 checkpoint. Its coverage is **89.9%**, versus a **89.8%** median; it finds all five POIs and survives. Map 10010 is equally near the median, so this is not a unique closest-map result. Hard examples do not select the checkpoint or training parameters. The 50 audit episodes are qualitative-selection evidence, separate from the 5,700 primary episodes.
+
+The 36-second main Hard segment slows the close pass at step 258 and marks it with gold rings in the evaluator view. Its own turning loops at steps 402-909 and 1181-1536 are explicitly labeled and fast-forwarded; the full trajectory remains in the source replay. The caption reports proximity and survival without attributing intentional avoidance. The trace has four post-step orthogonal adjacencies (258, 260, 1068, 1070); it does not establish eight separate passes. `hard-example-selection/` contains the population metrics, selection rule, and selected trajectory.
+
+The original seed-33/map-10000 turning loop now appears in the failure section; its 36.9% coverage and 4/5 POIs are unchanged. Contact map 30000 remains a selected illustration. The older seed-11/map-30029 replay is retained on disk but is not shown in this cut. All clips illustrate behavior rather than supply aggregate evidence. Source-step timing is in `storyboard.json`, and `hard-replay-diagnostics.json` documents the original loop. The displayed history remains start-relative; PPO aligns its input internally. Evaluator positions and proximity highlights never enter policy inputs.
 
 Farama Foundation MiniGrid is the upstream environment foundation. Its history, Apache-2.0 license, citation, and third-party attribution remain in the repository and portable package.
