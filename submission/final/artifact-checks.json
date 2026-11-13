@@ -1,6 +1,6 @@
 {
-  "report_pages": 5,
-  "report_previews": "submission\\final\\report-preview",
+  "separate_report_pages": 5,
+  "report_in_public_package": false,
   "demo_seconds": 240.0,
   "demo_frames": 2880,
   "status": "passed"

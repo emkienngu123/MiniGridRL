@@ -32,6 +32,8 @@ def main() -> None:
         for name in zipped.namelist():
             if not (target / name).resolve().is_relative_to(target):
                 raise ValueError(f"Archive contains an unsafe path: {name}")
+        if any(name.lower().endswith("technical-report.pdf") for name in zipped.namelist()):
+            raise ValueError("The public ZIP must not include the separately supplied report")
         zipped.extractall(target)
     folders = list(target.iterdir())
     if len(folders) != 1 or not folders[0].is_dir():

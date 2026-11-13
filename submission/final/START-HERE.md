@@ -1,16 +1,10 @@
-# MiniGrid exploration agent - final submission
+# MiniGrid Explorer - getting started
 
-Author: **Kiên Nguyễn**. Prepared for the **Atherlabs Reinforcement Learning Engineer Technical Test**.
+Download the app from the [latest release](https://github.com/emkienngu123/MiniGridRL/releases/latest), extract the complete ZIP, and open **Launch UI.bat**. Keep the executable and `_internal` folder together. **Smoke test.bat** checks saved-model loading and CPU inference. Python installation, a GPU, and retraining are not required.
 
-The current submission is [release v1.0.1](https://github.com/emkienngu123/MiniGridRL/releases/tag/v1.0.1). The release and Windows package contain the revised report and four-minute demo in this folder.
+Watch `demo.mp4` for the UI controls, exploration, POI discovery, a survived close pass, baseline behavior, and evaluation results. The technical report is supplied separately; it is not bundled with the app or the current public source.
 
-## Review in order
-
-1. Read `technical-report.pdf` (five pages), covering all assignment topics and the reasoning behind the design.
-2. Watch `demo.mp4` (four minutes, captioned, no audio). It shows the actual packaged UI, seeded exploration/discovery, threat contact, frontier behavior, aggregate results, reward ablation, and a labeled historical failure.
-3. Download/extract `MiniGridExplorer-Windows-CPU.zip` from the release. Keep the entire executable folder together and run `Launch UI.bat`; `Smoke test.bat` checks CPU inference. No Python installation, GPU, network connection, or training is required.
-
-The Windows package also contains this guide, the report, and the video. Its default saved model is **aligned PPO, seed 33**, selected at 3.75M transitions by validation AUC 0.889863. Model SHA-256: `abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab`. The model was not selected on demonstration or confirmation performance.
+The app loads the aligned PPO model trained with seed 33, selected at 3.75M transitions using Easy/Medium validation AUC. Model metadata and hashes are included. Demonstration maps do not select the model.
 
 ## Primary evidence
 

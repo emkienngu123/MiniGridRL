@@ -22,7 +22,7 @@ def main():
     parser.add_argument("--name", default="MiniGridExplorer")
     parser.add_argument("--dist-dir", default="dist")
     parser.add_argument("--work-dir", default="build")
-    parser.add_argument("--submission-dir", help="Include the completed report, demo, and start guide")
+    parser.add_argument("--submission-dir", help="Include the public demo and start guide")
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9_-]+", args.name):
         raise ValueError("Build name must contain only letters, numbers, underscores, or hyphens")
@@ -122,8 +122,11 @@ def main():
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(source, destination)
     if submission:
+        stale = folder / "technical-report.pdf"
+        assert stale.resolve().is_relative_to(ROOT)
+        stale.unlink(missing_ok=True)
         assets = {}
-        for name in ("technical-report.pdf", "demo.mp4", "START-HERE.md"):
+        for name in ("demo.mp4", "START-HERE.md"):
             source = submission / name
             if not source.is_file():
                 raise ValueError(f"Missing final submission input: {source}")

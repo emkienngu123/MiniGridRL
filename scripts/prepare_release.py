@@ -35,13 +35,15 @@ def main() -> None:
     for name, digest in info.get("scientific_source_sha256", {}).items():
         if sha256(ROOT / name) != digest:
             raise ValueError(f"Bundled executable source is stale: {name}; rebuild with build_windows.py")
+    # Reports are supplied separately; remove stale copies from a reused build/output folder.
+    for stale in (folder / "technical-report.pdf", folder.parent / "technical-report.pdf"):
+        assert stale.resolve().is_relative_to(ROOT)
+        stale.unlink(missing_ok=True)
     assets = {}
-    for name in ("technical-report.pdf", "demo.mp4", "START-HERE.md"):
+    for name in ("demo.mp4", "START-HERE.md"):
         source = submission / name
         assets[name] = sha256(source)
         shutil.copy2(source, folder / name)
-    if assets["technical-report.pdf"] != expected["report_sha256"]:
-        raise ValueError("Report does not match the submission manifest")
     if assets["demo.mp4"] != expected["video_sha256"]:
         raise ValueError("Demo does not match the submission manifest")
     (folder / "SUBMISSION-ASSETS.json").write_text(json.dumps(assets, indent=2), encoding="utf-8")
@@ -50,7 +52,7 @@ def main() -> None:
     archive = Path(shutil.make_archive(str(output / "MiniGridExplorer-Windows-CPU"),
                                       "zip", output, folder.name))
     paths = [archive]
-    for name in ("technical-report.pdf", "demo.mp4"):
+    for name in ("demo.mp4",):
         destination = output / name
         shutil.copy2(submission / name, destination)
         paths.append(destination)
@@ -58,7 +60,7 @@ def main() -> None:
                 "checkpoint_sha256": expected["checkpoint_sha256"],
                 "memory_frame": info["memory_frame"], "training_seed": info["training_seed"],
                 "selected_steps": info["selected_steps"],
-                "confirmation_episodes": 5700, "report_pages": 5, "demo_seconds": 240}
+                "confirmation_episodes": 5700, "report_included": False, "demo_seconds": 240}
     manifest_path = output / "release-manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     paths.append(manifest_path)

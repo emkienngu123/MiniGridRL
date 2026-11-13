@@ -1,6 +1,6 @@
-# Editable technical report
+# Report authoring
 
-`technical-report.tex` is the report source; `references.bib` contains the MiniGrid, PPO, and Stable-Baselines3 references. The final PDF is [`../output/pdf/technical-report.pdf`](../output/pdf/technical-report.pdf), also delivered under `submission/final/technical-report.pdf`. The historical `submission/technical-report.pdf` is preserved.
+The report and its LaTeX source are kept locally for separate submission. They are not distributed in the current public repository or application package. If you have the private authoring files, the instructions below apply; the public numeric assets and references remain available for inspecting the results.
 
 ## Write and preview in VS Code
 

@@ -13,7 +13,6 @@
   "qualitative_note": "Easy, Medium, and frontier use map 10000. Main Hard replay uses map 10039, one of two equally near the 50-map Hard validation coverage median, selected for a survived close pass. The same-model map-10000 turning loop is retained as a failure example. Contact map 30000 is a selected illustration. Stored seed-11/map-30029 replay is not shown in this revision. Clips are qualitative, not aggregate evidence.",
   "comparison_seed_disclosure": "Primary: predeclared 40000-40099, no checkpoint selection on confirmation. Older 20000/30000 ranges exposed during diagnosis; archived evidence and disclosure retained.",
   "study_summary_sha256": "9e4f44b6553ff9f3d7d6a5bf727a92b1ad94cdbf4ef54052323faf9f0a68065c",
-  "report_sha256": "a9f020c29db4cc1dd60e70f1827a6c25c7601eaf10e427e3e31d4655c1146973",
   "case_metrics": {
     "aligned-easy": {
       "seed": 10000,
@@ -163,22 +162,14 @@
       "reward": -1.2859999999999694
     }
   },
-  "report_revision": {
-    "date": "2026-11-13",
-    "author": "KiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªn NguyÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚Â»ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦n",
-    "assignment": "Atherlabs",
-    "previous_report_sha256": "b44dd2adbf44eab95e97e8de815bda846aed224ade29f5f1f712380368a26466",
-    "changes": "Correct author/assignment, formalize POMDP and PPO, revise technical prose; results unchanged",
-    "published_v1_0_0_report_sha256": "b44dd2adbf44eab95e97e8de815bda846aed224ade29f5f1f712380368a26466",
-    "demo_provenance_note": "The unchanged demo-provenance.json records the original report at video-export time."
-  },
   "presentation_revision": {
     "date": "2026-11-13",
-    "author": "Kiên Nguyễn",
-    "assignment": "Atherlabs",
     "changes": "Near-median Hard exploration and a survived close pass, with same-model turning-loop failure retained",
-    "source_replays_unchanged": true
+    "source_replays_unchanged": true,
+    "release_tag": "v1.0.2"
   },
+  "release_tag": "v1.0.2",
+  "report_included": false,
   "shown_replays": [
     "aligned-easy",
     "aligned-medium",
@@ -205,7 +196,7 @@
   "demo_seconds": 240,
   "fps": 12,
   "frames": 2880,
-  "video_sha256": "82866fbc9bc9af3897c635be17c7c2225be5f50e99d561add5138870d31b7d8a",
+  "video_sha256": "bee45449d702c57bee8718d290d29f0e4aba68de0cef999ab80e19dc519dcf04",
   "ui_source_sha256": "88d9d93b247e7ab59e350d8d280be1bda6bb1a46b37e7a03b3e362696c36da03",
   "storyboard": [
     {
@@ -453,6 +444,5 @@
     "224.png",
     "232.png"
   ],
-  "audio": "Silent; explanatory on-screen captions",
-  "release_tag": "v1.0.1"
+  "audio": "Silent; explanatory on-screen captions"
 }

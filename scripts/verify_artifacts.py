@@ -13,19 +13,22 @@ from pypdf import PdfReader
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--submission", default="submission")
+    parser.add_argument("--report", help="Optional private report to validate separately; never included in public outputs")
     args = parser.parse_args()
     folder = Path(args.submission)
-    report = folder / "technical-report.pdf"
-    reader = PdfReader(report)
-    if not 3 <= len(reader.pages) <= 5:
-        raise ValueError(f"Report requires 3-5 pages, got {len(reader.pages)}")
-    if any(len(page.extract_text()) < 100 for page in reader.pages):
-        raise ValueError("Report has an empty or nearly empty page")
-    renders = folder / "report-preview"
-    renders.mkdir(exist_ok=True)
-    doc = pdfium.PdfDocument(report)
-    for index, page in enumerate(doc):
-        page.render(scale=1.4).to_pil().save(renders / f"page-{index + 1}.png")
+    report_pages = None
+    if args.report:
+        report = Path(args.report)
+        reader = PdfReader(report)
+        if not 3 <= len(reader.pages) <= 5:
+            raise ValueError(f"Report requires 3-5 pages, got {len(reader.pages)}")
+        if any(len(page.extract_text()) < 100 for page in reader.pages):
+            raise ValueError("Report has an empty or nearly empty page")
+        report_pages = len(reader.pages)
+        renders = Path("tmp/private-report-preview")
+        renders.mkdir(parents=True, exist_ok=True)
+        for index, page in enumerate(pdfium.PdfDocument(report)):
+            page.render(scale=1.4).to_pil().save(renders / f"page-{index + 1}.png")
     movie = imageio.get_reader(folder / "demo.mp4")
     try:
         frames = movie.count_frames()
@@ -38,7 +41,7 @@ def main():
                 raise ValueError("Demo frame dimensions are inconsistent")
     finally:
         movie.close()
-    result = {"report_pages": len(reader.pages), "report_previews": str(renders),
+    result = {"separate_report_pages": report_pages, "report_in_public_package": False,
               "demo_seconds": seconds, "demo_frames": frames, "status": "passed"}
     (folder / "artifact-checks.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
     print(json.dumps(result, indent=2))

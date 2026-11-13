@@ -50,9 +50,9 @@ results/release-rehearsal/
 **/.pipeline.lock
 tmp/
 
-# LaTeX report: keep the final PDF, exclude compiler scratch files.
+# Local LaTeX output and compiler scratch files.
 /output/pdf/*
-!/output/pdf/technical-report.pdf
+/output/pdf/technical-report.pdf
 /report/*.aux
 /report/*.bbl
 /report/*.blg
@@ -62,3 +62,10 @@ tmp/
 /report/*.out
 /report/*.synctex.gz
 /report/technical-report.pdf
+
+# Separate report and authoring materials stay local.
+/private-submission/
+/report/technical-report.tex
+/submission/final/technical-report.pdf
+/submission/final/report-preview/
+/submission/final/report-revision.json

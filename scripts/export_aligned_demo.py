@@ -116,7 +116,7 @@ def prepare(output):
 
     summary = json.loads((STUDY / "summary.json").read_text())
     canvas = Image.fromarray(slide("Exploration, discovery, and survival", [],
-                                  "5,700 episodes | 100 reserved maps per preset | Three PPO training seeds | Intervals in report"))
+                                  "5,700 episodes | 100 reserved maps per preset | Three PPO training seeds | Intervals in results archive"))
     draw = ImageDraw.Draw(canvas)
     columns = [42, 550, 730, 920, 1100]
     for x, label in zip(columns, ("Agent", "Coverage", "Visited", "POIs", "Survival")):
@@ -136,8 +136,6 @@ def prepare(output):
     draw.text((42, 550), "Frontier explores faster; aligned PPO survives more often than frontier.", font=font(23), fill="#74d4c1")
     draw.text((42, 592), "Hard: aligned coverage 81.2% vs mapless 63.5%; survival 62.7% vs 70.7%.", font=font(23), fill="#efbe76")
     canvas.save(output / "comparison.png")
-    shutil.copy2(ROOT / "output/pdf/technical-report.pdf", output / "technical-report.pdf")
-    prior = json.loads((output / "manifest.json").read_text()) if (output / "manifest.json").exists() else {}
     metadata = {"checkpoint": str(checkpoint.relative_to(ROOT)), "checkpoint_sha256": selected["sha256"],
                 "training_seed": selected["seed"], "selected_steps": selected["selected_steps"],
                 "memory_frame": selected["memory_frame"], "validation_score": selected["validation_score"],
@@ -145,14 +143,13 @@ def prepare(output):
                 "qualitative_note": "Easy, Medium, and frontier use map 10000. Main Hard replay uses map 10039, one of two equally near the 50-map Hard validation coverage median, selected for a survived close pass. The same-model map-10000 turning loop is retained as a failure example. Contact map 30000 is a selected illustration. Stored seed-11/map-30029 replay is not shown in this revision. Clips are qualitative, not aggregate evidence.",
                 "comparison_seed_disclosure": "Primary: predeclared 40000-40099, no checkpoint selection on confirmation. Older 20000/30000 ranges exposed during diagnosis; archived evidence and disclosure retained.",
                 "study_summary_sha256": digest(STUDY / "summary.json"),
-                "report_sha256": digest(output / "technical-report.pdf"),
                 "case_metrics": {key: trace["metrics"] for key, trace in traces.items()}}
-    if "report_revision" in prior:
-        metadata["report_revision"] = prior["report_revision"]
     metadata["presentation_revision"] = {
-        "date": "2026-11-13", "author": "Kiên Nguyễn", "assignment": "Atherlabs",
+        "date": "2026-11-13",
         "changes": "Near-median Hard exploration and a survived close pass, with same-model turning-loop failure retained",
-        "source_replays_unchanged": True, "release_tag": "v1.0.1"}
+        "source_replays_unchanged": True, "release_tag": "v1.0.2"}
+    metadata["release_tag"] = "v1.0.2"
+    metadata["report_included"] = False
     metadata["shown_replays"] = ["aligned-easy", "aligned-medium", "aligned-hard-typical", "frontier-medium", "aligned-contact", "aligned-hard"]
     metadata["hard_loop_diagnostics"] = "submission/final/hard-replay-diagnostics.json"
     metadata["hard_example_selection"] = {
@@ -307,7 +304,7 @@ def render(output, ui_video):
             "It remembers observed terrain and searches for green points of interest.",
             "A moving red patrol makes exploration a survival task as well.",
             "PPO controls turns, forward movement, and waiting."],
-            "Kiên Nguyễn | Atherlabs technical test | Built on Farama Foundation MiniGrid (Apache-2.0)"), 12)
+            "Built on Farama Foundation MiniGrid (Apache-2.0)"), 12)
         clip("Interactive inspection: seed, difficulty, and agent", ui_video, 32,
              "Choose a map and compare agents. The ground-truth view is for inspection; policy inputs remain partial.")
         still("Procedural maps at three scales", np.asarray(Image.open(output / "generation.png").convert("RGB")), 12)
@@ -327,7 +324,7 @@ def render(output, ui_video):
             "Without those rewards: 59.6%, using the same aligned map and PPO settings.",
             "Both conditions retain POI rewards, action costs, and collision penalties.",
             "The comparison uses three training seeds and the same reserved maps."],
-            "Means across Easy, Medium, and Hard. Full results and uncertainty are in the report."), 14)
+            "Means across Easy, Medium, and Hard. Full results and uncertainty are in the results archive."), 14)
         clip("Failure / the same policy can enter a turning loop", output / "replays/aligned-hard/episode.mp4", 8,
              phases=failure_phases)
         still("Where the policy still struggles", slide("Limits of the learned behavior", [
@@ -339,7 +336,7 @@ def render(output, ui_video):
             "Extract the ZIP and open Launch UI.bat.",
             "Choose a seed and difficulty; run, pause, or single-step.",
             "CPU inference: no Python installation, GPU, or retraining needed."],
-            "Kiên Nguyễn | github.com/emkienngu123/MiniGridRL | Farama Foundation MiniGrid (Apache-2.0)"), 8)
+            "github.com/emkienngu123/MiniGridRL | Farama Foundation MiniGrid (Apache-2.0)"), 8)
     finally:
         writer.close()
     assert elapsed == 240, elapsed

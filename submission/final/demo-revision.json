@@ -1,8 +1,6 @@
 {
   "status": "passed",
   "date": "2026-11-13",
-  "author": "Kiên Nguyễn",
-  "assignment": "Atherlabs",
   "video_seconds": 240,
   "fps": 12,
   "frames": 2880,
@@ -10,10 +8,9 @@
     1280,
     720
   ],
-  "video_sha256": "82866fbc9bc9af3897c635be17c7c2225be5f50e99d561add5138870d31b7d8a",
+  "video_sha256": "bee45449d702c57bee8718d290d29f0e4aba68de0cef999ab80e19dc519dcf04",
   "previous_video_sha256": "a0ce7fff076dc3421636a27b1001a7837d224567df30ce1c270c4b88fee6c62b",
   "checkpoint_sha256": "abf8a85a5ea4d7a25b1ed93363da5a36fc37d37ea504c2d3e6f4e126506d91ab",
-  "report_sha256": "a9f020c29db4cc1dd60e70f1827a6c25c7601eaf10e427e3e31d4655c1146973",
   "model_selection_unchanged": true,
   "primary_5700_episode_evidence_unchanged": true,
   "hard_validation_audit": {
@@ -119,5 +116,7 @@
   "proximity_limit": "Four post-step orthogonal adjacent observations; no claim of eight distinct passes or intentional avoidance.",
   "visual_review": "Representative frames decoded from finished video; close pass, final Hard outcome, failure, results, and closing inspected.",
   "script_ruff": "passed",
-  "release_tag": "v1.0.1"
+  "release_tag": "v1.0.2",
+  "report_included": false,
+  "public_credits": "Project and Farama attribution; no personal or assignment branding"
 }
